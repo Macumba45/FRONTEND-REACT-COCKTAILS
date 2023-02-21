@@ -28,33 +28,35 @@ const SignUp: FC = () => {
     const navigate = useNavigate();
 
     const handleSubmit = useCallback(
-        async (values: Props) => {
-            try {
-                const response = await fetch(
-                    'http://localhost:8000/auth/signup',
-                    {
-                        method: 'POST',
-                        headers: {
-                            'Content-Type': 'application/json',
-                        },
-                        body: JSON.stringify({
-                            name: values.name,
-                            email: values.email,
-                            password: values.password,
-                        }),
-                    }
-                );
 
-                if (response.ok) {
-                    const data = await response.json();
-                    setAuthenticatedToken(data);
-                    navigate('/welcome');
-                } else {
-                    alert(response.statusText);
-                }
-            } catch (error: any) {
-                console.log(error);
-            }
+        async (values: Props) => {
+            navigate('/welcome');
+            // try {
+            //     const response = await fetch(
+            //         'http://localhost:8000/auth/signup',
+            //         {
+            //             method: 'POST',
+            //             headers: {
+            //                 'Content-Type': 'application/json',
+            //             },
+            //             body: JSON.stringify({
+            //                 name: values.name,
+            //                 email: values.email,
+            //                 password: values.password,
+            //             }),
+            //         }
+            //     );
+
+            //     if (response.ok) {
+            //         const data = await response.json();
+            //         setAuthenticatedToken(data);
+            //         navigate('/welcome');
+            //     } else {
+            //         alert(response.statusText);
+            //     }
+            // } catch (error: any) {
+            //     console.log(error);
+            // }
         },
         [navigate]
     );
@@ -70,7 +72,7 @@ const SignUp: FC = () => {
                         initialValues={initialValues}>
                         <Form>
                             <SignUpTitle>SignUp</SignUpTitle>
-                            <Field name="email">
+                            <Field name="name">
                                 {({ field, meta }: FieldProps) => (
                                     <NameContainer>
                                         <LabelContainer>
@@ -78,8 +80,8 @@ const SignUp: FC = () => {
                                         </LabelContainer>
                                         <Input
                                             $hasError={!!meta?.error}
-                                            type="email"
-                                            placeholder="Insert your email"
+                                            type="name"
+                                            placeholder="Insert your username"
                                             autoComplete="email"
                                             {...field}
                                         />

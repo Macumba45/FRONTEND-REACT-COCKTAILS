@@ -11,12 +11,12 @@ export const Nav = styled.nav`
     width: 100%;
     z-index: 9999;
     display: flex;
-    justify-content: center;
+    justify-content: flex-end;
     align-items: center;
 `;
 
 export const NavLogged = styled.nav`
-    background-color: ${({ theme }) => theme.colors.secondary};
+    background-color: ${({ theme }) => theme.colors.primary};
     height: ${({ theme }) => theme.height.medium};
     position: fixed;
     top: 0;
@@ -75,6 +75,8 @@ export const NavbarLinkLogged = styled(Link)`
     font-weight: ${({ theme }) => theme.fontWeights.light};
     margin-right: ${({ theme }) => theme.spacing.smallest};
     text-decoration: none;
+    display: flex;
+    align-items: center;
 
     &:hover {
         font-weight: ${({ theme }) => theme.fontWeights.mediumSemiBold};
@@ -91,7 +93,7 @@ export const CompanyName = styled.h1`
 export const IconContainerProfile = styled.div`
     width: 1.5rem;
     height: 1.5rem;
-    margin-right: 1.5rem;
+    margin-right: 0.5rem;
     background-size: cover;
     background-repeat: no-repeat;
     background-image: url(${iconSignUp});
@@ -104,7 +106,7 @@ export const IconContainerProfile = styled.div`
 export const IconContainerLogOut = styled.div`
     width: 1.5rem;
     height: 1.5rem;
-    margin-left: 1.5rem;
+    margin-left: 0.5rem;
     background-size: cover;
     background-repeat: no-repeat;
     background-image: url(${iconLogin});
@@ -118,8 +120,11 @@ export const LogoutButton = styled.button`
     font-family: ${({ theme }) => theme.fonts.primary};
     font-size: ${({ theme }) => theme.fontSizes.smallest};
     font-weight: ${({ theme }) => theme.fontWeights.light};
-    background-color: black;
+    background-color: ${({ theme }) => theme.colors.primary};
     border: none;
     color: ${({ theme }) => theme.colors.light};
     cursor: pointer;
+    display: flex;
+    align-items: center;
+    margin-left: 0.5rem;
 `;

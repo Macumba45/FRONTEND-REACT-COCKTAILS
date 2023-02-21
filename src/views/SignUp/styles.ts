@@ -42,7 +42,7 @@ export const SignUpTitle = styled.h1`
     font-family: ${({ theme }) => theme.fonts.primary};
     font-size: ${({ theme }) => theme.fontSizes.mediumSmall};
     font-weight: ${({ theme }) => theme.fontWeights.bold};
-    margin-bottom: 3.125rem;
+    margin-bottom: 1.125rem;
     margin-left: 1.875rem;
     margin-top: 3.125rem;
 `;
@@ -52,7 +52,7 @@ export const NameContainer = styled.div`
     flex-direction: column;
     justify-content: center;
     /* margin-left: 3.125rem; */
-    margin-top: 4rem;
+    margin-top: 2rem;
 `;
 
 export const EmailContainer = styled.div`
@@ -92,7 +92,7 @@ export const Input = styled.input<{ $hasError?: boolean }>`
     border-radius: 5px;
     border: 0.1px solid
         ${({ $hasError, theme }) =>
-            $hasError ? theme.colors.danger : theme.colors.secondary};
+        $hasError ? theme.colors.danger : theme.colors.secondary};
     padding-left: 0.5rem;
     box-sizing: border-box;
     font-family: ${({ theme }) => theme.fonts.primary};

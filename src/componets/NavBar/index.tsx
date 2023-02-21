@@ -1,5 +1,5 @@
 import { FC } from 'react';
-import { useLocation, Link, Outlet, useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import { Props } from './type';
 import {
     Nav,
@@ -51,18 +51,15 @@ const NavBar: FC<Props> = () => {
                             <LogoutButton onClick={handleLogout}>
                                 <IconContainerLogOut />
                             </LogoutButton>
-
                             <CompanyName>Cokctails API</CompanyName>
-
                             <NavbarLinkLogged to="/profile">
                                 <IconContainerProfile />
+                                Profile
                             </NavbarLinkLogged>
                         </NavContainerLogged>
                     </>
                 </NavLogged>
             )}
-
-            <Outlet />
         </>
     );
 };
