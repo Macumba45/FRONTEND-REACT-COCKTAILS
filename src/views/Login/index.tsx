@@ -26,33 +26,35 @@ const Login: FC<Props> = () => {
     const navigate = useNavigate();
     const handleSubmit = useCallback(
         async (values: Props) => {
-            try {
-                const response = await fetch(
-                    'http://localhost:8000/auth/login',
-                    {
-                        method: 'POST',
-                        headers: {
-                            'Content-Type': 'application/json',
-                        },
-                        body: JSON.stringify({
-                            email: values.email,
-                            password: values.password,
-                        }),
-                    }
-                );
+            navigate('/welcome');
+            // try {
+            //     const response = await fetch(
+            //         'http://localhost:8000/auth/login',
+            //         {
+            //             method: 'POST',
+            //             headers: {
+            //                 'Content-Type': 'application/json',
+            //             },
+            //             body: JSON.stringify({
+            //                 email: values.email,
+            //                 password: values.password,
+            //             }),
+            //         }
+            //     );
 
-                if (response.ok) {
-                    const data = await response.json();
-                    setAuthenticatedToken(data);
-                    navigate('/welcome');
-                } else {
-                    alert(response.statusText);
-                }
-            } catch (error: any) {
-                console.log(error);
-            }
-        }, [navigate]);
-
+            //     if (response.ok) {
+            //         const data = await response.json();
+            //         setAuthenticatedToken(data);
+            //         navigate('/welcome');
+            //     } else {
+            //         alert(response.statusText);
+            //     }
+            // } catch (error: any) {
+            //     console.log(error);
+            // }
+        },
+        [navigate]
+    );
 
     return (
         <>
@@ -62,8 +64,7 @@ const Login: FC<Props> = () => {
                     <Formik
                         validationSchema={validationSchema}
                         onSubmit={handleSubmit}
-                        initialValues={initialValues}
-                    >
+                        initialValues={initialValues}>
                         <Form>
                             <LoginTitle>SignIn</LoginTitle>
                             <Field name="email">

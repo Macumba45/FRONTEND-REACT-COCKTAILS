@@ -25,7 +25,7 @@ export const MainFormContainer = styled.div`
 export const Form = styled(defaultForm)`
     background-color: white;
     border-radius: 10px;
-    height:40rem;
+    height: 40rem;
     margin-left: 1.7rem;
     margin-right: 1.7rem;
     /* Margen para pantalla grande */
@@ -92,7 +92,7 @@ export const Input = styled.input<{ $hasError?: boolean }>`
     border-radius: 5px;
     border: 0.1px solid
         ${({ $hasError, theme }) =>
-        $hasError ? theme.colors.danger : theme.colors.secondary};
+            $hasError ? theme.colors.danger : theme.colors.secondary};
     padding-left: 0.5rem;
     box-sizing: border-box;
     font-family: ${({ theme }) => theme.fonts.primary};

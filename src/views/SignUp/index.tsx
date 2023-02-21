@@ -67,8 +67,7 @@ const SignUp: FC = () => {
                     <Formik
                         validationSchema={validationSchema}
                         onSubmit={handleSubmit}
-                        initialValues={initialValues}
-                    >
+                        initialValues={initialValues}>
                         <Form>
                             <SignUpTitle>SignUp</SignUpTitle>
                             <Field name="email">
