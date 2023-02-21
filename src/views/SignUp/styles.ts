@@ -25,7 +25,7 @@ export const MainFormContainer = styled.div`
 export const Form = styled(defaultForm)`
     background-color: white;
     border-radius: 10px;
-    height: 35rem;
+    height:40rem;
     margin-left: 1.7rem;
     margin-right: 1.7rem;
     /* Margen para pantalla grande */
@@ -47,12 +47,20 @@ export const SignUpTitle = styled.h1`
     margin-top: 3.125rem;
 `;
 
-export const EmailContainer = styled.div`
+export const NameContainer = styled.div`
     display: flex;
     flex-direction: column;
     justify-content: center;
     /* margin-left: 3.125rem; */
     margin-top: 5rem;
+`;
+
+export const EmailContainer = styled.div`
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    /* margin-left: 3.125rem; */
+    margin-top: 2rem;
 `;
 
 export const PasswordContainer = styled.div`
@@ -61,7 +69,7 @@ export const PasswordContainer = styled.div`
     flex-direction: column;
     justify-content: center;
     /* margin-left: 3.125rem; */
-    margin-top: 1.25rem;
+    margin-top: 2rem;
 `;
 
 export const LabelContainer = styled.div``;
@@ -84,7 +92,7 @@ export const Input = styled.input<{ $hasError?: boolean }>`
     border-radius: 5px;
     border: 0.1px solid
         ${({ $hasError, theme }) =>
-            $hasError ? theme.colors.danger : theme.colors.secondary};
+        $hasError ? theme.colors.danger : theme.colors.secondary};
     padding-left: 0.5rem;
     box-sizing: border-box;
     font-family: ${({ theme }) => theme.fonts.primary};
@@ -124,7 +132,7 @@ export const LinkLoginContainer = styled.div`
     align-items: center;
     display: flex;
     justify-content: center;
-    margin-top: 3.125rem;
+    margin-top: 4rem;
 `;
 
 export const LinkLoginText = styled(Link)`
@@ -150,8 +158,8 @@ export const ButtonSignUp = styled.button`
     font-family: ${({ theme }) => theme.fonts.primary};
     font-size: ${({ theme }) => theme.fontSizes.smallest};
     font-weight: 500;
-    margin-bottom: 3.125rem;
-    margin-top: 50px;
+
+    margin-top: 3rem;
     padding: 1rem 2rem 1rem 2rem;
     text-decoration: none;
 

@@ -1,6 +1,7 @@
 export type Props = {
-    email?: string;
-    password?: string;
+    name: string;
+    email: string;
+    password: string;
 };
 
 export type FieldProps = {

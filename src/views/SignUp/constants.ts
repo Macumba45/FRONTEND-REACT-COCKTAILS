@@ -10,6 +10,7 @@ export const validationSchema = Yup.object().shape({
 });
 
 export const initialValues = {
+    name: '',
     email: '',
     password: '',
 };

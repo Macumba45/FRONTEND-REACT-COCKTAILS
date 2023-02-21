@@ -1,6 +1,6 @@
 import { FC, memo, useCallback } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { initialValues } from '../Login/constants';
+import { initialValues } from '../SignUp/constants';
 import { Field, FieldProps, Formik } from 'formik';
 import { validationSchema } from './constants';
 import { setAuthenticatedToken } from '../../services/storage';
@@ -21,9 +21,10 @@ import {
     ButtonSignUp,
     LoginBackImg,
     Error,
+    NameContainer,
 } from './styles';
 
-const SignUp: FC<Props> = () => {
+const SignUp: FC = () => {
     const navigate = useNavigate();
 
     const handleSubmit = useCallback(
@@ -37,6 +38,7 @@ const SignUp: FC<Props> = () => {
                             'Content-Type': 'application/json',
                         },
                         body: JSON.stringify({
+                            name: values.name,
                             email: values.email,
                             password: values.password,
                         }),
@@ -69,6 +71,25 @@ const SignUp: FC<Props> = () => {
                     >
                         <Form>
                             <SignUpTitle>SignUp</SignUpTitle>
+                            <Field name="email">
+                                {({ field, meta }: FieldProps) => (
+                                    <NameContainer>
+                                        <LabelContainer>
+                                            <Label>Name* </Label>
+                                        </LabelContainer>
+                                        <Input
+                                            $hasError={!!meta?.error}
+                                            type="email"
+                                            placeholder="Insert your email"
+                                            autoComplete="email"
+                                            {...field}
+                                        />
+                                        {!!meta?.error && (
+                                            <Error>{meta.error}</Error>
+                                        )}
+                                    </NameContainer>
+                                )}
+                            </Field>
                             <Field name="email">
                                 {({ field, meta }: FieldProps) => (
                                     <EmailContainer>

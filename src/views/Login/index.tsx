@@ -51,9 +51,8 @@ const Login: FC<Props> = () => {
             } catch (error: any) {
                 console.log(error);
             }
-        },
-        [navigate]
-    );
+        }, [navigate]);
+
 
     return (
         <>
