@@ -1,4 +1,4 @@
-IDEAS PARA EL PROYECTO: 
+IDEAS PARA EL PROYECTO:
 
 Llamada a la API:
 
@@ -12,15 +12,14 @@ Vistas del FRONT:
         *Login(Usuario y contraseña)
         *SignUp(Nombre, email y password)
     2- Una vez logueado:
-        1-Random Cokctail 
+        1-Random Cokctail
         2-Descubre nuevas bebidas (Categorias)
         3-Feed post de los usuarios
     3-Feed de las bebidas de usuarios (Con likes, usuario y descripción) + boton footer para añadir nuevo cocktail
     4-Vista profile con los cocktails del usuario que ha creado en el feed + foto(Añadir desde el profile) + email + nombre
- 
-Diseño: 
-    1-Material UI
 
+Diseño:
+1-Material UI
 
 # Getting Started with Create React App
 
