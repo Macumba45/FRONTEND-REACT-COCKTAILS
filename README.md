@@ -1,3 +1,25 @@
+IDEAS PARA EL PROYECTO: 
+
+Llamada a la API:
+
+    1- Random cocktails
+    2- Cocktails por primera letra (Listado completo A-Z)
+    3- Lista de categorias + vista detallada por categoria(Son 11 categorias)
+
+Vistas del FRONT:
+
+    1-Login & SignUp:
+        *Login(Usuario y contraseña)
+        *SignUp(Nombre, email y password)
+    2- Una vez logueado:
+        1-Random Cokctail 
+        2-Descubre nuevas bebidas (Categorias)
+        3-Feed post de los usuarios
+    3-Feed de las bebidas de usuarios (Con likes, usuario y descripción) + boton footer para añadir nuevo cocktail
+    4-Vista profile con los cocktails del usuario que ha creado en el feed + foto(Añadir desde el profile) + email + nombre
+    5-Futuras ideas 
+
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
