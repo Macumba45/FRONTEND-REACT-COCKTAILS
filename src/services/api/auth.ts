@@ -1,0 +1,1 @@
+import { getAuthenticatedToken } from '../storage';
