@@ -31,7 +31,6 @@ const NavBar: FC<Props> = () => {
 
     return (
         <>
-
             {isNotLoged ? (
                 <Nav>
                     <NavContainerNotLogged>

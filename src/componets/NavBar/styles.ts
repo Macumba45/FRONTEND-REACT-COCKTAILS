@@ -13,7 +13,6 @@ export const Nav = styled.nav`
     display: flex;
     justify-content: center;
     align-items: center;
-   
 `;
 
 export const NavLogged = styled.nav`
@@ -23,7 +22,6 @@ export const NavLogged = styled.nav`
     top: 0;
     width: 100%;
     z-index: 9999;
- 
 `;
 
 export const NavContainerNotLogged = styled.div`
@@ -68,8 +66,6 @@ export const NavContainerLogged = styled.div`
     align-items: center;
     justify-content: space-between;
     height: ${({ theme }) => theme.height.medium};
-
-
 `;
 
 export const NavbarLinkLogged = styled(Link)`
@@ -86,18 +82,15 @@ export const NavbarLinkLogged = styled(Link)`
 `;
 
 export const CompanyName = styled.h1`
-
-color: ${({ theme }) => theme.colors.light};
-font-family: ${({ theme }) => theme.fonts.primary};
-font-weight: ${({ theme }) => theme.fontWeights.bold};
-font-size: 1.3rem;
-
-
-`
+    color: ${({ theme }) => theme.colors.light};
+    font-family: ${({ theme }) => theme.fonts.primary};
+    font-weight: ${({ theme }) => theme.fontWeights.bold};
+    font-size: 1.3rem;
+`;
 
 export const IconContainerProfile = styled.div`
     width: 1.5rem;
-    height: 1.5rem;   
+    height: 1.5rem;
     margin-right: 1.5rem;
     background-size: cover;
     background-repeat: no-repeat;
@@ -130,5 +123,3 @@ export const LogoutButton = styled.button`
     color: ${({ theme }) => theme.colors.light};
     cursor: pointer;
 `;
-
-
