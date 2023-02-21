@@ -106,7 +106,7 @@ const Login: FC<Props> = () => {
                                 )}
                             </Field>
                             <LinkSignupContainer>
-                                <LinkSignupText to="/signUp">
+                                <LinkSignupText to="/signup">
                                     If you are not SignUp, click here!
                                 </LinkSignupText>
                             </LinkSignupContainer>
