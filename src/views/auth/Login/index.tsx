@@ -2,8 +2,8 @@ import { FC, memo, useCallback } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Field, FieldProps, Formik } from 'formik';
 import { validationSchema, initialValues } from './constants';
-import { setAuthenticatedToken } from '../../services/storage';
-import NavBar from '../../componets/NavBar';
+import { setAuthenticatedToken } from '../../../services/storage';
+import NavBar from '../../../componets/NavBar';
 import { Props } from './type';
 import {
     MainFormContainer,

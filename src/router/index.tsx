@@ -1,6 +1,6 @@
 import { FC, memo } from 'react';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
-import Login from '../views/Login';
+import Login from '../views/auth/Login';
 import Random from '../views/Random';
 import SignUp from '../views/SignUp';
 import Welcome from '../views/Welcome';
