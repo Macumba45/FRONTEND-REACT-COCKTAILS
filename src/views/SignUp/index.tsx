@@ -28,7 +28,6 @@ const SignUp: FC = () => {
     const navigate = useNavigate();
 
     const handleSubmit = useCallback(
-
         async (values: Props) => {
             navigate('/welcome');
             // try {

@@ -1,13 +1,11 @@
 import styled from 'styled-components';
-import { Link } from 'react-router-dom';
+import Fab from '@mui/material/Fab';
 
-
-export const Nav = styled.nav`
-
-width: 100%;
-position: fixed;
-bottom: 0;
-background-color: ${({ theme }) => theme.colors.primary};
-height: 3rem;
-
-`
+export const StyledFab = styled(Fab)({
+    position: 'absolute',
+    zIndex: 1,
+    top: -30,
+    left: 0,
+    right: 0,
+    margin: '0 auto',
+});
