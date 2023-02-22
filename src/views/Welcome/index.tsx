@@ -9,7 +9,9 @@ const Welcome: FC = () => {
             <NavBar />
             <MainContainer>
                 <WelcomeText>Welcome to {<br />} COCKTAILS</WelcomeText>
-                <WelcomeDescription>In this web you can do the following things</WelcomeDescription>
+                <WelcomeDescription>
+                    In this web you can do the following things
+                </WelcomeDescription>
             </MainContainer>
             <BottomAppBar />
         </>

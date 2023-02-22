@@ -23,9 +23,8 @@ const NavBarBottom: FC = () => {
     const navigate = useNavigate();
 
     const goToFeedPage = () => {
-
         navigate('/feed');
-    }
+    };
 
     const goToRandomPage = (e: any) => {
         navigate('/random');
