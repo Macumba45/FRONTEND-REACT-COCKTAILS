@@ -1,6 +1,6 @@
 import { FC, memo } from 'react';
 import NavBar from '../../componets/NavBar';
-import NavBarBottom from '../../componets/NavBarBottom';
+import BottomAppBar from '../../componets/NavBarBottom'
 
 const Welcome: FC = () => {
 
@@ -8,7 +8,7 @@ const Welcome: FC = () => {
         <>
             <NavBar />
 
-            <NavBarBottom />
+            <BottomAppBar />
 
         </>
     )

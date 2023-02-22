@@ -54,7 +54,6 @@ const NavBar: FC<Props> = () => {
                             <CompanyName>Cokctails API</CompanyName>
                             <NavbarLinkLogged to="/profile">
                                 <IconContainerProfile />
-                                Profile
                             </NavbarLinkLogged>
                         </NavContainerLogged>
                     </>
