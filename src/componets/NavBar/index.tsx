@@ -51,7 +51,7 @@ const NavBar: FC<Props> = () => {
                             <LogoutButton onClick={handleLogout}>
                                 <IconContainerLogOut />
                             </LogoutButton>
-                            <CompanyName>Cokctails API</CompanyName>
+                            <CompanyName>COCKATILS</CompanyName>
                             <NavbarLinkLogged to="/profile">
                                 <IconContainerProfile />
                             </NavbarLinkLogged>

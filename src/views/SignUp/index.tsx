@@ -29,7 +29,7 @@ const SignUp: FC = () => {
 
     const handleSubmit = useCallback(
         async (values: Props) => {
-            navigate('/welcome');
+            navigate('/feed');
             // try {
             //     const response = await fetch(
             //         'http://localhost:8000/auth/signup',

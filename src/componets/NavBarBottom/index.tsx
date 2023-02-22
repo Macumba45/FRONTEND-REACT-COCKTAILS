@@ -22,6 +22,11 @@ export const StyledFab = styled(Fab)({
 const NavBarBottom: FC = () => {
     const navigate = useNavigate();
 
+    const goToFeedPage = () => {
+
+        navigate('/feed');
+    }
+
     const goToRandomPage = (e: any) => {
         navigate('/random');
     };
@@ -45,6 +50,7 @@ const NavBarBottom: FC = () => {
                     </IconButton>
                     <StyledFab
                         aria-label="add"
+                        onClick={goToFeedPage}
                         sx={{
                             color: 'white',
                             backgroundColor: '#420024',
