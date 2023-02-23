@@ -3,8 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import { initialValues } from '../SignUp/constants';
 import { Field, FieldProps, Formik } from 'formik';
 import { validationSchema } from './constants';
-import { setAuthenticatedToken } from '../../services/storage';
-import NavBar from '../../componets/NavBar';
+import NavBar from '../../../componets/NavBar';
 import type { Props } from './type';
 import {
     MainFormContainer,

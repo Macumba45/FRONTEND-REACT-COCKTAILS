@@ -1,23 +1,13 @@
 import * as React from 'react';
-import { styled } from '@mui/material/styles';
 import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
 import CssBaseline from '@mui/material/CssBaseline';
 import Toolbar from '@mui/material/Toolbar';
 import IconButton from '@mui/material/IconButton';
-import Fab from '@mui/material/Fab';
 import AddIcon from '@mui/icons-material/Add';
 import { FC, memo } from 'react';
 import { useNavigate } from 'react-router-dom';
-
-export const StyledFab = styled(Fab)({
-    position: 'absolute',
-    zIndex: 1,
-    top: -30,
-    left: 0,
-    right: 0,
-    margin: '0 auto',
-});
+import { StyledFab } from './styles';
 
 const NavBarBottom: FC = () => {
     const navigate = useNavigate();
@@ -31,7 +21,7 @@ const NavBarBottom: FC = () => {
     };
 
     const goToCategoryPage = (e: any) => {
-        navigate('/category');
+        navigate('/categories');
     };
 
     return (

@@ -1,6 +1,7 @@
 import { FC } from 'react';
-import { useLocation, useNavigate } from 'react-router-dom';
 import { Props } from './type';
+import IconButton from '@mui/material/IconButton';
+import MenuIcon from '@mui/icons-material/Menu';
 import {
     Nav,
     IconContainerLogin,
@@ -14,24 +15,28 @@ import {
     IconContainerLogOut,
     CompanyName,
     NavLogged,
+    ConditionalContainer,
 } from './styles';
+import { Menu, MenuItem } from '@mui/material';
+import { useNavBarLogic } from './logic';
+
+
 
 const NavBar: FC<Props> = () => {
-    const navigate = useNavigate();
-    const location = useLocation();
-    const isNotLoged =
-        location.pathname === '/login' ||
-        location.pathname === '/signup' ||
-        location.pathname === '/';
 
-    const handleLogout = () => {
-        // aquí iría la lógica para cerrar sesión del usuario
-        navigate('/');
-    };
+    const {
+        isNavBarLogin,
+        isLogoutFeed,
+        handleLogout,
+        handleBackPage,
+        anchorEl,
+        handleMenuOpen,
+        handleMenuClose,
+    } = useNavBarLogic();
 
     return (
         <>
-            {isNotLoged ? (
+            {isNavBarLogin ? (
                 <Nav>
                     <NavContainerNotLogged>
                         <IconContainerLogin />
@@ -48,17 +53,41 @@ const NavBar: FC<Props> = () => {
                 <NavLogged>
                     <>
                         <NavContainerLogged>
-                            <LogoutButton onClick={handleLogout}>
+
+                            {isLogoutFeed ? (
+                                <ConditionalContainer>
+                                    <IconButton
+                                        size="large"
+                                        edge="start"
+                                        aria-controls="menu"
+                                        aria-haspopup="true"
+                                        aria-label="menu"
+                                        sx={{ ml: 0.1, color: "white" }}
+                                        onClick={handleMenuOpen}
+                                    >
+                                        <MenuIcon />
+                                    </IconButton>
+                                    <Menu
+                                        id="menu"
+                                        anchorEl={anchorEl}
+                                        open={Boolean(anchorEl)}
+                                        onClose={handleMenuClose}
+                                    >
+                                        <MenuItem onClick={handleLogout}>Logout</MenuItem>
+                                    </Menu>
+                                </ConditionalContainer>
+                            ) : (<LogoutButton onClick={handleBackPage}>
                                 <IconContainerLogOut />
-                            </LogoutButton>
-                            <CompanyName>COCKATILS</CompanyName>
+                            </LogoutButton>)}
+                            <CompanyName> COCKATILS</CompanyName>
                             <NavbarLinkLogged to="/profile">
                                 <IconContainerProfile />
                             </NavbarLinkLogged>
                         </NavContainerLogged>
                     </>
                 </NavLogged>
-            )}
+            )
+            }
         </>
     );
 };

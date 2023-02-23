@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import { styled } from '@mui/material/styles';
 import Fab from '@mui/material/Fab';
 
 export const StyledFab = styled(Fab)({

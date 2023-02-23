@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import iconLogin from './assets/icons8-login-rounded-90.png';
 import iconSignUp from './assets/icons8-male-user-96.png';
 
@@ -127,4 +127,22 @@ export const LogoutButton = styled.button`
     display: flex;
     align-items: center;
     margin-left: 0.5rem;
+
+    &:hover {
+        font-size:1rem;
+
+      
+    }
+
+    ${() => {
+        const location = useLocation();
+        const isActive = location.pathname === '/feed';
+        return isActive && `
+      font-weight: 600;
+      
+    `;
+    }}
 `;
+
+
+export const ConditionalContainer = styled.div``
