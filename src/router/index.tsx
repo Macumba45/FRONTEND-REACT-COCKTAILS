@@ -16,7 +16,6 @@ const Router: FC = () => {
                 <Route path="/feed" element={<Welcome />} />
                 <Route path="/random" element={<Random />} />
                 <Route path="/categories" element={<Categories />} />
-
             </Routes>
         </BrowserRouter>
     );

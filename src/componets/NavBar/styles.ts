@@ -129,20 +129,20 @@ export const LogoutButton = styled.button`
     margin-left: 0.5rem;
 
     &:hover {
-        font-size:1rem;
-
-      
+        font-size: 1rem;
     }
 
     ${() => {
         const location = useLocation();
         const isActive = location.pathname === '/feed';
-        return isActive && `
+        return (
+            isActive &&
+            `
       font-weight: 600;
       
-    `;
+    `
+        );
     }}
 `;
 
-
-export const ConditionalContainer = styled.div``
+export const ConditionalContainer = styled.div``;

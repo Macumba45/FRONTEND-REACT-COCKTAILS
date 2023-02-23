@@ -20,10 +20,7 @@ import {
 import { Menu, MenuItem } from '@mui/material';
 import { useNavBarLogic } from './logic';
 
-
-
 const NavBar: FC<Props> = () => {
-
     const {
         isNavBarLogin,
         isLogoutFeed,
@@ -53,7 +50,6 @@ const NavBar: FC<Props> = () => {
                 <NavLogged>
                     <>
                         <NavContainerLogged>
-
                             {isLogoutFeed ? (
                                 <ConditionalContainer>
                                     <IconButton
@@ -62,23 +58,25 @@ const NavBar: FC<Props> = () => {
                                         aria-controls="menu"
                                         aria-haspopup="true"
                                         aria-label="menu"
-                                        sx={{ ml: 0.1, color: "white" }}
-                                        onClick={handleMenuOpen}
-                                    >
+                                        sx={{ ml: 0.1, color: 'white' }}
+                                        onClick={handleMenuOpen}>
                                         <MenuIcon />
                                     </IconButton>
                                     <Menu
                                         id="menu"
                                         anchorEl={anchorEl}
                                         open={Boolean(anchorEl)}
-                                        onClose={handleMenuClose}
-                                    >
-                                        <MenuItem onClick={handleLogout}>Logout</MenuItem>
+                                        onClose={handleMenuClose}>
+                                        <MenuItem onClick={handleLogout}>
+                                            Logout
+                                        </MenuItem>
                                     </Menu>
                                 </ConditionalContainer>
-                            ) : (<LogoutButton onClick={handleBackPage}>
-                                <IconContainerLogOut />
-                            </LogoutButton>)}
+                            ) : (
+                                <LogoutButton onClick={handleBackPage}>
+                                    <IconContainerLogOut />
+                                </LogoutButton>
+                            )}
                             <CompanyName> COCKATILS</CompanyName>
                             <NavbarLinkLogged to="/profile">
                                 <IconContainerProfile />
@@ -86,8 +84,7 @@ const NavBar: FC<Props> = () => {
                         </NavContainerLogged>
                     </>
                 </NavLogged>
-            )
-            }
+            )}
         </>
     );
 };

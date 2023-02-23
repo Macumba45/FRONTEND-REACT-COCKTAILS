@@ -8,11 +8,8 @@ export const MainContainer = styled.div`
 `;
 
 export const ButtonContainer = styled.div`
-display: flex;
-justify-content: center;
-margin-bottom: 7rem;
-margin-top: 2rem;
-
-
-
-`
+    display: flex;
+    justify-content: center;
+    margin-bottom: 7rem;
+    margin-top: 2rem;
+`;

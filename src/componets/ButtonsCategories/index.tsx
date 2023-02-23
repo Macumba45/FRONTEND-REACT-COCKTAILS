@@ -1,8 +1,13 @@
 import { FC, memo } from 'react';
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
-import { ImageButton, ImageSrc, ImageBackdrop, Image, ImageMarked } from './styles'
-
+import {
+    ImageButton,
+    ImageSrc,
+    ImageBackdrop,
+    Image,
+    ImageMarked,
+} from './styles';
 
 const images = [
     {
@@ -22,19 +27,26 @@ const images = [
     },
 ];
 
-
 const ButtonCategories: FC = () => {
     return (
-        <Box sx={{ display: 'flex', flexWrap: 'wrap', minWidth: 300, width: '100%', marginTop: '4.0rem' }}>
+        <Box
+            sx={{
+                display: 'flex',
+                flexWrap: 'wrap',
+                minWidth: 300,
+                width: '100%',
+                marginTop: '4.0rem',
+            }}>
             {images.map((image) => (
                 <ImageButton
                     focusRipple
                     key={image.title}
                     style={{
                         width: image.width,
-                    }}
-                >
-                    <ImageSrc style={{ backgroundImage: `url(${image.url})` }} />
+                    }}>
+                    <ImageSrc
+                        style={{ backgroundImage: `url(${image.url})` }}
+                    />
                     <ImageBackdrop className="MuiImageBackdrop-root" />
                     <Image>
                         <Typography
@@ -45,9 +57,9 @@ const ButtonCategories: FC = () => {
                                 position: 'relative',
                                 p: 4,
                                 pt: 2,
-                                pb: (theme) => `calc(${theme.spacing(1)} + 6px)`,
-                            }}
-                        >
+                                pb: (theme) =>
+                                    `calc(${theme.spacing(1)} + 6px)`,
+                            }}>
                             {image.title}
                             <ImageMarked className="MuiImageMarked-root" />
                         </Typography>
@@ -56,6 +68,6 @@ const ButtonCategories: FC = () => {
             ))}
         </Box>
     );
-}
+};
 
 export default memo(ButtonCategories);

@@ -1,9 +1,6 @@
 import { styled } from '@mui/material/styles';
 import ButtonBase from '@mui/material/ButtonBase';
 
-
-
-
 export const ImageButton = styled(ButtonBase)(({ theme }) => ({
     position: 'relative',
     height: 200,
@@ -46,7 +43,6 @@ export const Image = styled('span')(({ theme }) => ({
     justifyContent: 'center',
     color: theme.palette.common.white,
 }));
-
 
 export const ImageMarked = styled('span')(({ theme }) => ({
     height: 3,
