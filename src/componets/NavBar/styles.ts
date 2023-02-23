@@ -2,6 +2,7 @@ import styled from 'styled-components';
 import { Link, useLocation } from 'react-router-dom';
 import iconLogin from './assets/icons8-login-rounded-90.png';
 import iconSignUp from './assets/icons8-male-user-96.png';
+import Logo from './assets/logo.png';
 
 export const Nav = styled.nav`
     background-color: ${({ theme }) => theme.colors.secondary};
@@ -83,11 +84,14 @@ export const NavbarLinkLogged = styled(Link)`
     }
 `;
 
-export const CompanyName = styled.h1`
-    color: ${({ theme }) => theme.colors.light};
-    font-family: ${({ theme }) => theme.fonts.primary};
-    font-weight: ${({ theme }) => theme.fontWeights.bold};
-    font-size: 1.3rem;
+export const CompanyLogo = styled.div`
+    background-image: url(${Logo});
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-color: white;
+    width: 80px;
+    height: 30px;
+    border-radius: 10px;
 `;
 
 export const IconContainerProfile = styled.div`
@@ -126,7 +130,6 @@ export const LogoutButton = styled.button`
     cursor: pointer;
     display: flex;
     align-items: center;
-    margin-left: 0.5rem;
 
     &:hover {
         font-size: 1rem;

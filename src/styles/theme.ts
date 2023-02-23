@@ -11,9 +11,9 @@ const theme = {
         dark: '#343a40',
     },
     fonts: {
-        primary: 'Montserrat, sans-serif',
+        primary: 'Roboto, sans-serif',
         secondary: 'Open Sans, sans-serif',
-        display: 'Roboto, sans-serif',
+        display: 'Montserrat, sans-serif',
         body: 'Noto Sans, sans-serif',
     },
     fontWeights: {

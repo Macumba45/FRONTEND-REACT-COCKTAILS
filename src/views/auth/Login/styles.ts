@@ -78,7 +78,7 @@ export const Input = styled.input<{ $hasError?: boolean }>`
     border-radius: 5px;
     border: 0.1px solid
         ${({ $hasError, theme }) =>
-            $hasError ? theme.colors.danger : theme.colors.secondary};
+        $hasError ? theme.colors.danger : theme.colors.secondary};
     padding-left: 0.5rem;
     box-sizing: border-box;
     font-family: ${({ theme }) => theme.fonts.primary};
@@ -133,8 +133,7 @@ export const LinkSignupText = styled(Link)`
     color: ${({ theme }) => theme.colors.primary};
     font-family: ${({ theme }) => theme.fonts.primary};
     font-size: ${({ theme }) => theme.fontSizes.smallest};
-    font-weight: ${({ theme }) => theme.fontWeights.light};
-    cursor: pointer;
+    font-weight: 500;
     text-decoration: none;
 
     &:hover {

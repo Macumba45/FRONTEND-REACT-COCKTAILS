@@ -13,7 +13,7 @@ import {
     NavContainerNotLogged,
     IconContainerProfile,
     IconContainerLogOut,
-    CompanyName,
+    CompanyLogo,
     NavLogged,
     ConditionalContainer,
 } from './styles';
@@ -77,7 +77,7 @@ const NavBar: FC<Props> = () => {
                                     <IconContainerLogOut />
                                 </LogoutButton>
                             )}
-                            <CompanyName> COCKATILS</CompanyName>
+                            <CompanyLogo></CompanyLogo>
                             <NavbarLinkLogged to="/profile">
                                 <IconContainerProfile />
                             </NavbarLinkLogged>

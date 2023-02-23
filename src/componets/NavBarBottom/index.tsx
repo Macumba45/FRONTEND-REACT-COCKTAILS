@@ -1,4 +1,5 @@
 import * as React from 'react';
+import { useNavBarBottomLogic } from './logic';
 import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
 import CssBaseline from '@mui/material/CssBaseline';
@@ -6,23 +7,11 @@ import Toolbar from '@mui/material/Toolbar';
 import IconButton from '@mui/material/IconButton';
 import AddIcon from '@mui/icons-material/Add';
 import { FC, memo } from 'react';
-import { useNavigate } from 'react-router-dom';
 import { StyledFab } from './styles';
 
 const NavBarBottom: FC = () => {
-    const navigate = useNavigate();
-
-    const goToFeedPage = () => {
-        navigate('/feed');
-    };
-
-    const goToRandomPage = (e: any) => {
-        navigate('/random');
-    };
-
-    const goToCategoryPage = (e: any) => {
-        navigate('/categories');
-    };
+    const { goToFeedPage, goToRandomPage, goToCategoryPage } =
+        useNavBarBottomLogic();
 
     return (
         <React.Fragment>
