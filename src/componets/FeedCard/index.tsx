@@ -1,6 +1,6 @@
-import { FC, memo, useState } from 'react';
+import { FC, memo } from 'react';
+import { useFeedCardLogic } from './logic';
 import { styled } from '@mui/material/styles';
-import Card from '@mui/material/Card';
 import CardHeader from '@mui/material/CardHeader';
 import CardMedia from '@mui/material/CardMedia';
 import CardContent from '@mui/material/CardContent';
@@ -32,19 +32,15 @@ const ExpandMore = styled((props: ExpandMoreProps) => {
     }),
 }));
 
-const StyledCard = styled(Card)(({ theme }) => ({
-    width: 300,
-    [theme.breakpoints.up('md')]: {
-        width: 600,
-    },
-}));
 
 const FeedCard: FC = () => {
-    const [expanded, setExpanded] = useState(false);
 
-    const handleExpandClick = () => {
-        setExpanded(!expanded);
-    };
+    const {
+        handleExpandClick,
+        expanded,
+        StyledCard
+    } = useFeedCardLogic();
+
 
     return (
         <>

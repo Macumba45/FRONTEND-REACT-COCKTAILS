@@ -110,7 +110,7 @@ export const IconContainerProfile = styled.div`
 export const IconContainerLogOut = styled.div`
     width: 1.5rem;
     height: 1.5rem;
-    margin-left: 0.5rem;
+    /* margin-left: 0.5rem; */
     background-size: cover;
     background-repeat: no-repeat;
     background-image: url(${iconLogin});
