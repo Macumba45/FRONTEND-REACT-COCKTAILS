@@ -1,4 +1,4 @@
-import * as React from 'react';
+import { FC, memo, useState } from 'react';
 import { styled } from '@mui/material/styles';
 import Card from '@mui/material/Card';
 import CardHeader from '@mui/material/CardHeader';
@@ -14,7 +14,6 @@ import FavoriteIcon from '@mui/icons-material/Favorite';
 import ShareIcon from '@mui/icons-material/Share';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import MoreVertIcon from '@mui/icons-material/MoreVert';
-import { FC, memo } from 'react';
 import { MainContainer } from './styles';
 import IMGPRUEBA from './maxresdefault.jpg';
 
@@ -33,8 +32,15 @@ const ExpandMore = styled((props: ExpandMoreProps) => {
     }),
 }));
 
+const StyledCard = styled(Card)(({ theme }) => ({
+    width: 300,
+    [theme.breakpoints.up('sm')]: {
+        width: 600,
+    },
+}));
+
 const FeedCard: FC = () => {
-    const [expanded, setExpanded] = React.useState(false);
+    const [expanded, setExpanded] = useState(false);
 
     const handleExpandClick = () => {
         setExpanded(!expanded);
@@ -43,7 +49,7 @@ const FeedCard: FC = () => {
     return (
         <>
             <MainContainer>
-                <Card sx={{ width: 300 }}>
+                <StyledCard sx={{ width: 300 }}>
                     <CardHeader
                         avatar={
                             <Avatar
@@ -127,7 +133,7 @@ const FeedCard: FC = () => {
                             </Typography>
                         </CardContent>
                     </Collapse>
-                </Card>
+                </StyledCard>
             </MainContainer>
         </>
     );

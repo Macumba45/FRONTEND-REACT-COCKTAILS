@@ -1,17 +1,20 @@
 import { FC, memo } from 'react';
 import Stack from '@mui/material/Stack';
 import Button from '@mui/material/Button';
+import { Container } from './styles';
 
 const ButtonRandom: FC = () => {
     return (
-        <Stack display='flex' direction="column" justifyContent={'center'} spacing={1}>
-            <Button
-                variant="contained"
-                color="success"
-                sx={{ backgroundColor: '#420024' }}>
-                Random it
-            </Button>
-        </Stack>
+        <Container>
+            <Stack >
+                <Button
+                    variant="contained"
+                    color="success"
+                    sx={{ backgroundColor: '#420024' }}>
+                    Random it
+                </Button>
+            </Stack>
+        </Container>
     );
 };
 
