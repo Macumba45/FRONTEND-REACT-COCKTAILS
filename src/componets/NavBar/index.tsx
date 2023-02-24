@@ -67,7 +67,14 @@ const NavBar: FC<Props> = () => {
                                         anchorEl={anchorEl}
                                         open={Boolean(anchorEl)}
                                         onClose={handleMenuClose}>
-                                        <MenuItem onClick={handleLogout}>
+                                        <MenuItem
+                                            onClick={handleLogout}
+                                            sx={{
+                                                padding: 0.5,
+                                                marginTop: 0.5,
+                                                marginRight: 1,
+                                                marginLeft: 1,
+                                            }}>
                                             Logout
                                         </MenuItem>
                                     </Menu>

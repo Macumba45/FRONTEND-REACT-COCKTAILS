@@ -1,4 +1,3 @@
-import * as React from 'react';
 import { styled } from '@mui/material/styles';
 import Card from '@mui/material/Card';
 import CardHeader from '@mui/material/CardHeader';
@@ -14,9 +13,8 @@ import FavoriteIcon from '@mui/icons-material/Favorite';
 import ShareIcon from '@mui/icons-material/Share';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import MoreVertIcon from '@mui/icons-material/MoreVert';
-import { FC } from 'react';
-import { ButtonContainer, MainContainer } from './styles';
-import ButtonRandom from '../Button';
+import { FC, memo, useState } from 'react';
+import { MainContainer } from './styles';
 
 interface ExpandMoreProps extends IconButtonProps {
     expand: boolean;
@@ -34,7 +32,7 @@ const ExpandMore = styled((props: ExpandMoreProps) => {
 }));
 
 const RandomCard: FC = () => {
-    const [expanded, setExpanded] = React.useState(false);
+    const [expanded, setExpanded] = useState(false);
 
     const handleExpandClick = () => {
         setExpanded(!expanded);
@@ -129,11 +127,8 @@ const RandomCard: FC = () => {
                     </Collapse>
                 </Card>
             </MainContainer>
-            <ButtonContainer>
-                <ButtonRandom />
-            </ButtonContainer>
         </>
     );
 };
 
-export default React.memo(RandomCard);
+export default memo(RandomCard);

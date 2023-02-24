@@ -1,4 +1,4 @@
-import * as React from 'react';
+import { FC, memo } from 'react';
 import { useNavBarBottomLogic } from './logic';
 import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
@@ -6,7 +6,6 @@ import CssBaseline from '@mui/material/CssBaseline';
 import Toolbar from '@mui/material/Toolbar';
 import IconButton from '@mui/material/IconButton';
 import AddIcon from '@mui/icons-material/Add';
-import { FC, memo } from 'react';
 import { StyledFab } from './styles';
 
 const NavBarBottom: FC = () => {
@@ -14,7 +13,7 @@ const NavBarBottom: FC = () => {
         useNavBarBottomLogic();
 
     return (
-        <React.Fragment>
+        <>
             <CssBaseline />
             <AppBar
                 position="fixed"
@@ -49,7 +48,7 @@ const NavBarBottom: FC = () => {
                     </IconButton>
                 </Toolbar>
             </AppBar>
-        </React.Fragment>
+        </>
     );
 };
 

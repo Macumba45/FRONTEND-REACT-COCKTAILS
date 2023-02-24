@@ -25,6 +25,31 @@ const images = [
         title: 'Camera',
         width: '30%',
     },
+    {
+        url: '/static/images/buttons/camera.jpg',
+        title: 'Camera',
+        width: '30%',
+    },
+    {
+        url: '/static/images/buttons/camera.jpg',
+        title: 'Camera',
+        width: '30%',
+    },
+    {
+        url: '/static/images/buttons/camera.jpg',
+        title: 'Camera',
+        width: '30%',
+    },
+    {
+        url: '/static/images/buttons/camera.jpg',
+        title: 'Camera',
+        width: '30%',
+    },
+    {
+        url: '/static/images/buttons/camera.jpg',
+        title: 'Camera',
+        width: '30%',
+    },
 ];
 
 const ButtonCategories: FC = () => {
