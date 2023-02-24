@@ -6,5 +6,3 @@ export const MainContainer = styled.div`
     flex-direction: column;
     margin-top: 7rem;
 `;
-
-

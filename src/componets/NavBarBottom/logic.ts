@@ -15,10 +15,15 @@ export const useNavBarBottomLogic = () => {
         navigate('/categories');
     };
 
+    const postNewFeed = (e: any) => {
+        navigate('/new-feed');
+    };
+
     return {
         navigate,
         goToFeedPage,
         goToRandomPage,
         goToCategoryPage,
+        postNewFeed,
     };
 };

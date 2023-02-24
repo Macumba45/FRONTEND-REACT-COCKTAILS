@@ -34,7 +34,7 @@ const ExpandMore = styled((props: ExpandMoreProps) => {
 
 const StyledCard = styled(Card)(({ theme }) => ({
     width: 300,
-    [theme.breakpoints.up('sm')]: {
+    [theme.breakpoints.up('md')]: {
         width: 600,
     },
 }));

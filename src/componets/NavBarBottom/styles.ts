@@ -9,3 +9,12 @@ export const StyledFab = styled(Fab)({
     right: 0,
     margin: '0 auto',
 });
+
+export const StyledFabHome = styled(Fab)({
+    position: 'absolute',
+    zIndex: 1,
+    top: 2,
+    left: 0,
+    right: 0,
+    margin: '0 auto',
+});

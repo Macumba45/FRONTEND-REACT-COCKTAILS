@@ -6,7 +6,7 @@ import { Container } from './styles';
 const ButtonRandom: FC = () => {
     return (
         <Container>
-            <Stack >
+            <Stack>
                 <Button
                     variant="contained"
                     color="success"

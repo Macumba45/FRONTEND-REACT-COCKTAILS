@@ -4,13 +4,18 @@ import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
 import CssBaseline from '@mui/material/CssBaseline';
 import Toolbar from '@mui/material/Toolbar';
+import HomeIcon from '@mui/icons-material/Home';
 import IconButton from '@mui/material/IconButton';
 import AddIcon from '@mui/icons-material/Add';
-import { StyledFab } from './styles';
+import { StyledFab, StyledFabHome } from './styles';
+import { useLocation } from 'react-router-dom';
 
 const NavBarBottom: FC = () => {
-    const { goToFeedPage, goToRandomPage, goToCategoryPage } =
+    const { goToFeedPage, goToRandomPage, goToCategoryPage, postNewFeed } =
         useNavBarBottomLogic();
+
+    const location = useLocation();
+    const isFeedPage = location.pathname === '/feed';
 
     return (
         <>
@@ -25,20 +30,41 @@ const NavBarBottom: FC = () => {
                         onClick={goToRandomPage}>
                         <span className="material-icons">celebration</span>
                     </IconButton>
-                    <StyledFab
-                        aria-label="add"
-                        onClick={goToFeedPage}
-                        sx={{
-                            color: 'white',
-                            backgroundColor: '#420024',
-                            border: '1px solid white',
-                            '&:hover': {
-                                backgroundColor: 'black',
-                                borderColor: 'white',
-                            },
-                        }}>
-                        <AddIcon />
-                    </StyledFab>
+                    {isFeedPage ? (
+                        <StyledFab
+                            aria-label="add"
+                            onClick={postNewFeed}
+                            sx={{
+                                color: 'white',
+                                backgroundColor: '#420024',
+                                border: '1px solid white',
+                                '&:hover': {
+                                    backgroundColor: 'black',
+                                    borderColor: 'white',
+                                },
+                            }}>
+                            <AddIcon />
+                        </StyledFab>
+                    ) : (
+                        <StyledFabHome
+                            aria-label="home"
+                            onClick={goToFeedPage}
+                            sx={{
+                                color: 'white',
+                                backgroundColor: '#420024',
+                                boxShadow:
+                                    location.pathname === '/feed'
+                                        ? 'default'
+                                        : 'none', // agregar la condición para box-shadow
+
+                                '&:hover': {
+                                    backgroundColor: 'black',
+                                    borderColor: 'white',
+                                },
+                            }}>
+                            <HomeIcon sx={{ fontSize: 32 }} />
+                        </StyledFabHome>
+                    )}
                     <Box sx={{ flexGrow: 1 }} />
                     <IconButton
                         aria-label="liquor"

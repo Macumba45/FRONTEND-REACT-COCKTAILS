@@ -1,17 +1,8 @@
-import { FC, memo } from "react";
-import NavBar from "../../componets/NavBar";
+import { FC, memo } from 'react';
+import NavBar from '../../componets/NavBar';
 
 const Profile: FC = () => {
+    return <NavBar />;
+};
 
-    return (
-
-        <NavBar />
-
-
-
-    )
-}
-
-
-
-export default memo(Profile)
+export default memo(Profile);

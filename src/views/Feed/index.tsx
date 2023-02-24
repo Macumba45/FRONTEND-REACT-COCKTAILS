@@ -15,7 +15,6 @@ const Feed: FC = () => {
                 <FeedCard />
                 <FeedCard />
                 <FeedCard />
-
             </MainContainer>
             <BottomAppBar />
         </>
