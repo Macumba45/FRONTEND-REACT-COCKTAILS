@@ -1,5 +1,5 @@
 import { useLocation, useNavigate } from 'react-router-dom';
-import { useState } from 'react';
+import { useCallback, useState } from 'react';
 
 export const useNavBarLogic = () => {
     const navigate = useNavigate();
@@ -11,24 +11,24 @@ export const useNavBarLogic = () => {
 
     const isLogoutFeed = location.pathname === '/feed';
 
-    const handleLogout = () => {
+    const handleLogout = useCallback(() => {
         // aquí iría la lógica para cerrar sesión del usuario
         navigate('/');
-    };
+    }, [navigate]);
 
-    const handleBackPage = () => {
+    const handleBackPage = useCallback(() => {
         window.history.back();
-    };
+    }, []);
 
     const [anchorEl, setAnchorEl] = useState(null);
 
-    const handleMenuOpen = (event: any) => {
+    const handleMenuOpen = useCallback((event: any) => {
         setAnchorEl(event.currentTarget);
-    };
+    }, []);
 
-    const handleMenuClose = () => {
+    const handleMenuClose = useCallback(() => {
         setAnchorEl(null);
-    };
+    }, []);
 
     return {
         isNavBarLogin,

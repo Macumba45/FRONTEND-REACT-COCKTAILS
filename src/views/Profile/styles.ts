@@ -47,7 +47,7 @@ export const ProfileDetailsEmail = styled.h3`
 `;
 
 export const ButtonsContainer = styled.div`
-    margin-top: 6.3rem;
+    margin-top: 7.8rem;
     display: flex;
     justify-content: center;
 `;

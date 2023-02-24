@@ -24,7 +24,7 @@ const Profile: FC = () => {
                             <Avatar
                                 alt="Remy Sharp"
                                 src="/static/images/avatar/1.jpg"
-                                sx={{ width: 80, height: 80, marginTop: 5 }}
+                                sx={{ width: 80, height: 80, marginTop: 2 }}
                             />
                         </AvatarContainer>
                         <DescriptionContainer>
@@ -40,16 +40,11 @@ const Profile: FC = () => {
                             <ButtonGroup
                                 disableElevation
                                 variant="contained"
-                                aria-label="Disabled elevation buttons"
-                                sx={{
-                                    marginLeft: -1,
-                                    backgroundColor: 'transparent',
-                                }}>
+                                aria-label="Disabled elevation buttons">
                                 <Button
                                     sx={{
                                         border: 'none',
                                         // backgroundColor: '#420024',
-                                        marginLeft: -1,
                                     }}>
                                     Favorites
                                 </Button>

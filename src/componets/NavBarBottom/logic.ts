@@ -1,3 +1,4 @@
+import { useCallback } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 
 export const useNavBarBottomLogic = () => {
@@ -6,21 +7,30 @@ export const useNavBarBottomLogic = () => {
 
     const isFeedPage = location.pathname === '/feed';
 
-    const goToFeedPage = () => {
+    const goToFeedPage = useCallback(() => {
         navigate('/feed');
-    };
+    }, [navigate]);
 
-    const goToRandomPage = (e: any) => {
-        navigate('/random');
-    };
+    const goToRandomPage = useCallback(
+        (e: any) => {
+            navigate('/random');
+        },
+        [navigate]
+    );
 
-    const goToCategoryPage = (e: any) => {
-        navigate('/categories');
-    };
+    const goToCategoryPage = useCallback(
+        (e: any) => {
+            navigate('/categories');
+        },
+        [navigate]
+    );
 
-    const postNewFeed = (e: any) => {
-        navigate('/new-feed');
-    };
+    const postNewFeed = useCallback(
+        (e: any) => {
+            navigate('/new-feed');
+        },
+        [navigate]
+    );
 
     return {
         navigate,
