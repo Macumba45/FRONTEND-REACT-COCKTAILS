@@ -13,42 +13,42 @@ const images = [
     {
         url: '/static/images/buttons/breakfast.jpg',
         title: 'Breakfast',
-        width: '40%',
+        width: '50%',
     },
     {
         url: '/static/images/buttons/burgers.jpg',
         title: 'Burgers',
-        width: '30%',
+        width: '50%',
     },
     {
         url: '/static/images/buttons/camera.jpg',
         title: 'Camera',
-        width: '30%',
+        width: '50%',
     },
     {
         url: '/static/images/buttons/camera.jpg',
         title: 'Camera',
-        width: '30%',
+        width: '50%',
     },
     {
         url: '/static/images/buttons/camera.jpg',
         title: 'Camera',
-        width: '30%',
+        width: '50%',
     },
     {
         url: '/static/images/buttons/camera.jpg',
         title: 'Camera',
-        width: '30%',
+        width: '50%',
     },
     {
         url: '/static/images/buttons/camera.jpg',
         title: 'Camera',
-        width: '30%',
+        width: '50%',
     },
     {
         url: '/static/images/buttons/camera.jpg',
         title: 'Camera',
-        width: '30%',
+        width: '50%',
     },
 ];
 
@@ -58,7 +58,7 @@ const ButtonCategories: FC = () => {
             sx={{
                 display: 'flex',
                 flexWrap: 'wrap',
-                minWidth: 300,
+                withd: 300,
                 width: '100%',
                 marginTop: '4.0rem',
             }}>

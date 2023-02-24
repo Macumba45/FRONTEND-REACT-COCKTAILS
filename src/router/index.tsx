@@ -5,7 +5,7 @@ import Random from '../views/Random';
 import SignUp from '../views/auth/SignUp';
 import Categories from '../views/Categories';
 import Feed from '../views/Feed';
-import Profile from '../componets/Profile';
+import Profile from '../views/Profile';
 
 const Router: FC = () => {
     return (

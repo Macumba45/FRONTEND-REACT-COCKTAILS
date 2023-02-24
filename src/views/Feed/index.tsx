@@ -2,7 +2,7 @@ import { FC, memo } from 'react';
 import NavBar from '../../componets/NavBar';
 import BottomAppBar from '../../componets/NavBarBottom';
 import RandomCard from '../../componets/RandomCard';
-import ButtonRandom from '../../componets/Button';
+import ButtonRandom from '../../componets/ButtonRandom';
 import { MainContainer, WelcomeDescription, WelcomeText } from './styles';
 import FeedCard from '../../componets/FeedCard';
 import { BlackBackGround } from '../../componets/FeedCard/styles';
@@ -21,7 +21,6 @@ const Feed: FC = () => {
                 </WelcomeDescription> */}
                 </BlackBackGround>
             </MainContainer>
-
             <BottomAppBar />
         </>
     );

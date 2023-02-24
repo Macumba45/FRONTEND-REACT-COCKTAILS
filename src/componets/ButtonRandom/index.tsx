@@ -4,7 +4,7 @@ import Button from '@mui/material/Button';
 
 const ButtonRandom: FC = () => {
     return (
-        <Stack direction="row" spacing={1}>
+        <Stack display='flex' direction="column" justifyContent={'center'} spacing={1}>
             <Button
                 variant="contained"
                 color="success"
