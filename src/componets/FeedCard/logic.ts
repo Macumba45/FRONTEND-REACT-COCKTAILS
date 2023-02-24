@@ -2,9 +2,7 @@ import { useState } from 'react';
 import { styled } from '@mui/material/styles';
 import Card from '@mui/material/Card';
 
-
 export const useFeedCardLogic = () => {
-
     const [expanded, setExpanded] = useState(false);
 
     const handleExpandClick = () => {
@@ -21,12 +19,6 @@ export const useFeedCardLogic = () => {
     return {
         expanded,
         handleExpandClick,
-        StyledCard
-    }
-
-
-
-}
-
-
-
+        StyledCard,
+    };
+};

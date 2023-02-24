@@ -32,15 +32,8 @@ const ExpandMore = styled((props: ExpandMoreProps) => {
     }),
 }));
 
-
 const FeedCard: FC = () => {
-
-    const {
-        handleExpandClick,
-        expanded,
-        StyledCard
-    } = useFeedCardLogic();
-
+    const { handleExpandClick, expanded, StyledCard } = useFeedCardLogic();
 
     return (
         <>

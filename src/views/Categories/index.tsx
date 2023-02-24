@@ -1,7 +1,7 @@
 import { FC, memo } from 'react';
 import ButtonsCategories from '../../componets/ButtonsCategories';
 import NavBar from '../../componets/NavBar';
-import BottomAppBar from '../../componets/NavBarBottom'
+import BottomAppBar from '../../componets/NavBarBottom';
 
 const Categories: FC = () => {
     return (
@@ -9,7 +9,6 @@ const Categories: FC = () => {
             <NavBar />
             <ButtonsCategories />
             <BottomAppBar />
-
         </>
     );
 };
