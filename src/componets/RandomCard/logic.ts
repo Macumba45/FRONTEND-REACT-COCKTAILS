@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { styled } from '@mui/material/styles';
 import Card from '@mui/material/Card';
 
-export const useFeedCardLogic = () => {
+export const useRandomCardLogic = () => {
     const [expanded, setExpanded] = useState(false);
 
     const handleExpandClick = () => {
@@ -11,7 +11,7 @@ export const useFeedCardLogic = () => {
 
     const StyledCard = styled(Card)(({ theme }) => ({
         width: 300,
-        [theme.breakpoints.up('sm')]: {
+        [theme.breakpoints.up('md')]: {
             width: 600,
         },
     }));

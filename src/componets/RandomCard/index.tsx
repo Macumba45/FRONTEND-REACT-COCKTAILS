@@ -15,7 +15,7 @@ import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import MoreVertIcon from '@mui/icons-material/MoreVert';
 import { FC, memo, useState } from 'react';
 import { MainContainer } from './styles';
-import ButtonRandom from '../ButtonRandom';
+import { useRandomCardLogic } from './logic';
 
 interface ExpandMoreProps extends IconButtonProps {
     expand: boolean;
@@ -33,11 +33,7 @@ const ExpandMore = styled((props: ExpandMoreProps) => {
 }));
 
 const RandomCard: FC = () => {
-    const [expanded, setExpanded] = useState(false);
-
-    const handleExpandClick = () => {
-        setExpanded(!expanded);
-    };
+    const { handleExpandClick, expanded, StyledCard } = useRandomCardLogic();
 
     return (
         <>

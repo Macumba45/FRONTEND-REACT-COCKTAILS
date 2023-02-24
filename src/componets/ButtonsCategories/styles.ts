@@ -64,3 +64,46 @@ export const ImageBackdrop = styled('span')(({ theme }) => ({
     opacity: 0.4,
     transition: theme.transitions.create('opacity'),
 }));
+
+export const images = [
+    {
+        url: '/static/images/buttons/breakfast.jpg',
+        title: 'Breakfast',
+        width: '50%',
+    },
+    {
+        url: '/static/images/buttons/burgers.jpg',
+        title: 'Burgers',
+        width: '50%',
+    },
+    {
+        url: '/static/images/buttons/camera.jpg',
+        title: 'Camera',
+        width: '50%',
+    },
+    {
+        url: '/static/images/buttons/camera.jpg',
+        title: 'Camera',
+        width: '50%',
+    },
+    {
+        url: '/static/images/buttons/camera.jpg',
+        title: 'Camera',
+        width: '50%',
+    },
+    {
+        url: '/static/images/buttons/camera.jpg',
+        title: 'Camera',
+        width: '50%',
+    },
+    {
+        url: '/static/images/buttons/camera.jpg',
+        title: 'Camera',
+        width: '50%',
+    },
+    {
+        url: '/static/images/buttons/camera.jpg',
+        title: 'Camera',
+        width: '50%',
+    },
+];

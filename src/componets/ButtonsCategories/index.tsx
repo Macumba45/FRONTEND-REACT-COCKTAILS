@@ -7,50 +7,8 @@ import {
     ImageBackdrop,
     Image,
     ImageMarked,
+    images,
 } from './styles';
-
-const images = [
-    {
-        url: '/static/images/buttons/breakfast.jpg',
-        title: 'Breakfast',
-        width: '50%',
-    },
-    {
-        url: '/static/images/buttons/burgers.jpg',
-        title: 'Burgers',
-        width: '50%',
-    },
-    {
-        url: '/static/images/buttons/camera.jpg',
-        title: 'Camera',
-        width: '50%',
-    },
-    {
-        url: '/static/images/buttons/camera.jpg',
-        title: 'Camera',
-        width: '50%',
-    },
-    {
-        url: '/static/images/buttons/camera.jpg',
-        title: 'Camera',
-        width: '50%',
-    },
-    {
-        url: '/static/images/buttons/camera.jpg',
-        title: 'Camera',
-        width: '50%',
-    },
-    {
-        url: '/static/images/buttons/camera.jpg',
-        title: 'Camera',
-        width: '50%',
-    },
-    {
-        url: '/static/images/buttons/camera.jpg',
-        title: 'Camera',
-        width: '50%',
-    },
-];
 
 const ButtonCategories: FC = () => {
     return (

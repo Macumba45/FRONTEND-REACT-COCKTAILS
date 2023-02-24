@@ -1,7 +1,10 @@
-import { useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 
 export const useNavBarBottomLogic = () => {
     const navigate = useNavigate();
+    const location = useLocation();
+
+    const isFeedPage = location.pathname === '/feed';
 
     const goToFeedPage = () => {
         navigate('/feed');
@@ -21,6 +24,8 @@ export const useNavBarBottomLogic = () => {
 
     return {
         navigate,
+        location,
+        isFeedPage,
         goToFeedPage,
         goToRandomPage,
         goToCategoryPage,

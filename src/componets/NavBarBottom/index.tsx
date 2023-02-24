@@ -8,14 +8,16 @@ import HomeIcon from '@mui/icons-material/Home';
 import IconButton from '@mui/material/IconButton';
 import AddIcon from '@mui/icons-material/Add';
 import { StyledFab, StyledFabHome } from './styles';
-import { useLocation } from 'react-router-dom';
 
 const NavBarBottom: FC = () => {
-    const { goToFeedPage, goToRandomPage, goToCategoryPage, postNewFeed } =
-        useNavBarBottomLogic();
-
-    const location = useLocation();
-    const isFeedPage = location.pathname === '/feed';
+    const {
+        goToFeedPage,
+        goToRandomPage,
+        goToCategoryPage,
+        postNewFeed,
+        isFeedPage,
+        location,
+    } = useNavBarBottomLogic();
 
     return (
         <>
