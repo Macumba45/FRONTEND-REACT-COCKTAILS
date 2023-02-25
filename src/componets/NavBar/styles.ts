@@ -85,6 +85,11 @@ export const NavbarLinkLogged = styled(Link)`
 `;
 
 export const CompanyLogo = styled.div`
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 2;
     background-image: url(${Logo});
     background-repeat: no-repeat;
     background-size: contain;
