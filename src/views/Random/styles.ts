@@ -5,6 +5,6 @@ export const BackGroundRandom = styled.div`
     height: 100%;
     padding-top: 30px;
     padding-bottom: 30px;
-    background-color: ${({ theme }) => theme.colors.light};
+    /* background-color: ${({ theme }) => theme.colors.light}; */
     /* margin-top: -5rem; */
 `;

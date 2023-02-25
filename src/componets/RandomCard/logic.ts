@@ -41,6 +41,23 @@ export const useRandomCardLogic = () => {
         return randomObjetcard;
     }, [randomFetchCard]);
 
+    const [randomCardData, setRandomCardData] = useState({
+        title: '',
+        category: '',
+        img: '',
+        description: '',
+        instrucctions: {
+            de: '',
+            it: '',
+        },
+        ingredients: {
+            one: '',
+            two: '',
+            three: '',
+            four: '',
+        },
+    });
+
     const handleExpandClick = useCallback(() => {
         setExpanded((prevExpanded) => !prevExpanded);
     }, []);
@@ -57,5 +74,7 @@ export const useRandomCardLogic = () => {
         handleExpandClick,
         StyledCard,
         printRandomCard,
+        randomCardData,
+        setRandomCardData,
     };
 };

@@ -14,7 +14,7 @@ import ShareIcon from '@mui/icons-material/Share';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import MoreVertIcon from '@mui/icons-material/MoreVert';
 import { FC, memo, useState } from 'react';
-import { ButtonContainer, MainContainer } from './styles';
+import { ButtonContainer, H1Random, MainContainer, MainContainerLoading } from './styles';
 import { useRandomCardLogic } from './logic';
 import ButtonRandom from '../ButtonRandom';
 
@@ -34,26 +34,16 @@ const ExpandMore = styled((props: ExpandMoreProps) => {
 }));
 
 const RandomCard: FC = () => {
-    const { handleExpandClick, expanded, printRandomCard } =
-        useRandomCardLogic();
+    const {
+        handleExpandClick,
+        expanded,
+        printRandomCard,
+        StyledCard,
+        randomCardData,
+        setRandomCardData,
+    } = useRandomCardLogic();
 
-    const [randomCardData, setRandomCardData] = useState({
-        title: '',
-        category: '',
-        img: '',
-        description: '',
-        instrucctions: {
-            de: '',
-            it: '',
-        },
-        ingredients: {
-            one: '',
-            two: '',
-            three: '',
-            four: '',
-        },
-    });
-
+    const [loading, setLoading] = useState(true);
     const handlePrintRandomCard = async () => {
         try {
             const randomCards = await printRandomCard();
@@ -66,19 +56,40 @@ const RandomCard: FC = () => {
                 instrucctions: randomCard.instrucctions,
                 ingredients: randomCard.ingredients,
             });
+            setLoading(false);
         } catch (error) {
             console.log(error);
         }
     };
 
+    if (loading) {
+        return (
+            <MainContainerLoading>
+                <H1Random>
+                    ¡Descubre un nuevo sabor cada vez que pulses el botón
+                    Random! {<br />}{<br />}
+                    ¿Te atreves a probar suerte y descubrir tu nuevo cóctel
+                    favorito?{<br />}{<br />} ¡Dale al botón Random y comienza la aventura!
+                </H1Random>
+                <ButtonContainer>
+                    <ButtonRandom onClick={handlePrintRandomCard} />
+                </ButtonContainer>
+            </MainContainerLoading>
+        );
+    }
     return (
         <>
             <MainContainer>
-                <Card sx={{ width: 300 }}>
+                <StyledCard
+                    sx={{
+                        width: 300,
+                    }}>
                     <CardHeader
                         avatar={
                             <Avatar
-                                sx={{ bgcolor: red[500] }}
+                                sx={{
+                                    bgcolor: red[500],
+                                }}
                                 aria-label="recipe"
                                 src={randomCardData.img}>
                                 R
@@ -144,12 +155,13 @@ const RandomCard: FC = () => {
                             </Typography>
                             {randomCardData.ingredients.four ? (
                                 <Typography paragraph>
-                                    Ingredient 4:{randomCardData.ingredients.four}
+                                    Ingredient 4:
+                                    {randomCardData.ingredients.four}
                                 </Typography>
                             ) : null}
                         </CardContent>
                     </Collapse>
-                </Card>
+                </StyledCard>
             </MainContainer>
             <ButtonContainer>
                 <ButtonRandom onClick={handlePrintRandomCard} />
