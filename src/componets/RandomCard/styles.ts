@@ -10,6 +10,6 @@ export const MainContainer = styled.div`
 export const ButtonContainer = styled.div`
     display: flex;
     justify-content: center;
-    margin-bottom: 7rem;
-    margin-top: 2rem;
+    margin-bottom: 5rem;
+    margin-top: 0rem;
 `;

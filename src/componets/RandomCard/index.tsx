@@ -14,8 +14,9 @@ import ShareIcon from '@mui/icons-material/Share';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import MoreVertIcon from '@mui/icons-material/MoreVert';
 import { FC, memo, useState } from 'react';
-import { MainContainer } from './styles';
+import { ButtonContainer, MainContainer } from './styles';
 import { useRandomCardLogic } from './logic';
+import ButtonRandom from '../ButtonRandom';
 
 interface ExpandMoreProps extends IconButtonProps {
     expand: boolean;
@@ -33,17 +34,53 @@ const ExpandMore = styled((props: ExpandMoreProps) => {
 }));
 
 const RandomCard: FC = () => {
-    const { handleExpandClick, expanded, StyledCard } = useRandomCardLogic();
+    const { handleExpandClick, expanded, printRandomCard } =
+        useRandomCardLogic();
+
+    const [randomCardData, setRandomCardData] = useState({
+        title: '',
+        category: '',
+        img: '',
+        description: '',
+        instrucctions: {
+            de: '',
+            it: '',
+        },
+        ingredients: {
+            one: '',
+            two: '',
+            three: '',
+            four: '',
+        },
+    });
+
+    const handlePrintRandomCard = async () => {
+        try {
+            const randomCards = await printRandomCard();
+            const randomCard = randomCards[0];
+            setRandomCardData({
+                title: randomCard.title,
+                category: randomCard.category,
+                img: randomCard.img,
+                description: randomCard.description,
+                instrucctions: randomCard.instrucctions,
+                ingredients: randomCard.ingredients,
+            });
+        } catch (error) {
+            console.log(error);
+        }
+    };
 
     return (
         <>
             <MainContainer>
-                <Card sx={{ maxWidth: 300 }}>
+                <Card sx={{ width: 300 }}>
                     <CardHeader
                         avatar={
                             <Avatar
                                 sx={{ bgcolor: red[500] }}
-                                aria-label="recipe">
+                                aria-label="recipe"
+                                src={randomCardData.img}>
                                 R
                             </Avatar>
                         }
@@ -52,21 +89,23 @@ const RandomCard: FC = () => {
                                 <MoreVertIcon />
                             </IconButton>
                         }
-                        title="Shrimp and Chorizo Paella"
-                        subheader="September 14, 2016"
+                        title={randomCardData.title}
+                        subheader={randomCardData.category}
                     />
                     <CardMedia
                         component="img"
-                        height="194"
-                        image="/static/images/cards/paella.jpg"
+                        height="200"
+                        image={randomCardData.img}
                         alt="Paella dish"
+                        sx={{
+                            height: 220,
+                            objectFit: 'cover',
+                            width: '100%',
+                        }}
                     />
                     <CardContent>
                         <Typography variant="body2" color="text.primary">
-                            This impressive paella is a perfect party dish and a
-                            fun meal to cook together with your guests. Add 1
-                            cup of frozen peas along with the mussels, if you
-                            like.
+                            {randomCardData.description}
                         </Typography>
                     </CardContent>
                     <CardActions disableSpacing>
@@ -86,45 +125,35 @@ const RandomCard: FC = () => {
                     </CardActions>
                     <Collapse in={expanded} timeout="auto" unmountOnExit>
                         <CardContent>
-                            <Typography paragraph>Method:</Typography>
-                            <Typography paragraph>
-                                Heat 1/2 cup of the broth in a pot until
-                                simmering, add saffron and set aside for 10
-                                minutes.
+                            <Typography paragraph sx={{}}>
+                                &#x1F1E9;&#x1F1EA;
+                                {randomCardData.instrucctions.de}
                             </Typography>
                             <Typography paragraph>
-                                Heat oil in a (14- to 16-inch) paella pan or a
-                                large, deep skillet over medium-high heat. Add
-                                chicken, shrimp and chorizo, and cook, stirring
-                                occasionally until lightly browned, 6 to 8
-                                minutes. Transfer shrimp to a large plate and
-                                set aside, leaving chicken and chorizo in the
-                                pan. Add pimentón, bay leaves, garlic, tomatoes,
-                                onion, salt and pepper, and cook, stirring often
-                                until thickened and fragrant, about 10 minutes.
-                                Add saffron broth and remaining 4 1/2 cups
-                                chicken broth; bring to a boil.
+                                &#x1F1EE;&#x1F1F9;
+                                {randomCardData.instrucctions.it}
                             </Typography>
                             <Typography paragraph>
-                                Add rice and stir very gently to distribute. Top
-                                with artichokes and peppers, and cook without
-                                stirring, until most of the liquid is absorbed,
-                                15 to 18 minutes. Reduce heat to medium-low, add
-                                reserved shrimp and mussels, tucking them down
-                                into the rice, and cook again without stirring,
-                                until mussels have opened and rice is just
-                                tender, 5 to 7 minutes more. (Discard any
-                                mussels that don&apos;t open.)
+                                Ingredient 1: {randomCardData.ingredients.one}
                             </Typography>
-                            <Typography>
-                                Set aside off of the heat to let rest for 10
-                                minutes, and then serve.
+                            <Typography paragraph>
+                                Ingredient 2: {randomCardData.ingredients.two}
                             </Typography>
+                            <Typography paragraph>
+                                Ingredient 3: {randomCardData.ingredients.three}
+                            </Typography>
+                            {randomCardData.ingredients.four ? (
+                                <Typography paragraph>
+                                    Ingredient 4:{randomCardData.ingredients.four}
+                                </Typography>
+                            ) : null}
                         </CardContent>
                     </Collapse>
                 </Card>
-                {/* <ButtonRandom /> */}
             </MainContainer>
+            <ButtonContainer>
+                <ButtonRandom onClick={handlePrintRandomCard} />
+            </ButtonContainer>
         </>
     );
 };

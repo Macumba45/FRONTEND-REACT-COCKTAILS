@@ -19,6 +19,7 @@ const ButtonCategories: FC = () => {
                 withd: 300,
                 width: '100%',
                 marginTop: '4.0rem',
+                marginBottom: 8,
             }}>
             {images.map((image) => (
                 <ImageButton

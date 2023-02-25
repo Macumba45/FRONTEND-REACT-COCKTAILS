@@ -9,15 +9,12 @@ export const useFeedCardLogic = () => {
         setExpanded((prevExpanded) => !prevExpanded);
     }, []);
 
-    const StyledCard = useCallback(
-        styled(Card)(({ theme }) => ({
-            width: 300,
-            [theme.breakpoints.up('sm')]: {
-                width: 600,
-            },
-        })),
-        []
-    );
+    const StyledCard = styled(Card)(({ theme }) => ({
+        width: 300,
+        [theme.breakpoints.up('sm')]: {
+            width: 600,
+        },
+    }));
 
     return {
         expanded,

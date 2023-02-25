@@ -3,14 +3,17 @@ import CardRandom from '../../componets/RandomCard';
 import NavBar from '../../componets/NavBar';
 import NavBarBottom from '../../componets/NavBarBottom';
 import ButtonRandom from '../../componets/ButtonRandom';
+import { BackGroundRandom } from './styles';
 
 const Random: FC = () => {
     return (
         <>
-            <NavBar />
-            <CardRandom />
-            <ButtonRandom />
-            <NavBarBottom />
+            <BackGroundRandom>
+                <NavBar />
+                <CardRandom />
+                {/* <ButtonRandom /> */}
+                <NavBarBottom />
+            </BackGroundRandom>
         </>
     );
 };

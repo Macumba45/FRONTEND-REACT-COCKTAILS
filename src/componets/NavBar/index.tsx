@@ -48,48 +48,46 @@ const NavBar: FC<Props> = () => {
                 </Nav>
             ) : (
                 <NavLogged>
-                    <>
-                        <NavContainerLogged>
-                            {isLogoutFeed ? (
-                                <ConditionalContainer>
-                                    <IconButton
-                                        size="large"
-                                        edge="start"
-                                        aria-controls="menu"
-                                        aria-haspopup="true"
-                                        aria-label="menu"
-                                        sx={{ ml: 0.1, color: 'white' }}
-                                        onClick={handleMenuOpen}>
-                                        <MenuIcon />
-                                    </IconButton>
-                                    <Menu
-                                        id="menu"
-                                        anchorEl={anchorEl}
-                                        open={Boolean(anchorEl)}
-                                        onClose={handleMenuClose}>
-                                        <MenuItem
-                                            onClick={handleLogout}
-                                            sx={{
-                                                padding: 0.5,
-                                                marginTop: 0.5,
-                                                marginRight: 1,
-                                                marginLeft: 1,
-                                            }}>
-                                            Logout
-                                        </MenuItem>
-                                    </Menu>
-                                </ConditionalContainer>
-                            ) : (
-                                <LogoutButton onClick={handleBackPage}>
-                                    <IconContainerLogOut />
-                                </LogoutButton>
-                            )}
-                            <CompanyLogo></CompanyLogo>
-                            <NavbarLinkLogged to="/profile">
-                                <IconContainerProfile />
-                            </NavbarLinkLogged>
-                        </NavContainerLogged>
-                    </>
+                    <NavContainerLogged>
+                        {isLogoutFeed ? (
+                            <ConditionalContainer>
+                                <IconButton
+                                    size="large"
+                                    edge="start"
+                                    aria-controls="menu"
+                                    aria-haspopup="true"
+                                    aria-label="menu"
+                                    sx={{ ml: 0.1, color: 'white' }}
+                                    onClick={handleMenuOpen}>
+                                    <MenuIcon />
+                                </IconButton>
+                                <Menu
+                                    id="menu"
+                                    anchorEl={anchorEl}
+                                    open={Boolean(anchorEl)}
+                                    onClose={handleMenuClose}>
+                                    <MenuItem
+                                        onClick={handleLogout}
+                                        sx={{
+                                            padding: 0.5,
+                                            marginTop: 0.5,
+                                            marginRight: 1,
+                                            marginLeft: 1,
+                                        }}>
+                                        Logout
+                                    </MenuItem>
+                                </Menu>
+                            </ConditionalContainer>
+                        ) : (
+                            <LogoutButton onClick={handleBackPage}>
+                                <IconContainerLogOut />
+                            </LogoutButton>
+                        )}
+                        <CompanyLogo></CompanyLogo>
+                        <NavbarLinkLogged to="/profile">
+                            <IconContainerProfile />
+                        </NavbarLinkLogged>
+                    </NavContainerLogged>
                 </NavLogged>
             )}
         </>
