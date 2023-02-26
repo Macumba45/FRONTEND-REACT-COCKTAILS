@@ -24,10 +24,7 @@ export const ButtonContainer = styled.div`
 `;
 
 export const H1Random = styled.h1`
-
-margin: 2rem 2rem 2rem 2rem;
-font-family: ${({ theme }) => theme.fonts.primary};
-font-size: ${({ theme }) => theme.fontSizes.small};
-
-
-`
+    margin: 2rem 2rem 2rem 2rem;
+    font-family: ${({ theme }) => theme.fonts.primary};
+    font-size: ${({ theme }) => theme.fontSizes.small};
+`;

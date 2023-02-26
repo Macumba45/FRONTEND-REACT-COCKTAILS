@@ -29,7 +29,7 @@ export const ImageSrc = styled('span')({
     top: 0,
     bottom: 0,
     backgroundSize: 'cover',
-    backgroundPosition: 'center 40%',
+    backgroundPosition: 'center',
 });
 
 export const Image = styled('span')(({ theme }) => ({
@@ -64,46 +64,3 @@ export const ImageBackdrop = styled('span')(({ theme }) => ({
     opacity: 0.4,
     transition: theme.transitions.create('opacity'),
 }));
-
-export const images = [
-    {
-        url: '/static/images/buttons/breakfast.jpg',
-        title: 'Breakfast',
-        width: '50%',
-    },
-    {
-        url: '/static/images/buttons/burgers.jpg',
-        title: 'Burgers',
-        width: '50%',
-    },
-    {
-        url: '/static/images/buttons/camera.jpg',
-        title: 'Camera',
-        width: '50%',
-    },
-    {
-        url: '/static/images/buttons/camera.jpg',
-        title: 'Camera',
-        width: '50%',
-    },
-    {
-        url: '/static/images/buttons/camera.jpg',
-        title: 'Camera',
-        width: '50%',
-    },
-    {
-        url: '/static/images/buttons/camera.jpg',
-        title: 'Camera',
-        width: '50%',
-    },
-    {
-        url: '/static/images/buttons/camera.jpg',
-        title: 'Camera',
-        width: '50%',
-    },
-    {
-        url: '/static/images/buttons/camera.jpg',
-        title: 'Camera',
-        width: '50%',
-    },
-];

@@ -14,7 +14,12 @@ import ShareIcon from '@mui/icons-material/Share';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import MoreVertIcon from '@mui/icons-material/MoreVert';
 import { FC, memo, useState } from 'react';
-import { ButtonContainer, H1Random, MainContainer, MainContainerLoading } from './styles';
+import {
+    ButtonContainer,
+    H1Random,
+    MainContainer,
+    MainContainerLoading,
+} from './styles';
 import { useRandomCardLogic } from './logic';
 import ButtonRandom from '../ButtonRandom';
 
@@ -67,9 +72,11 @@ const RandomCard: FC = () => {
             <MainContainerLoading>
                 <H1Random>
                     ¡Descubre un nuevo sabor cada vez que pulses el botón
-                    Random! {<br />}{<br />}
+                    Random! {<br />}
+                    {<br />}
                     ¿Te atreves a probar suerte y descubrir tu nuevo cóctel
-                    favorito?{<br />}{<br />} ¡Dale al botón Random y comienza la aventura!
+                    favorito?{<br />}
+                    {<br />} ¡Dale al botón Random y comienza la aventura!
                 </H1Random>
                 <ButtonContainer>
                     <ButtonRandom onClick={handlePrintRandomCard} />
