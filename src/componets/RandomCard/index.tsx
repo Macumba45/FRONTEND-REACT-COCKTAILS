@@ -22,8 +22,10 @@ import {
     H1Container,
     H1Random,
     MainContainer,
+    MainContainerBar,
     MainContainerLoading,
 } from './styles';
+import { Box, LinearProgress } from '@mui/material';
 
 interface ExpandMoreProps extends IconButtonProps {
     expand: boolean;
@@ -74,14 +76,48 @@ const RandomCard: FC = () => {
             <>
                 <H1Container>
                     <H1Random>Are you ready to play?</H1Random>
+                    {/* <LinearProgress variant="determinate" value={progress} /> */}
                 </H1Container>
+                <MainContainerBar>
+                    <Box sx={{ width: '10rem' }}>
+                        <LinearProgress
+                            color="secondary"
+                            sx={{ backgroundColor: '#420024' }}
+                        />
+                    </Box>
+                </MainContainerBar>
                 <MainContainerLoading>
                     <Stack spacing={1}>
                         {/* For variant="text", adjust the height via font-size */}
-                        <Skeleton variant="text" sx={{ fontSize: '2rem', marginTop: '0rem' }} />
-                        <Skeleton variant="circular" width={40} height={40} />
-                        <Skeleton variant="rectangular" width={300} height={150} />
-                        <Skeleton variant="rounded" width={300} height={150} sx={{ marginBottom: '10rem' }} />
+                        <Skeleton
+                            variant="text"
+                            sx={{
+                                backgroundColor: 'white',
+                                fontSize: '2rem',
+                                marginTop: '0rem',
+                            }}
+                        />
+                        <Skeleton
+                            variant="circular"
+                            width={40}
+                            height={40}
+                            sx={{ backgroundColor: 'white' }}
+                        />
+                        <Skeleton
+                            variant="rectangular"
+                            width={300}
+                            height={150}
+                            sx={{ backgroundColor: 'white' }}
+                        />
+                        <Skeleton
+                            variant="rounded"
+                            width={300}
+                            height={150}
+                            sx={{
+                                marginBottom: '10rem',
+                                backgroundColor: 'white',
+                            }}
+                        />
                     </Stack>
                 </MainContainerLoading>
                 <ButtonContainer>

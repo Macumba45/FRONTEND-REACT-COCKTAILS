@@ -1,4 +1,4 @@
-import { FC, memo } from 'react';
+import { FC, memo, useState } from 'react';
 import { useFeedCardLogic } from './logic';
 import { styled } from '@mui/material/styles';
 import CardHeader from '@mui/material/CardHeader';
@@ -14,8 +14,13 @@ import FavoriteIcon from '@mui/icons-material/Favorite';
 import ShareIcon from '@mui/icons-material/Share';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import MoreVertIcon from '@mui/icons-material/MoreVert';
-import { MainContainer } from './styles';
+import {
+    MainContainer,
+    MainContainerBar,
+    MainContainerLoading,
+} from './styles';
 import IMGPRUEBA from './maxresdefault.jpg';
+import { Box, LinearProgress, Skeleton, Stack } from '@mui/material';
 
 interface ExpandMoreProps extends IconButtonProps {
     expand: boolean;
@@ -34,6 +39,56 @@ const ExpandMore = styled((props: ExpandMoreProps) => {
 
 const FeedCard: FC = () => {
     const { handleExpandClick, expanded, StyledCard } = useFeedCardLogic();
+    const [loading, setLoading] = useState(true);
+
+    if (loading) {
+        return (
+            <>
+                <MainContainerBar>
+                    <Box sx={{ width: '10rem', marginTop: '2rem' }}>
+                        <LinearProgress
+                            color="secondary"
+                            sx={{ backgroundColor: '#420024' }}
+                        />
+                    </Box>
+                </MainContainerBar>
+                <MainContainerLoading>
+                    <Stack spacing={1}>
+                        {/* For variant="text", adjust the height via font-size */}
+                        <Skeleton
+                            variant="text"
+                            sx={{
+                                fontSize: '2rem',
+                                marginTop: '2rem',
+                                backgroundColor: 'white',
+                            }}
+                        />
+                        <Skeleton
+                            variant="circular"
+                            width={40}
+                            height={40}
+                            sx={{ backgroundColor: 'white' }}
+                        />
+                        <Skeleton
+                            variant="rectangular"
+                            width={300}
+                            height={150}
+                            sx={{ backgroundColor: 'white' }}
+                        />
+                        <Skeleton
+                            variant="rounded"
+                            width={300}
+                            height={150}
+                            sx={{
+                                marginBottom: '10rem',
+                                backgroundColor: 'white',
+                            }}
+                        />
+                    </Stack>
+                </MainContainerLoading>
+            </>
+        );
+    }
 
     return (
         <>

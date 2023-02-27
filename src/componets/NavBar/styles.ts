@@ -102,7 +102,7 @@ export const CompanyLogo = styled.div`
 export const IconContainerProfile = styled.div`
     width: 1.5rem;
     height: 1.5rem;
-    margin-right: 0.5rem;
+    margin-right: 0rem;
     background-size: cover;
     background-repeat: no-repeat;
     background-image: url(${iconSignUp});
