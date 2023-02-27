@@ -24,11 +24,8 @@ export const MainContainerBar = styled.div`
 export const ButtonContainer = styled.div`
     display: flex;
     justify-content: center;
- margin-bottom: 0rem;
- margin-top: 4rem;
-
- 
-  
+    margin-bottom: 0rem;
+    margin-top: 4rem;
 `;
 
 export const H1Container = styled.div`

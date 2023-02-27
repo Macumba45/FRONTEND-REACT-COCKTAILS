@@ -11,7 +11,6 @@ import {
     ImageMarked,
 } from './styles';
 
-
 const ButtonCategories: FC = () => {
     const { categories, setCategories, fetchCategories, Images } =
         ButtonCategoriesLogic();

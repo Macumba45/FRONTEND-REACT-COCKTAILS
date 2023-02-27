@@ -3,7 +3,6 @@ import { Link } from 'react-router-dom';
 import { Form as defaultForm } from 'formik';
 
 export const TitleFormPost = styled.h1`
-
     display: flex;
     justify-content: center;
     margin-top: 6rem;
@@ -11,8 +10,7 @@ export const TitleFormPost = styled.h1`
     font-family: ${({ theme }) => theme.fonts.primary};
     font-size: ${({ theme }) => theme.fontSizes.mediumSmall};
     font-weight: ${({ theme }) => theme.fontWeights.bold};
-
-`
+`;
 
 export const MainFormContainer = styled.div`
     align-items: center;
@@ -79,7 +77,7 @@ export const Input = styled.input<{ $hasError?: boolean }>`
     border-radius: 5px;
     border: 0.1px solid
         ${({ $hasError, theme }) =>
-        $hasError ? theme.colors.danger : theme.colors.secondary};
+            $hasError ? theme.colors.danger : theme.colors.secondary};
     padding-left: 0.5rem;
     box-sizing: border-box;
     font-family: ${({ theme }) => theme.fonts.primary};
@@ -109,6 +107,32 @@ export const Input = styled.input<{ $hasError?: boolean }>`
     }
 `;
 
+export const Select = styled.select<{ $hasError?: boolean }>`
+    border-radius: 5px;
+    border: 0.1px solid
+        ${({ $hasError, theme }) =>
+            $hasError ? theme.colors.danger : theme.colors.secondary};
+    padding-left: 0.5rem;
+    box-sizing: border-box;
+    font-family: ${({ theme }) => theme.fonts.primary};
+    font-size: 0.8rem;
+    height: 2.5rem;
+    margin-right: 2rem;
+    margin-left: 2rem;
+    margin-top: 0.625rem;
+    width: 15rem;
+
+    ${({ $hasError, theme }) =>
+        $hasError &&
+        css`
+            color: ${theme.colors.danger};
+        `}
+
+    @media (min-width: 768px) {
+        width: 21rem;
+    }
+`;
+
 export const Error = styled.span`
     color: ${({ theme }) => theme.colors.danger};
     font-family: ${({ theme }) => theme.fonts.primary};
@@ -122,7 +146,6 @@ export const ButtonLoginContainer = styled.div`
     display: flex;
     justify-content: center;
 `;
-
 
 export const ButtonLogin = styled.button`
     background-color: ${({ theme }) => theme.colors.primary};

@@ -20,7 +20,6 @@ const Router: FC = () => {
                 <Route path="/categories" element={<Categories />} />
                 <Route path="/profile" element={<Profile />} />
                 <Route path="//new-feed" element={<FeedFormPost />} />
-
             </Routes>
         </BrowserRouter>
     );

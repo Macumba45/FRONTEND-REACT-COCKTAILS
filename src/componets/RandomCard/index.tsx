@@ -135,7 +135,7 @@ const CardRandom: FC = () => {
                 <StyledCard
                     sx={{
                         width: 300,
-                        marginBottom: '5rem'
+                        marginBottom: '5rem',
                     }}>
                     <CardHeader
                         avatar={
@@ -216,7 +216,6 @@ const CardRandom: FC = () => {
                     </Collapse>
                 </StyledCard>
             </MainContainer>
-
         </>
     );
 };
