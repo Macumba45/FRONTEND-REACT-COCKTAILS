@@ -3,14 +3,16 @@ import { useState } from 'react';
 export const App = () => {};
 
 export const ButtonCategoriesLogic = () => {
-    const [categories, setCategories] = useState([]);
+    const [categories, setCategories] = useState<string[]>([]);
 
-    async function fetchCategories() {
+    async function fetchCategories(): Promise<string[]> {
         const response = await fetch(
             'https://www.thecocktaildb.com/api/json/v1/1/list.php?c=list'
         );
         const data = await response.json();
-        return data.drinks.map((category: any) => category.strCategory);
+        return data.drinks.map(
+            (category: { strCategory: string }) => category.strCategory
+        );
     }
 
     const Images = [

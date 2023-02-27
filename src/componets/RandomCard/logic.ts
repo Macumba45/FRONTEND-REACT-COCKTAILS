@@ -1,6 +1,7 @@
 import { useState, useCallback } from 'react';
 import { styled } from '@mui/material/styles';
 import Card from '@mui/material/Card';
+import { RandomCard } from './type';
 
 export const useRandomCardLogic = () => {
     const [expanded, setExpanded] = useState(false);
@@ -20,7 +21,7 @@ export const useRandomCardLogic = () => {
 
     const printRandomCard = useCallback(async () => {
         const randomCard = await randomFetchCard();
-        const randomObjetcard = randomCard.map((random: any) => ({
+        const randomObjetcard = randomCard.map((random: RandomCard) => ({
             title: random.strDrink,
             category: random.strCategory,
             img: random.strDrinkThumb,
@@ -39,7 +40,7 @@ export const useRandomCardLogic = () => {
         }));
 
         return randomObjetcard;
-    }, [randomFetchCard]);
+    }, []);
 
     const [randomCardData, setRandomCardData] = useState({
         title: '',

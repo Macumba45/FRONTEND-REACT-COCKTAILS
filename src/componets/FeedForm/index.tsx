@@ -1,7 +1,7 @@
 import { Field, FieldProps, Form, Formik } from 'formik';
 import { FC, memo, useCallback, useEffect, useState } from 'react';
 import { initialValues, validationSchema } from './constants';
-import { Props } from './type';
+import { Category } from './type';
 import {
     ButtonLogin,
     ButtonLoginContainer,
@@ -17,9 +17,8 @@ import {
 } from './styles';
 import { IconButton } from '@mui/material';
 import { PhotoCamera } from '@mui/icons-material';
-import fetchCategories from '../../componets/ButtonsCategories';
 
-const FeedForm: FC<Props> = () => {
+const FeedForm: FC = () => {
     const handleSubmit = useCallback(() => {
         console.log('ESTOY POSTEANDO');
     }, []);
@@ -33,7 +32,7 @@ const FeedForm: FC<Props> = () => {
             );
             const data = await response.json();
             setCategories(
-                data.drinks.map((category: any) => category.strCategory)
+                data.drinks.map((category: Category) => category.strCategory)
             );
         }
         fetchData();

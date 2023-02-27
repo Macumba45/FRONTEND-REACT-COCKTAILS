@@ -3,12 +3,13 @@ import { useNavigate } from 'react-router-dom';
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import { ButtonCategoriesLogic } from './logic';
+import type { CategoryImage } from './type';
 import {
     ImageButton,
     ImageSrc,
     ImageBackdrop,
-    Image,
     ImageMarked,
+    Image,
 } from './styles';
 
 const ButtonCategories: FC = () => {
@@ -24,7 +25,7 @@ const ButtonCategories: FC = () => {
     useEffect(() => {
         async function getCategories() {
             const categoriesList = await fetchCategories();
-            setCategories(categoriesList);
+            setCategories(categoriesList as string[]);
         }
 
         getCategories();
@@ -40,7 +41,7 @@ const ButtonCategories: FC = () => {
                 marginBottom: 7,
             }}>
             {categories.map((category) => {
-                const image: any = Images.find(
+                const image: CategoryImage | undefined = Images.find(
                     (img) => img.category === category
                 );
                 return (
@@ -51,11 +52,14 @@ const ButtonCategories: FC = () => {
                             width: '50%',
                             backgroundImage: 'cover',
                         }}
-                        onClick={() => handleClick(category)} // Agregar evento onClick
-                    >
-                        <ImageSrc
-                            style={{ backgroundImage: `url(${image.picture})` }}
-                        />
+                        onClick={() => handleClick(category)}>
+                        {image && (
+                            <ImageSrc
+                                style={{
+                                    backgroundImage: `url(${image.picture})`,
+                                }}
+                            />
+                        )}
                         <ImageBackdrop className="MuiImageBackdrop-root" />
                         <Image>
                             <Typography

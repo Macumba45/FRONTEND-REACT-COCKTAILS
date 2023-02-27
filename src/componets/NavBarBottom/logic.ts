@@ -12,21 +12,21 @@ export const useNavBarBottomLogic = () => {
     }, [navigate]);
 
     const goToRandomPage = useCallback(
-        (e: any) => {
+        (e: React.MouseEvent<HTMLButtonElement>) => {
             navigate('/random');
         },
         [navigate]
     );
 
     const goToCategoryPage = useCallback(
-        (e: any) => {
+        (e: React.MouseEvent<HTMLButtonElement>) => {
             navigate('/categories');
         },
         [navigate]
     );
 
     const postNewFeed = useCallback(
-        (e: any) => {
+        (e: React.MouseEvent<HTMLButtonElement>) => {
             navigate('/new-feed');
         },
         [navigate]

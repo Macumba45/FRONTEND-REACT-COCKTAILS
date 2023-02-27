@@ -20,11 +20,14 @@ export const useNavBarLogic = () => {
         window.history.back();
     }, []);
 
-    const [anchorEl, setAnchorEl] = useState(null);
+    const [anchorEl, setAnchorEl] = useState<HTMLElement | null>(null);
 
-    const handleMenuOpen = useCallback((event: any) => {
-        setAnchorEl(event.currentTarget);
-    }, []);
+    const handleMenuOpen = useCallback(
+        (event: React.MouseEvent<HTMLButtonElement>) => {
+            setAnchorEl(event.currentTarget);
+        },
+        []
+    );
 
     const handleMenuClose = useCallback(() => {
         setAnchorEl(null);
