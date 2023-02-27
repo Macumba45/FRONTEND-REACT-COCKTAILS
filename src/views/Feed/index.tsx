@@ -8,9 +8,7 @@ const Feed: FC = () => {
     return (
         <BackGroundFeed>
             <NavBar />
-
             <FeedCard />
-
             <BottomAppBar />
         </BackGroundFeed>
     );

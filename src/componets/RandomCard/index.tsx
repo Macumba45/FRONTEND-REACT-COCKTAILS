@@ -42,7 +42,7 @@ const ExpandMore = styled((props: ExpandMoreProps) => {
     }),
 }));
 
-const RandomCard: FC = () => {
+const CardRandom: FC = () => {
     const {
         handleExpandClick,
         expanded,
@@ -78,6 +78,9 @@ const RandomCard: FC = () => {
                     <H1Random>Are you ready to play?</H1Random>
                     {/* <LinearProgress variant="determinate" value={progress} /> */}
                 </H1Container>
+                <ButtonContainer>
+                    <ButtonRandom onClick={handlePrintRandomCard} />
+                </ButtonContainer>
                 <MainContainerBar>
                     <Box sx={{ width: '10rem' }}>
                         <LinearProgress
@@ -106,13 +109,13 @@ const RandomCard: FC = () => {
                         <Skeleton
                             variant="rectangular"
                             width={300}
-                            height={150}
+                            height={130}
                             sx={{ backgroundColor: 'white' }}
                         />
                         <Skeleton
                             variant="rounded"
                             width={300}
-                            height={150}
+                            height={130}
                             sx={{
                                 marginBottom: '10rem',
                                 backgroundColor: 'white',
@@ -120,18 +123,19 @@ const RandomCard: FC = () => {
                         />
                     </Stack>
                 </MainContainerLoading>
-                <ButtonContainer>
-                    <ButtonRandom onClick={handlePrintRandomCard} />
-                </ButtonContainer>
             </>
         );
     }
     return (
         <>
+            <ButtonContainer>
+                <ButtonRandom onClick={handlePrintRandomCard} />
+            </ButtonContainer>
             <MainContainer>
                 <StyledCard
                     sx={{
                         width: 300,
+                        marginBottom: '5rem'
                     }}>
                     <CardHeader
                         avatar={
@@ -185,7 +189,7 @@ const RandomCard: FC = () => {
                     </CardActions>
                     <Collapse in={expanded} timeout="auto" unmountOnExit>
                         <CardContent>
-                            <Typography paragraph sx={{}}>
+                            <Typography paragraph>
                                 &#x1F1E9;&#x1F1EA;
                                 {randomCardData.instrucctions.de}
                             </Typography>
@@ -212,11 +216,9 @@ const RandomCard: FC = () => {
                     </Collapse>
                 </StyledCard>
             </MainContainer>
-            <ButtonContainer>
-                <ButtonRandom onClick={handlePrintRandomCard} />
-            </ButtonContainer>
+
         </>
     );
 };
 
-export default memo(RandomCard);
+export default memo(CardRandom);

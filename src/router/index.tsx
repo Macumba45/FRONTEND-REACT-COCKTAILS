@@ -6,6 +6,7 @@ import SignUp from '../views/auth/SignUp';
 import Categories from '../views/Categories';
 import Feed from '../views/Feed';
 import Profile from '../views/Profile';
+import FeedFormPost from '../views/FeedFormPost';
 
 const Router: FC = () => {
     return (
@@ -18,6 +19,8 @@ const Router: FC = () => {
                 <Route path="/random" element={<Random />} />
                 <Route path="/categories" element={<Categories />} />
                 <Route path="/profile" element={<Profile />} />
+                <Route path="//new-feed" element={<FeedFormPost />} />
+
             </Routes>
         </BrowserRouter>
     );

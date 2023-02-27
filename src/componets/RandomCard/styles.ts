@@ -4,15 +4,14 @@ export const MainContainerLoading = styled.div`
     display: flex;
     justify-content: center;
     text-align: center;
-    margin-top: 1rem;
-    margin-bottom: 0rem;
+    margin-top: 0rem;
 `;
 
 export const MainContainer = styled.div`
     display: flex;
     justify-content: center;
-    margin-top: 5.5rem;
-    margin-bottom: 0rem;
+    margin-top: 2rem;
+    margin-bottom: 10rem;
 `;
 
 export const MainContainerBar = styled.div`
@@ -25,8 +24,11 @@ export const MainContainerBar = styled.div`
 export const ButtonContainer = styled.div`
     display: flex;
     justify-content: center;
-    margin-bottom: 5rem;
-    margin-top: 0rem;
+ margin-bottom: 0rem;
+ margin-top: 4rem;
+
+ 
+  
 `;
 
 export const H1Container = styled.div`

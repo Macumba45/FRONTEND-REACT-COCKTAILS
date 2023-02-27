@@ -2,6 +2,7 @@ import { FC, memo, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
+import { ButtonCategoriesLogic } from './logic';
 import {
     ImageButton,
     ImageSrc,
@@ -10,7 +11,6 @@ import {
     ImageMarked,
 } from './styles';
 
-import { ButtonCategoriesLogic } from './logic';
 
 const ButtonCategories: FC = () => {
     const { categories, setCategories, fetchCategories, Images } =
