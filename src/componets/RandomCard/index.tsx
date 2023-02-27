@@ -1,10 +1,11 @@
 import { styled } from '@mui/material/styles';
-import Card from '@mui/material/Card';
 import CardHeader from '@mui/material/CardHeader';
 import CardMedia from '@mui/material/CardMedia';
 import CardContent from '@mui/material/CardContent';
 import CardActions from '@mui/material/CardActions';
 import Collapse from '@mui/material/Collapse';
+import Skeleton from '@mui/material/Skeleton';
+import Stack from '@mui/material/Stack';
 import Avatar from '@mui/material/Avatar';
 import IconButton, { IconButtonProps } from '@mui/material/IconButton';
 import Typography from '@mui/material/Typography';
@@ -13,15 +14,16 @@ import FavoriteIcon from '@mui/icons-material/Favorite';
 import ShareIcon from '@mui/icons-material/Share';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import MoreVertIcon from '@mui/icons-material/MoreVert';
+import ButtonRandom from '../ButtonRandom';
+import { useRandomCardLogic } from './logic';
 import { FC, memo, useState } from 'react';
 import {
     ButtonContainer,
+    H1Container,
     H1Random,
     MainContainer,
     MainContainerLoading,
 } from './styles';
-import { useRandomCardLogic } from './logic';
-import ButtonRandom from '../ButtonRandom';
 
 interface ExpandMoreProps extends IconButtonProps {
     expand: boolean;
@@ -69,19 +71,23 @@ const RandomCard: FC = () => {
 
     if (loading) {
         return (
-            <MainContainerLoading>
-                <H1Random>
-                    ¡Descubre un nuevo sabor cada vez que pulses el botón
-                    Random! {<br />}
-                    {<br />}
-                    ¿Te atreves a probar suerte y descubrir tu nuevo cóctel
-                    favorito?{<br />}
-                    {<br />} ¡Dale al botón Random y comienza la aventura!
-                </H1Random>
+            <>
+                <H1Container>
+                    <H1Random>Are you ready to play?</H1Random>
+                </H1Container>
+                <MainContainerLoading>
+                    <Stack spacing={1}>
+                        {/* For variant="text", adjust the height via font-size */}
+                        <Skeleton variant="text" sx={{ fontSize: '2rem', marginTop: '0rem' }} />
+                        <Skeleton variant="circular" width={40} height={40} />
+                        <Skeleton variant="rectangular" width={300} height={150} />
+                        <Skeleton variant="rounded" width={300} height={150} sx={{ marginBottom: '10rem' }} />
+                    </Stack>
+                </MainContainerLoading>
                 <ButtonContainer>
                     <ButtonRandom onClick={handlePrintRandomCard} />
                 </ButtonContainer>
-            </MainContainerLoading>
+            </>
         );
     }
     return (
