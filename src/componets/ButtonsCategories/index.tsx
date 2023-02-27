@@ -1,4 +1,5 @@
-import { FC, memo, useEffect, useState } from 'react';
+import { FC, memo, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import {
@@ -8,11 +9,18 @@ import {
     Image,
     ImageMarked,
 } from './styles';
+
 import { ButtonCategoriesLogic } from './logic';
 
 const ButtonCategories: FC = () => {
     const { categories, setCategories, fetchCategories, Images } =
         ButtonCategoriesLogic();
+
+    const navigate = useNavigate(); // Obtener la función navigate
+
+    const handleClick = (category: string) => {
+        navigate(`/categories/${category}`); // Navegar a la ruta deseada
+    };
 
     useEffect(() => {
         async function getCategories() {
@@ -43,7 +51,9 @@ const ButtonCategories: FC = () => {
                         style={{
                             width: '50%',
                             backgroundImage: 'cover',
-                        }}>
+                        }}
+                        onClick={() => handleClick(category)} // Agregar evento onClick
+                    >
                         <ImageSrc
                             style={{ backgroundImage: `url(${image.picture})` }}
                         />
