@@ -32,7 +32,7 @@ export const NavContainerNotLogged = styled.div`
 `;
 
 export const NavbarLinkNotLogged = styled(Link)`
-    color: ${({ theme }) => theme.colors.light};
+    color: white;
     font-family: ${({ theme }) => theme.fonts.primary};
     font-size: ${({ theme }) => theme.fontSizes.smallest};
     font-weight: ${({ theme }) => theme.fontWeights.light};
@@ -70,7 +70,7 @@ export const NavContainerLogged = styled.div`
 `;
 
 export const NavbarLinkLogged = styled(Link)`
-    color: ${({ theme }) => theme.colors.light};
+    color: white;
     font-family: ${({ theme }) => theme.fonts.primary};
     font-size: ${({ theme }) => theme.fontSizes.smallest};
     font-weight: ${({ theme }) => theme.fontWeights.light};

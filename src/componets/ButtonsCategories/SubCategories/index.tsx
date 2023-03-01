@@ -11,7 +11,6 @@ import { Params } from './type';
 
 const ButtonSubCategories: FC = () => {
     const { category } = useParams<Params>();
-
     const { subCategories, setSubCategories, fetchSubCategories } =
         SubCategoriesLogic();
 
@@ -39,7 +38,7 @@ const ButtonSubCategories: FC = () => {
                         m: 0,
                         width: '300px',
                         marginTop: 10,
-                        margin: '0 auto',
+                        margin: '0 1rem',
                     }}>
                     <Card component="li" sx={{ flexGrow: 1, width: '300px' }}>
                         <CardCover>

@@ -53,6 +53,7 @@ const ButtonCategories: FC = () => {
                         style={{
                             width: '50%',
                             backgroundImage: 'cover',
+                            border: '1px solid white',
                         }}
                         onClick={() => handleClick(category)}>
                         {image && (

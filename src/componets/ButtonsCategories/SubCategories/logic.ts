@@ -6,14 +6,14 @@ export const SubCategoriesLogic = () => {
 
     const fetchSubCategories = async (category: any) => {
         try {
-            const response = await fetch(
-                `https://www.thecocktaildb.com/api/json/v1/1/filter.php?c=${category}`
-            );
+            const encodedCategory = encodeURIComponent(category);
+            const url = `https://www.thecocktaildb.com/api/json/v1/1/filter.php?c=${encodedCategory}`;
+            const response = await fetch(url);
             const data = await response.json();
             const categoryDrinks = data.drinks;
             setSubCategories(categoryDrinks);
             return categoryDrinks;
-        } catch (error) { }
+        } catch (error) {}
     };
 
     const printCategoryDrink = useCallback(async () => {
