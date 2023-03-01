@@ -2,13 +2,14 @@ import { useState, useCallback } from 'react';
 import { styled } from '@mui/material/styles';
 import Card from '@mui/material/Card';
 import { RandomCard } from './type';
+import { getAuthenticatedToken } from '../../services/storage';
 
 export const useRandomCardLogic = () => {
     const [expanded, setExpanded] = useState(false);
     const [randomCardData, setRandomCardData] = useState({
         title: '',
         category: '',
-        img: '',
+        image: '',
         description: '',
         instrucctions: {
             de: '',
@@ -21,15 +22,22 @@ export const useRandomCardLogic = () => {
             four: '',
         },
     });
+    console.log(randomCardData);
 
     const randomFetchCard = useCallback(async () => {
         try {
-            const response = await fetch(
-                'https://www.thecocktaildb.com/api/json/v1/1/random.php'
-            );
+
+            const token = getAuthenticatedToken(); // Obtener el token de localStorage
+            const response = await fetch('http://localhost:8000/cocktails/random', {
+
+                method: 'GET',
+                headers: {
+                    'Authorization': `Bearer ${token}` // Agregar el token al header 'Authorization'
+                },
+            })
             const data = await response.json();
-            const randomData = data.drinks;
-            return randomData;
+            console.log(data);
+            return data;
         } catch (error) {
             console.log(error);
         }
@@ -37,25 +45,26 @@ export const useRandomCardLogic = () => {
 
     const printRandomCard = useCallback(async () => {
         const randomCard = await randomFetchCard();
-        const randomObjetcard = randomCard.map((random: RandomCard) => ({
-            title: random.strDrink,
-            category: random.strCategory,
-            img: random.strDrinkThumb,
-            description: random.strInstructions,
-            instrucctions: {
-                de: random.strInstructionsDE,
-                it: random.strInstructionsIT,
-            },
+        console.log(randomCard);
+        // const randomObjetcard = randomCard.map((random: RandomCard) => ({
+        //     title: random.strDrink,
+        //     category: random.strCategory,
+        //     img: random.strDrinkThumb,
+        //     description: random.strInstructions,
+        //     instrucctions: {
+        //         de: random.strInstructionsDE,
+        //         it: random.strInstructionsIT,
+        //     },
 
-            ingredients: {
-                one: random.strIngredient1,
-                two: random.strIngredient2,
-                three: random.strIngredient3,
-                four: random.strIngredient4,
-            },
-        }));
+        //     ingredients: {
+        //         one: random.strIngredient1,
+        //         two: random.strIngredient2,
+        //         three: random.strIngredient3,
+        //         four: random.strIngredient4,
+        //     },  
+        // }));
 
-        return randomObjetcard;
+        return randomCard;
     }, []);
 
     const handleExpandClick = useCallback(() => {
@@ -76,5 +85,6 @@ export const useRandomCardLogic = () => {
         printRandomCard,
         randomCardData,
         setRandomCardData,
+        randomFetchCard
     };
 };

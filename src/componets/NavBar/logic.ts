@@ -13,6 +13,7 @@ export const useNavBarLogic = () => {
 
     const handleLogout = useCallback(() => {
         // aquí iría la lógica para cerrar sesión del usuario
+        window.localStorage.clear();
         navigate('/');
     }, [navigate]);
 

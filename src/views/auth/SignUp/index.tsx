@@ -22,39 +22,41 @@ import {
     Error,
     NameContainer,
 } from './styles';
+import { setAuthenticatedToken } from '../../../services/storage';
 
 const SignUp: FC = () => {
     const navigate = useNavigate();
 
     const handleSubmit = useCallback(
         async (values: Props) => {
-            navigate('/feed');
-            // try {
-            //     const response = await fetch(
-            //         'http://localhost:8000/auth/signup',
-            //         {
-            //             method: 'POST',
-            //             headers: {
-            //                 'Content-Type': 'application/json',
-            //             },
-            //             body: JSON.stringify({
-            //                 name: values.name,
-            //                 email: values.email,
-            //                 password: values.password,
-            //             }),
-            //         }
-            //     );
+            try {
+                const response = await fetch(
+                    'http://localhost:8000/auth/signup',
+                    {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json',
+                        },
+                        body: JSON.stringify({
+                            name: values.name,
+                            email: values.email,
+                            password: values.password,
+                        }),
+                    }
+                );
 
-            //     if (response.ok) {
-            //         const data = await response.json();
-            //         setAuthenticatedToken(data);
-            //         navigate('/welcome');
-            //     } else {
-            //         alert(response.statusText);
-            //     }
-            // } catch (error: any) {
-            //     console.log(error);
-            // }
+                console.log(values)
+
+                if (response.ok) {
+                    const data = await response.json();
+                    setAuthenticatedToken(data);
+                    navigate('/feed');
+                } else {
+                    alert(response.statusText);
+                }
+            } catch (error: any) {
+                console.log(error);
+            }
         },
         [navigate]
     );

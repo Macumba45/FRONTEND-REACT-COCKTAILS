@@ -5,5 +5,5 @@ export type Props = {
 };
 
 export type Params = {
-    category: string;
+    category?: string;
 };

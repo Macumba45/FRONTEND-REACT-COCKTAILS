@@ -28,7 +28,12 @@ const NavBarBottom: FC = () => {
                 <Toolbar>
                     <IconButton
                         aria-label="celebration"
-                        sx={{ color: 'white' }}
+                        sx={{
+                            color: 'white', backgroundColor:
+                                location.pathname === '/random'
+                                    ? '#000000'
+                                    : 'inherit',
+                        }}
                         onClick={goToRandomPage}>
                         <span className="material-icons">celebration</span>
                     </IconButton>
@@ -71,7 +76,13 @@ const NavBarBottom: FC = () => {
                     <IconButton
                         aria-label="liquor"
                         onClick={goToCategoryPage}
-                        sx={{ color: 'white' }}>
+                        sx={{
+                            color: 'white',
+                            backgroundColor:
+                                location.pathname === '/categories'
+                                    ? '#000000'
+                                    : 'inherit',
+                        }}>
                         <span className="material-icons">liquor</span>
                     </IconButton>
                 </Toolbar>

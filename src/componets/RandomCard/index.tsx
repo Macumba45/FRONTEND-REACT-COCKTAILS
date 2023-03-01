@@ -50,21 +50,17 @@ const CardRandom: FC = () => {
         StyledCard,
         randomCardData,
         setRandomCardData,
+        randomFetchCard
     } = useRandomCardLogic();
 
     const [loading, setLoading] = useState(true);
     const handlePrintRandomCard = async () => {
         try {
-            const randomCards = await printRandomCard();
-            const randomCard = randomCards[0];
-            setRandomCardData({
-                title: randomCard.title,
-                category: randomCard.category,
-                img: randomCard.img,
-                description: randomCard.description,
-                instrucctions: randomCard.instrucctions,
-                ingredients: randomCard.ingredients,
-            });
+            const randomCard = await randomFetchCard();
+            console.log(randomCard);
+            const itemZero = randomCard[0]
+            setRandomCardData(itemZero);
+            console.log(randomCardData);
             setLoading(false);
         } catch (error) {
             console.log(error);
@@ -144,7 +140,7 @@ const CardRandom: FC = () => {
                                     bgcolor: red[500],
                                 }}
                                 aria-label="recipe"
-                                src={randomCardData.img}>
+                                src={randomCardData.image}>
                                 R
                             </Avatar>
                         }
@@ -159,7 +155,7 @@ const CardRandom: FC = () => {
                     <CardMedia
                         component="img"
                         height="200"
-                        image={randomCardData.img}
+                        image={randomCardData.image}
                         alt="Paella dish"
                         sx={{
                             height: 220,

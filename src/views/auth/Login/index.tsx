@@ -20,37 +20,37 @@ import {
     LoginBackImg,
     Error,
 } from './styles';
+import { setAuthenticatedToken } from '../../../services/storage';
 
 const Login: FC<Props> = () => {
     const navigate = useNavigate();
     const handleSubmit = useCallback(
         async (values: Props) => {
-            navigate('/feed');
-            // try {
-            //     const response = await fetch(
-            //         'http://localhost:8000/auth/login',
-            //         {
-            //             method: 'POST',
-            //             headers: {
-            //                 'Content-Type': 'application/json',
-            //             },
-            //             body: JSON.stringify({
-            //                 email: values.email,
-            //                 password: values.password,
-            //             }),
-            //         }
-            //     );
 
-            //     if (response.ok) {
-            //         const data = await response.json();
-            //         setAuthenticatedToken(data);
-            //         navigate('/welcome');
-            //     } else {
-            //         alert(response.statusText);
-            //     }
-            // } catch (error: any) {
-            //     console.log(error);
-            // }
+            try {
+                const response = await fetch(
+                    'http://localhost:8000/auth/login', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({
+                        email: values.email,
+                        password: values.password,
+                    }),
+                }
+                );
+
+                if (response.ok) {
+                    const data = await response.json();
+                    setAuthenticatedToken(data);
+                    navigate('/feed');
+                } else {
+                    alert(response.statusText);
+                }
+            } catch (error: any) {
+                console.log(error);
+            }
         },
         [navigate]
     );

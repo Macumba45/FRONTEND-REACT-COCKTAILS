@@ -1,9 +1,5 @@
 import styled from 'styled-components';
 
-export const MainContainer = styled.div`
-    /* margin-top: 7rem; */
-`;
-
 export const BackGroundFeed = styled.div`
     width: 100vw;
     height: 100vh;

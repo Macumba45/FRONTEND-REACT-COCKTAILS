@@ -22,7 +22,7 @@ const ButtonSubCategories: FC = () => {
     // Llamamos a la función handleCategories cuando se monta el componente
     useEffect(() => {
         handleCategories();
-    }, []);
+    }, [category]);
 
     return (
         <MainContainer>
@@ -52,7 +52,7 @@ const ButtonSubCategories: FC = () => {
                         <CardContent>
                             <Typography
                                 level="h6"
-                                fontWeight="lg"
+                                fontWeight={900}
                                 textColor="#fff"
                                 mt={{ xs: 12, sm: 18 }}>
                                 {category.strDrink}
