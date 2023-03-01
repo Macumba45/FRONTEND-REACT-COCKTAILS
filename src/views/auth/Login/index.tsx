@@ -1,4 +1,4 @@
-import { FC, memo, useCallback } from 'react';
+import { FC, memo, useCallback, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Field, FieldProps, Formik } from 'formik';
 import { validationSchema, initialValues } from './constants';
@@ -19,11 +19,13 @@ import {
     ButtonLogin,
     LoginBackImg,
     Error,
+    ErrorLogin,
 } from './styles';
 import { setAuthenticatedToken } from '../../../services/storage';
 
 const Login: FC<Props> = () => {
     const navigate = useNavigate();
+    const [error, setError] = useState(null);
     const handleSubmit = useCallback(
         async (values: Props) => {
             try {
@@ -45,8 +47,15 @@ const Login: FC<Props> = () => {
                     const data = await response.json();
                     setAuthenticatedToken(data);
                     navigate('/feed');
-                } else {
-                    alert(response.statusText);
+                }
+                if (response.status === 500) {
+
+                    const error = await response.json();
+                    setError(error);
+
+
+
+
                 }
             } catch (error: any) {
                 console.log(error);
@@ -108,6 +117,7 @@ const Login: FC<Props> = () => {
                                 <LinkSignupText to="/signup">
                                     If you are not SignUp, click here!
                                 </LinkSignupText>
+                                {error && <ErrorLogin>{error}</ErrorLogin>}
                             </LinkSignupContainer>
                             <ButtonLoginContainer>
                                 <ButtonLogin type="submit">Log in</ButtonLogin>
