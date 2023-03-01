@@ -8,22 +8,21 @@ export const SubCategoriesLogic = () => {
     const fetchSubCategories = async (category?: string) => {
         try {
             const token = getAuthenticatedToken(); // Obtener el token de localStorage
-            const url = `https://localhost:8000/sync-subCategory/${category}`
-            console.log(url)
+            const url = `https://localhost:8000/sync-subCategory/${category}`;
+            console.log(url);
             const response = await fetch(url, {
                 method: 'GET',
                 headers: {
                     'Content-Type': 'application/json',
-                    'Authorization': `Bearer ${token}` // Agregar el token al header 'Authorization'
+                    Authorization: `Bearer ${token}`, // Agregar el token al header 'Authorization'
                 },
-
-            })
+            });
             console.log(response);
             const data = await response.json();
             const categoryDrinks = data.drinks;
             setSubCategories(categoryDrinks);
             return categoryDrinks;
-        } catch (error) { }
+        } catch (error) {}
     };
 
     const printCategoryDrink = useCallback(async () => {

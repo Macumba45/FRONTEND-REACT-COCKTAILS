@@ -22,21 +22,20 @@ export const useRandomCardLogic = () => {
             four: '',
         },
     });
-    console.log(randomCardData);
 
     const randomFetchCard = useCallback(async () => {
         try {
-
             const token = getAuthenticatedToken(); // Obtener el token de localStorage
-            const response = await fetch('http://localhost:8000/cocktails/random', {
-
-                method: 'GET',
-                headers: {
-                    'Authorization': `Bearer ${token}` // Agregar el token al header 'Authorization'
-                },
-            })
+            const response = await fetch(
+                'http://localhost:8000/cocktails/random',
+                {
+                    method: 'GET',
+                    headers: {
+                        Authorization: `Bearer ${token}`, // Agregar el token al header 'Authorization'
+                    },
+                }
+            );
             const data = await response.json();
-            console.log(data);
             return data;
         } catch (error) {
             console.log(error);
@@ -45,24 +44,6 @@ export const useRandomCardLogic = () => {
 
     const printRandomCard = useCallback(async () => {
         const randomCard = await randomFetchCard();
-        console.log(randomCard);
-        // const randomObjetcard = randomCard.map((random: RandomCard) => ({
-        //     title: random.strDrink,
-        //     category: random.strCategory,
-        //     img: random.strDrinkThumb,
-        //     description: random.strInstructions,
-        //     instrucctions: {
-        //         de: random.strInstructionsDE,
-        //         it: random.strInstructionsIT,
-        //     },
-
-        //     ingredients: {
-        //         one: random.strIngredient1,
-        //         two: random.strIngredient2,
-        //         three: random.strIngredient3,
-        //         four: random.strIngredient4,
-        //     },  
-        // }));
 
         return randomCard;
     }, []);
@@ -85,6 +66,6 @@ export const useRandomCardLogic = () => {
         printRandomCard,
         randomCardData,
         setRandomCardData,
-        randomFetchCard
+        randomFetchCard,
     };
 };

@@ -29,7 +29,8 @@ const NavBarBottom: FC = () => {
                     <IconButton
                         aria-label="celebration"
                         sx={{
-                            color: 'white', backgroundColor:
+                            color: 'white',
+                            backgroundColor:
                                 location.pathname === '/random'
                                     ? '#000000'
                                     : 'inherit',

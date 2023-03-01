@@ -45,7 +45,7 @@ const SignUp: FC = () => {
                     }
                 );
 
-                console.log(values)
+                console.log(values);
 
                 if (response.ok) {
                     const data = await response.json();

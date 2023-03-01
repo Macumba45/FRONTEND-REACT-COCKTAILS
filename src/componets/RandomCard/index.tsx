@@ -46,21 +46,18 @@ const CardRandom: FC = () => {
     const {
         handleExpandClick,
         expanded,
-        printRandomCard,
         StyledCard,
         randomCardData,
         setRandomCardData,
-        randomFetchCard
+        randomFetchCard,
     } = useRandomCardLogic();
 
     const [loading, setLoading] = useState(true);
     const handlePrintRandomCard = async () => {
         try {
             const randomCard = await randomFetchCard();
-            console.log(randomCard);
-            const itemZero = randomCard[0]
+            const itemZero = randomCard[0];
             setRandomCardData(itemZero);
-            console.log(randomCardData);
             setLoading(false);
         } catch (error) {
             console.log(error);

@@ -26,19 +26,19 @@ const Login: FC<Props> = () => {
     const navigate = useNavigate();
     const handleSubmit = useCallback(
         async (values: Props) => {
-
             try {
                 const response = await fetch(
-                    'http://localhost:8000/auth/login', {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json',
-                    },
-                    body: JSON.stringify({
-                        email: values.email,
-                        password: values.password,
-                    }),
-                }
+                    'http://localhost:8000/auth/login',
+                    {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json',
+                        },
+                        body: JSON.stringify({
+                            email: values.email,
+                            password: values.password,
+                        }),
+                    }
                 );
 
                 if (response.ok) {
