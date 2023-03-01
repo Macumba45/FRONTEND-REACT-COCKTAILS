@@ -74,10 +74,6 @@ const CardRandom: FC = () => {
     if (loading) {
         return (
             <>
-                <H1Container>
-                    <H1Random>Are you ready to play?</H1Random>
-                    {/* <LinearProgress variant="determinate" value={progress} /> */}
-                </H1Container>
                 <ButtonContainer>
                     <ButtonRandom onClick={handlePrintRandomCard} />
                 </ButtonContainer>
@@ -123,6 +119,10 @@ const CardRandom: FC = () => {
                         />
                     </Stack>
                 </MainContainerLoading>
+                <H1Container>
+                    <H1Random>Are you ready to play?</H1Random>
+                    {/* <LinearProgress variant="determinate" value={progress} /> */}
+                </H1Container>
             </>
         );
     }

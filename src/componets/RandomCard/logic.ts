@@ -5,6 +5,22 @@ import { RandomCard } from './type';
 
 export const useRandomCardLogic = () => {
     const [expanded, setExpanded] = useState(false);
+    const [randomCardData, setRandomCardData] = useState({
+        title: '',
+        category: '',
+        img: '',
+        description: '',
+        instrucctions: {
+            de: '',
+            it: '',
+        },
+        ingredients: {
+            one: '',
+            two: '',
+            three: '',
+            four: '',
+        },
+    });
 
     const randomFetchCard = useCallback(async () => {
         try {
@@ -41,23 +57,6 @@ export const useRandomCardLogic = () => {
 
         return randomObjetcard;
     }, []);
-
-    const [randomCardData, setRandomCardData] = useState({
-        title: '',
-        category: '',
-        img: '',
-        description: '',
-        instrucctions: {
-            de: '',
-            it: '',
-        },
-        ingredients: {
-            one: '',
-            two: '',
-            three: '',
-            four: '',
-        },
-    });
 
     const handleExpandClick = useCallback(() => {
         setExpanded((prevExpanded) => !prevExpanded);

@@ -18,7 +18,7 @@ const ButtonCategories: FC = () => {
 
     const navigate = useNavigate(); // Obtener la función navigate
 
-    const handleClick = (category: string) => {
+    const handleClick = (category: any) => {
         navigate(`/categories/${category}`); // Navegar a la ruta deseada
     };
 
@@ -41,6 +41,8 @@ const ButtonCategories: FC = () => {
                 marginBottom: 7,
             }}>
             {categories.map((category) => {
+                // const modifiedCategory = category.replace('/', '_'); // Reemplazar el caracter "/" por "_"
+
                 const image: CategoryImage | undefined = Images.find(
                     (img) => img.category === category
                 );

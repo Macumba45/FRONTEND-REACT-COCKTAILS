@@ -1,5 +1,4 @@
 import styled, { css } from 'styled-components';
-import { Link } from 'react-router-dom';
 import { Form as defaultForm } from 'formik';
 
 export const TitleFormPost = styled.h1`
@@ -107,6 +106,40 @@ export const Input = styled.input<{ $hasError?: boolean }>`
     }
 `;
 
+export const TextArea = styled.textarea<{ $hasError?: boolean }>`
+    border-radius: 5px;
+    border: 0.1px solid
+        ${({ $hasError, theme }) =>
+            $hasError ? theme.colors.danger : theme.colors.secondary};
+    padding-left: 0.5rem;
+    box-sizing: border-box;
+    font-family: ${({ theme }) => theme.fonts.primary};
+    font-size: 0.8rem;
+    height: 2.5rem;
+    margin-right: 2rem;
+    margin-left: 2rem;
+    margin-top: 0.625rem;
+    width: 15rem;
+
+    ${({ $hasError, theme }) =>
+        $hasError &&
+        css`
+            color: ${theme.colors.danger};
+        `}
+
+    &::placeholder {
+        color: ${({ theme }) => theme.colors.primary};
+        font-family: ${({ theme }) => theme.fonts.primary};
+        font-size: 0.7rem;
+        font-weight: 200;
+        opacity: 0.5;
+    }
+
+    @media (min-width: 768px) {
+        width: 21rem;
+    }
+`;
+
 export const Select = styled.select<{ $hasError?: boolean }>`
     border-radius: 5px;
     border: 0.1px solid
@@ -155,8 +188,7 @@ export const ButtonLogin = styled.button`
     font-family: ${({ theme }) => theme.fonts.primary};
     font-size: ${({ theme }) => theme.fontSizes.smallest};
     font-weight: 500;
-    margin-bottom: 3.125rem;
-    margin-top: 50px;
+    margin-top: 2rem;
     padding: 1rem 2rem 1rem 2rem;
     text-decoration: none;
 

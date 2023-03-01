@@ -14,6 +14,7 @@ import {
     SubContainer,
     SubContainerImg,
     Select,
+    TextArea,
 } from './styles';
 import { IconButton } from '@mui/material';
 import { PhotoCamera } from '@mui/icons-material';
@@ -24,6 +25,7 @@ const FeedForm: FC = () => {
     }, []);
 
     const [categories, setCategories] = useState<string[]>([]);
+    const [selectedImage, setSelectedImage] = useState<File | null>(null);
 
     useEffect(() => {
         async function fetchData() {
@@ -47,6 +49,67 @@ const FeedForm: FC = () => {
                     onSubmit={handleSubmit}
                     initialValues={initialValues}>
                     <Form>
+                        <Field name="img">
+                            {({ meta }: FieldProps) => (
+                                <>
+                                    <SubContainerImg>
+                                        <LabelContainer>
+                                            <Label>Picture* </Label>
+                                        </LabelContainer>
+
+                                        {/* <Input
+                                            $hasError={!!meta?.error}
+                                            placeholder="Insert your picture"
+                                            {...field}
+                                        /> */}
+                                        <IconButton
+                                            color="primary"
+                                            aria-label="upload picture"
+                                            component="label">
+                                            <Input
+                                                hidden
+                                                accept="image/*"
+                                                type="file"
+                                                $hasError={!!meta?.error}
+                                                onChange={(
+                                                    event: React.ChangeEvent<HTMLInputElement>
+                                                ) =>
+                                                    setSelectedImage(
+                                                        event.target.files &&
+                                                            event.target
+                                                                .files[0]
+                                                    )
+                                                }
+                                            />
+                                            <PhotoCamera
+                                                sx={{
+                                                    width: '50px',
+                                                    height: '50px',
+                                                }}
+                                            />
+                                        </IconButton>
+                                        {!!meta?.error && (
+                                            <Error>{meta.error}</Error>
+                                        )}
+                                    </SubContainerImg>
+                                    {selectedImage && (
+                                        <SubContainerImg>
+                                            <img
+                                                src={URL.createObjectURL(
+                                                    selectedImage
+                                                )}
+                                                alt="Icono de la cámara"
+                                                style={{
+                                                    height: '100px',
+                                                    width: '100px',
+                                                    margin: '0 auto',
+                                                }}
+                                            />
+                                        </SubContainerImg>
+                                    )}
+                                </>
+                            )}
+                        </Field>
                         <Field name="title">
                             {({ field, meta }: FieldProps) => (
                                 <SubContainer>
@@ -88,50 +151,22 @@ const FeedForm: FC = () => {
                                 </SubContainer>
                             )}
                         </Field>
-                        <Field name="img">
-                            {({ field, meta }: FieldProps) => (
-                                <>
-                                    <SubContainerImg>
-                                        <LabelContainer>
-                                            <Label>Picture* </Label>
-                                        </LabelContainer>
 
-                                        <Input
-                                            $hasError={!!meta?.error}
-                                            placeholder="Insert your picture"
-                                            {...field}
-                                        />
-                                        <IconButton
-                                            color="primary"
-                                            aria-label="upload picture"
-                                            component="label">
-                                            <Input
-                                                hidden
-                                                accept="image/*"
-                                                type="file"
-                                            />
-                                            <PhotoCamera />
-                                        </IconButton>
-                                        {!!meta?.error && (
-                                            <Error>{meta.error}</Error>
-                                        )}
-                                    </SubContainerImg>
-                                </>
-                            )}
-                        </Field>
                         <Field name="coment">
                             {({ field, meta }: FieldProps) => (
                                 <SubContainer>
                                     <LabelContainer>
                                         <Label>Coment* </Label>
                                     </LabelContainer>
-                                    <Input
+                                    <TextArea
                                         $hasError={!!meta?.error}
                                         placeholder="Insert your coment"
                                         style={{
                                             resize: 'both',
-                                            height: '100px',
+                                            height: '50px',
                                             padding: '5px',
+                                            whiteSpace: 'pre-wrap',
+                                            wordWrap: 'break-word',
                                         }}
                                         {...field}
                                     />
@@ -142,7 +177,9 @@ const FeedForm: FC = () => {
                             )}
                         </Field>
                         <ButtonLoginContainer>
-                            <ButtonLogin type="submit">Post</ButtonLogin>
+                            <ButtonLogin type="submit" onClick={handleSubmit}>
+                                Post
+                            </ButtonLogin>
                         </ButtonLoginContainer>
                     </Form>
                 </Formik>

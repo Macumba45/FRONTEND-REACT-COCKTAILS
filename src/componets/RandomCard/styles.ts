@@ -25,13 +25,13 @@ export const ButtonContainer = styled.div`
     display: flex;
     justify-content: center;
     margin-bottom: 0rem;
-    margin-top: 4rem;
+    margin-top: 3rem;
 `;
 
 export const H1Container = styled.div`
     display: flex;
     justify-content: center;
-    margin-top: 3rem;
+    margin-top: 2rem;
 `;
 
 export const H1Random = styled.h1`
