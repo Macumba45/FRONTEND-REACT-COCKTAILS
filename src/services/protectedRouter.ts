@@ -1,15 +1,36 @@
-import { Navigate, useLocation } from 'react-router-dom';
-import { getAuthenticatedToken } from './storage';
+import { useLocation, useNavigate } from 'react-router-dom';
+import { getAuthenticatedToken } from '../services/storage';
 
-// const ProtectedRoutes = ({ children }: { children: JSX.Element }) => {
+export const ProtectedRoute = ({ children }: { children: JSX.Element }) => {
+    const token = getAuthenticatedToken();
+    const location = useLocation();
+    const navigate = useNavigate();
 
-//     const token = getAuthenticatedToken();
-//     const location = useLocation();
+    if (!token || token === null) {
+        return navigate('/', { replace: true, state: { from: location } });
+    }
 
-//     if (!token || token === null) {
-//         return <Navigate to="/" replace state = {{ from: location }
-//     } />;
-// }
+    return children;
+};
 
-// return children;
-// };
+export const PublicRoute = ({ children }: { children: JSX.Element }) => {
+    const token = getAuthenticatedToken();
+    const location = useLocation();
+    const navigate = useNavigate();
+
+    if (token) {
+        if (
+            location.pathname === '/login' ||
+            location.pathname === '/signup' ||
+            location.pathname === '/'
+        ) {
+            return navigate('/feed', {
+                replace: true,
+                state: { from: location },
+            });
+        }
+        return children;
+    }
+
+    return children;
+};

@@ -49,13 +49,8 @@ const Login: FC<Props> = () => {
                     navigate('/feed');
                 }
                 if (response.status === 500) {
-
                     const error = await response.json();
                     setError(error);
-
-
-
-
                 }
             } catch (error: any) {
                 console.log(error);

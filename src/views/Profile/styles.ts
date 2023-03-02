@@ -36,18 +36,18 @@ export const DescriptionContainer = styled.div`
 
 export const ProfileDetailsName = styled.h3`
     font-family: ${({ theme }) => theme.fonts.primary};
-    font-weight: ${({ theme }) => theme.fontWeights.light};
-    margin-bottom: 2rem;
+    font-weight: ${({ theme }) => theme.fontWeights.semiBold};
+    margin-bottom: 1.5rem;
 `;
 
 export const ProfileDetailsEmail = styled.h3`
     font-family: ${({ theme }) => theme.fonts.primary};
-    font-weight: ${({ theme }) => theme.fontWeights.light};
+    font-weight: ${({ theme }) => theme.fontWeights.semiBold};
     margin-top: 2rem;
 `;
 
 export const ButtonsContainer = styled.div`
-    margin-top: 7.8rem;
+    margin-top: 8.1rem;
     display: flex;
     justify-content: center;
 `;

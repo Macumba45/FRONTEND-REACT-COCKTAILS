@@ -18,7 +18,7 @@ export const useNavBarLogic = () => {
     }, [navigate]);
 
     const handleBackPage = useCallback(() => {
-        window.history.back();
+        navigate('/feed');
     }, []);
 
     const [anchorEl, setAnchorEl] = useState<HTMLElement | null>(null);

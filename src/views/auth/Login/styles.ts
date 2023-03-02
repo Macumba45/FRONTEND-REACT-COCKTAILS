@@ -78,7 +78,7 @@ export const Input = styled.input<{ $hasError?: boolean }>`
     border-radius: 5px;
     border: 0.1px solid
         ${({ $hasError, theme }) =>
-        $hasError ? theme.colors.danger : theme.colors.secondary};
+            $hasError ? theme.colors.danger : theme.colors.secondary};
     padding-left: 0.5rem;
     box-sizing: border-box;
     font-family: ${({ theme }) => theme.fonts.primary};
@@ -177,12 +177,9 @@ export const ErrorFirebaseText = styled.p`
     margin-bottom: 1rem;
 `;
 
-
 export const ErrorLogin = styled.span`
-
     color: ${({ theme }) => theme.colors.danger};
     font-size: ${({ theme }) => theme.fontSizes.smallest};
     font-family: ${({ theme }) => theme.fonts.primary};
     margin-top: 1rem;
-
-`
+`;

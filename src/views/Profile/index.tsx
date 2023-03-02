@@ -16,24 +16,14 @@ import {
 } from './styles';
 
 const Profile: FC = () => {
-
-    const {
-
-        userData,
-        setUserData,
-        userInfo
-
-    } = ProfileLogic()
+    const { userData, setUserData, userInfo } = ProfileLogic();
 
     useEffect(() => {
         const fetchData = async () => {
             await userInfo();
-
         };
         fetchData();
     }, [userInfo]);
-
-
 
     return (
         <>
