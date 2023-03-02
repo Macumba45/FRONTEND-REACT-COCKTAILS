@@ -7,6 +7,6 @@ export type Post = {
     title: string,
     category: string,
     image: string,
-    comments: string
+    comment: string
 
 }

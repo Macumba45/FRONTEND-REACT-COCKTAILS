@@ -28,7 +28,7 @@ const FeedForm: FC = () => {
         title: "",
         category: "",
         image: "",
-        comments: ""
+        comment: ""
     });
 
     useEffect(() => {
@@ -46,6 +46,7 @@ const FeedForm: FC = () => {
 
 
     const handleSubmit = async (values: Post, { setSubmitting }: FormikHelpers<Post>) => {
+        console.log(values)
         try {
             const token = getAuthenticatedToken(); // Obtener el token de localStorage
             const response = await fetch('http://localhost:8000/feed/createPost', {
@@ -58,7 +59,7 @@ const FeedForm: FC = () => {
                     title: values.title,
                     category: values.category,
                     image: values.image,
-                    comments: values.comments,
+                    comment: values.comment,
                 }),
             });
 
@@ -189,7 +190,7 @@ const FeedForm: FC = () => {
                             )}
                         </Field>
 
-                        <Field name="coment">
+                        <Field name="comment">
                             {({ field, meta }: FieldProps) => (
                                 <SubContainer>
                                     <LabelContainer>
@@ -197,7 +198,7 @@ const FeedForm: FC = () => {
                                     </LabelContainer>
                                     <TextArea
                                         $hasError={!!meta?.error}
-                                        placeholder="Insert your coment"
+                                        placeholder="Insert your comment"
                                         style={{
                                             resize: 'both',
                                             height: '50px',
