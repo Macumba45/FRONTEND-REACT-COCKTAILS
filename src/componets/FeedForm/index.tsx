@@ -1,3 +1,4 @@
+
 import { Field, FieldProps, Form, Formik, FormikHelpers } from 'formik';
 import { FC, memo, useCallback, useEffect, useState } from 'react';
 import { initialValues, validationSchema } from './constants';
@@ -19,9 +20,7 @@ import {
 import { IconButton } from '@mui/material';
 import { PhotoCamera } from '@mui/icons-material';
 import { getAuthenticatedToken } from '../../services/storage';
-
 const FeedForm: FC = () => {
-
     const [categories, setCategories] = useState<string[]>([]);
     const [selectedImage, setSelectedImage] = useState<File | null>(null);
     const [formValues, setFormValues] = useState<Post>({
@@ -30,7 +29,6 @@ const FeedForm: FC = () => {
         image: "",
         comment: ""
     });
-
     useEffect(() => {
         async function fetchData() {
             const response = await fetch(
@@ -45,23 +43,23 @@ const FeedForm: FC = () => {
     }, []);
 
 
-        const handleId = useCallback(async () => {
-            const token = getAuthenticatedToken();
-            async function fetchData() {
-                console.log('entramos')
-                const response = await fetch(`http://localhost:8000/user/id/${token}`,{
-                    method: 'GET',
-                    headers: {
-                        Authorization: `Bearer ${token}`, // Agregar el token al header 'Authorization'
-                        contentType: 'application/json',
-                    }
-                });
-                console.log(response)
-                const data = await response.json();
-                console.log(data)
-            }
-            await fetchData();
-        }, []);
+    const handleId = useCallback(async () => {
+        const token = getAuthenticatedToken();
+        async function fetchData() {
+            console.log('entramos')
+            const response = await fetch(`http://localhost:8000/user/id/${token}`, {
+                method: 'GET',
+                headers: {
+                    Authorization: `Bearer ${token}`, // Agregar el token al header 'Authorization'
+                    contentType: 'application/json',
+                }
+            });
+            console.log(response)
+            const data = await response.json();
+            console.log(data)
+        }
+        await fetchData();
+    }, []);
 
     const handleSubmit = async (values: Post, { setSubmitting }: FormikHelpers<Post>) => {
         console.log(values)
@@ -85,7 +83,6 @@ const FeedForm: FC = () => {
             });
 
             console.log(response);
-
             if (response.ok) {
                 const data = await response.json();
                 alert("Post created " + JSON.stringify(data));
@@ -97,8 +94,6 @@ const FeedForm: FC = () => {
             console.log(error);
         }
     };
-
-
     return (
         <>
             <TitleFormPost>Post new Cocktail</TitleFormPost>
@@ -115,7 +110,6 @@ const FeedForm: FC = () => {
                                         <LabelContainer>
                                             <Label>Picture* </Label>
                                         </LabelContainer>
-
                                         {/* <Input
                                             $hasError={!!meta?.error}
                                             placeholder="Insert your picture"
@@ -210,7 +204,6 @@ const FeedForm: FC = () => {
                                 </SubContainer>
                             )}
                         </Field>
-
                         <Field name="comment">
                             {({ field, meta }: FieldProps) => (
                                 <SubContainer>
@@ -246,6 +239,4 @@ const FeedForm: FC = () => {
         </>
     );
 }
-
-
 export default memo(FeedForm);
