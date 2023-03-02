@@ -50,15 +50,15 @@ const FeedForm: FC = () => {
             const response = await fetch(`http://localhost:8000/user/id/${token}`, {
                 method: 'GET',
                 headers: {
-                    Authorization: `Bearer ${token}`, // Agregar el token al header 'Authorization'
-                    contentType: 'application/json',
+                    'Authorization': `Bearer ${token}`, // Agregar el token al header 'Authorization'
+                    'Content-Type': 'application/json',
                 }
             });
-            console.log(response)
             const data = await response.json();
             console.log(data)
+            return data.id;
         }
-        await fetchData();
+        return await fetchData();
     }, []);
 
     const handleSubmit = async (values: Post, { setSubmitting }: FormikHelpers<Post>) => {
@@ -70,8 +70,8 @@ const FeedForm: FC = () => {
             const response = await fetch('http://localhost:8000/feed/createPost', {
                 method: 'POST',
                 headers: {
-                    Authorization: `Bearer ${token}`, // Agregar el token al header 'Authorization'
-                    contentType: 'application/json',
+                    'Authorization': `Bearer ${token}`, // Agregar el token al header 'Authorization'
+                    'Content-Type': 'application/json',
                 },
                 body: JSON.stringify({
                     title: values.title,
