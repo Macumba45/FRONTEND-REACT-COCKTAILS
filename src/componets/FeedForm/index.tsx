@@ -45,9 +45,29 @@ const FeedForm: FC = () => {
     }, []);
 
 
+        const handleId = useCallback(async () => {
+            const token = getAuthenticatedToken();
+            async function fetchData() {
+                console.log('entramos')
+                const response = await fetch(`http://localhost:8000/user/id/${token}`,{
+                    method: 'GET',
+                    headers: {
+                        Authorization: `Bearer ${token}`, // Agregar el token al header 'Authorization'
+                        contentType: 'application/json',
+                    }
+                });
+                console.log(response)
+                const data = await response.json();
+                console.log(data)
+            }
+            await fetchData();
+        }, []);
+
     const handleSubmit = async (values: Post, { setSubmitting }: FormikHelpers<Post>) => {
         console.log(values)
+        console.log(values.category)
         try {
+            const id = await handleId();
             const token = getAuthenticatedToken(); // Obtener el token de localStorage
             const response = await fetch('http://localhost:8000/feed/createPost', {
                 method: 'POST',
@@ -60,6 +80,7 @@ const FeedForm: FC = () => {
                     category: values.category,
                     image: values.image,
                     comment: values.comment,
+                    user_FK: id
                 }),
             });
 
