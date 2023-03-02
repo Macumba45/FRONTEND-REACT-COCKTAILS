@@ -1,6 +1,8 @@
 import { Avatar, Button, ButtonGroup } from '@mui/material';
-import { FC, memo } from 'react';
+import { FC, memo, useEffect } from 'react';
 import NavBar from '../../componets/NavBar';
+import { ProfileLogic } from './logic';
+import { Props } from './type';
 import {
     AvatarContainer,
     BackGroundProfile,
@@ -14,6 +16,23 @@ import {
 } from './styles';
 
 const Profile: FC = () => {
+
+    const {
+
+        userData,
+        setUserData,
+        userInfo
+
+    } = ProfileLogic()
+
+    useEffect(() => {
+        const fetchData = async () => {
+            await userInfo();
+
+        };
+        fetchData();
+    }, [userInfo]);
+
 
 
     return (
@@ -31,11 +50,11 @@ const Profile: FC = () => {
                         </AvatarContainer>
                         <DescriptionContainer>
                             <ProfileDetailsName>
-                                Aqui vendrá el nombre:
+                                {userData?.name || ''}
                             </ProfileDetailsName>
                             <HrElement />
                             <ProfileDetailsEmail>
-                                Aqui vendrá el email:
+                                {userData?.email || ''}
                             </ProfileDetailsEmail>
                         </DescriptionContainer>
                         <ButtonsContainer>
