@@ -52,12 +52,14 @@ const CardRandom: FC = () => {
     } = useRandomCardLogic();
 
     const [loading, setLoading] = useState(true);
+    const [loadingBar, setLoadingBar] = useState(true);
     const handlePrintRandomCard = async () => {
         try {
             const randomCard = await randomFetchCard();
             const itemZero = randomCard[0];
             setRandomCardData(itemZero);
             setLoading(false);
+            setLoadingBar(false)
         } catch (error) {
             console.log(error);
         }
@@ -116,6 +118,19 @@ const CardRandom: FC = () => {
                     {/* <LinearProgress variant="determinate" value={progress} /> */}
                 </H1Container>
             </>
+        );
+    }
+
+    if (loadingBar) {
+        return (
+            <MainContainerBar>
+                <Box sx={{ width: '10rem' }}>
+                    <LinearProgress
+                        color="secondary"
+                        sx={{ backgroundColor: '#420024' }}
+                    />
+                </Box>
+            </MainContainerBar>
         );
     }
     return (

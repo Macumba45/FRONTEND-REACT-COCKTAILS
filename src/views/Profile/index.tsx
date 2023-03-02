@@ -2,7 +2,6 @@ import { Avatar, Button, ButtonGroup } from '@mui/material';
 import { FC, memo, useEffect } from 'react';
 import NavBar from '../../componets/NavBar';
 import { ProfileLogic } from './logic';
-import { Props } from './type';
 import {
     AvatarContainer,
     BackGroundProfile,
@@ -16,7 +15,7 @@ import {
 } from './styles';
 
 const Profile: FC = () => {
-    const { userData, setUserData, userInfo } = ProfileLogic();
+    const { userData, userInfo } = ProfileLogic();
 
     useEffect(() => {
         const fetchData = async () => {

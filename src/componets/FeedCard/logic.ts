@@ -16,9 +16,14 @@ export const useFeedCardLogic = () => {
         },
     }));
 
+    const handleDeleteClick = useCallback(() => {
+        console.log('handleDeleteClick');
+    }, [])
+
     return {
         expanded,
         handleExpandClick,
         StyledCard,
+        handleDeleteClick
     };
 };

@@ -1,4 +1,4 @@
-import { memo, useCallback, useEffect, useState } from 'react';
+import { useCallback, useState } from 'react';
 import { getAuthenticatedToken } from '../../services/storage';
 
 export const ProfileLogic = () => {
@@ -18,7 +18,6 @@ export const ProfileLogic = () => {
             },
         });
         const data = await response.json();
-        console.log(data);
         setUserData(data);
     }, []);
 

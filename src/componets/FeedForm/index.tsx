@@ -23,12 +23,7 @@ import { getAuthenticatedToken } from '../../services/storage';
 const FeedForm: FC = () => {
     const [categories, setCategories] = useState<string[]>([]);
     const [selectedImage, setSelectedImage] = useState<File | null>(null);
-    const [formValues, setFormValues] = useState<Post>({
-        title: "",
-        category: "",
-        image: "",
-        comment: ""
-    });
+
     useEffect(() => {
         async function fetchData() {
             const response = await fetch(
@@ -46,7 +41,6 @@ const FeedForm: FC = () => {
     const handleId = useCallback(async () => {
         const token = getAuthenticatedToken();
         async function fetchData() {
-            console.log('entramos')
             const response = await fetch(`http://localhost:8000/user/id/${token}`, {
                 method: 'GET',
                 headers: {
@@ -55,15 +49,13 @@ const FeedForm: FC = () => {
                 }
             });
             const data = await response.json();
-            console.log(data)
             return data.id;
         }
         return await fetchData();
     }, []);
 
     const handleSubmit = async (values: Post, { setSubmitting }: FormikHelpers<Post>) => {
-        console.log(values)
-        console.log(values.category)
+
         try {
             const id = await handleId();
             const token = getAuthenticatedToken(); // Obtener el token de localStorage
@@ -82,7 +74,7 @@ const FeedForm: FC = () => {
                 }),
             });
 
-            console.log(response);
+
             if (response.ok) {
                 const data = await response.json();
                 alert("Post created " + JSON.stringify(data));
