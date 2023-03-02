@@ -1,22 +1,32 @@
-import { FC, memo, useEffect } from 'react';
+import { FC, memo, useEffect, useState } from 'react';
 import Box from '@mui/joy/Box';
 import Card from '@mui/joy/Card';
 import CardCover from '@mui/joy/CardCover';
 import CardContent from '@mui/joy/CardContent';
 import Typography from '@mui/joy/Typography';
+import { CircularProgress, LinearProgress } from '@mui/material';
 import { SubCategoriesLogic } from './logic';
-import { MainContainer } from './styles';
+import { MainContainer, MainContainerLoader } from './styles';
 import { useParams } from 'react-router-dom';
 import { Params } from './type';
 
 const ButtonSubCategories: FC = () => {
     const { category } = useParams<Params>();
+    const [isLoading, setIsLoading] = useState(true);
     const { subCategories, setSubCategories, fetchSubCategories } =
         SubCategoriesLogic();
 
+
     const handleCategories = async () => {
         const categories = await fetchSubCategories(category);
-        setSubCategories(categories);
+
+        setTimeout(() => {
+            setSubCategories(categories);
+            setIsLoading(false);
+
+        }, 3000);
+
+
     };
 
     // Llamamos a la función handleCategories cuando se monta el componente
@@ -24,42 +34,58 @@ const ButtonSubCategories: FC = () => {
         handleCategories();
     }, [category]);
 
+    if (isLoading) {
+        return (
+            <MainContainerLoader>
+                <Box sx={{ width: '10rem' }}>
+                    <LinearProgress
+                        color="secondary"
+                        sx={{ backgroundColor: '#420024' }}
+                    />
+                </Box>
+            </MainContainerLoader>
+        );
+    }
+
     return (
         <MainContainer>
             {subCategories.map((category) => (
-                <Box
-                    component="div"
-                    key={category.idDrink}
-                    sx={{
-                        display: 'flex',
-                        gap: 2,
-                        flexWrap: 'wrap',
-                        p: 0,
-                        m: 0,
-                        width: '300px',
-                        marginTop: 10,
-                        margin: '0 1rem',
-                    }}>
-                    <Card component="li" sx={{ flexGrow: 1, width: '300px' }}>
-                        <CardCover>
-                            <img
-                                src={category.strDrinkThumb}
-                                srcSet={category.strDrinkThumb}
-                                loading="lazy"
-                                alt=""
-                            />
-                        </CardCover>
-                        <CardContent>
-                            <Typography
-                                level="h6"
-                                fontWeight={900}
-                                textColor="#fff"
-                                mt={{ xs: 12, sm: 18 }}>
-                                {category.strDrink}
-                            </Typography>
-                        </CardContent>
-                    </Card>
-                </Box>
+                <>
+
+                    <Box
+                        component="div"
+                        key={category.cocktail_id}
+                        sx={{
+                            display: 'flex',
+                            gap: 2,
+                            flexWrap: 'wrap',
+                            p: 0,
+                            m: 0,
+                            width: '300px',
+                            marginTop: 10,
+                            margin: '0 1rem',
+                        }}>
+                        <Card component="li" sx={{ flexGrow: 1, width: '300px' }}>
+                            <CardCover>
+                                <img
+                                    src={category.image}
+                                    srcSet={category.image}
+                                    loading="lazy"
+                                    alt=""
+                                />
+                            </CardCover>
+                            <CardContent>
+                                <Typography
+                                    level="h6"
+                                    fontWeight={900}
+                                    textColor="#fff"
+                                    mt={{ xs: 12, sm: 18 }}>
+                                    {category.cocktail_name}
+                                </Typography>
+                            </CardContent>
+                        </Card>
+                    </Box>
+                </>
             ))}
         </MainContainer>
     );

@@ -1,7 +1,6 @@
 import { useState, useCallback } from 'react';
 import { styled } from '@mui/material/styles';
 import Card from '@mui/material/Card';
-import { RandomCard } from './type';
 import { getAuthenticatedToken } from '../../services/storage';
 
 export const useRandomCardLogic = () => {

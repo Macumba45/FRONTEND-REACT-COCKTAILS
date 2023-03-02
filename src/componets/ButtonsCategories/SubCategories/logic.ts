@@ -8,8 +8,7 @@ export const SubCategoriesLogic = () => {
     const fetchSubCategories = async (category?: string) => {
         try {
             const token = getAuthenticatedToken(); // Obtener el token de localStorage
-            const url = `https://localhost:8000/sync-subCategory/${category}`;
-            console.log(url);
+            const url = `http://localhost:8000/sync-subCategory/${category}`;
             const response = await fetch(url, {
                 method: 'GET',
                 headers: {
@@ -17,19 +16,17 @@ export const SubCategoriesLogic = () => {
                     Authorization: `Bearer ${token}`, // Agregar el token al header 'Authorization'
                 },
             });
-            console.log(response);
             const data = await response.json();
-            const categoryDrinks = data.drinks;
-            setSubCategories(categoryDrinks);
-            return categoryDrinks;
-        } catch (error) {}
+            setSubCategories(data);
+            return data;
+        } catch (error) { }
     };
 
     const printCategoryDrink = useCallback(async () => {
         const category = subCategories.map((category: any) => ({
-            idDrink: category.idDrink,
-            strDrink: category.strDrink,
-            strDrinkThumb: category.strDrinkThumb,
+            idDrink: category.cocktail_id,
+            strDrink: category.cocktail_name,
+            strDrinkThumb: category.image,
         }));
 
         return category;

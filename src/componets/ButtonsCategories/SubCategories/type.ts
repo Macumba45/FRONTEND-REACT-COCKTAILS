@@ -1,9 +1,9 @@
 export type Props = {
-    idDrink: string;
-    strDrink: string;
-    strDrinkThumb: string;
+    cocktail_id: string;
+    cocktail_name: string;
+    image: string;
 };
 
 export type Params = {
-    category?: string;
+    category?: string
 };

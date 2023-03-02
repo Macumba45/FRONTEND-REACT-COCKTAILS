@@ -52,11 +52,6 @@ const Router: FC = () => {
             }
         }, [navigate, token]);
 
-        <>
-            {console.log(navigate)}
-        </>
-
-
         return (
             <div>
                 <h1>404 Not Found</h1>
