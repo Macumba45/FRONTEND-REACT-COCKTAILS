@@ -1,7 +1,7 @@
-import { Field, FieldProps, Form, Formik } from 'formik';
+import { Field, FieldProps, Form, Formik, FormikHelpers } from 'formik';
 import { FC, memo, useCallback, useEffect, useState } from 'react';
 import { initialValues, validationSchema } from './constants';
-import { Category } from './type';
+import { Category, Post } from './type';
 import {
     ButtonLogin,
     ButtonLoginContainer,
@@ -18,14 +18,18 @@ import {
 } from './styles';
 import { IconButton } from '@mui/material';
 import { PhotoCamera } from '@mui/icons-material';
+import { getAuthenticatedToken } from '../../services/storage';
 
 const FeedForm: FC = () => {
-    const handleSubmit = useCallback(() => {
-        console.log('ESTOY POSTEANDO');
-    }, []);
 
     const [categories, setCategories] = useState<string[]>([]);
     const [selectedImage, setSelectedImage] = useState<File | null>(null);
+    const [formValues, setFormValues] = useState<Post>({
+        title: "",
+        category: "",
+        image: "",
+        comments: ""
+    });
 
     useEffect(() => {
         async function fetchData() {
@@ -39,6 +43,39 @@ const FeedForm: FC = () => {
         }
         fetchData();
     }, []);
+
+
+    const handleSubmit = async (values: Post, { setSubmitting }: FormikHelpers<Post>) => {
+        try {
+            const token = getAuthenticatedToken(); // Obtener el token de localStorage
+            const response = await fetch('http://localhost:8000/feed/createPost', {
+                method: 'POST',
+                headers: {
+                    Authorization: `Bearer ${token}`, // Agregar el token al header 'Authorization'
+                    contentType: 'application/json',
+                },
+                body: JSON.stringify({
+                    title: values.title,
+                    category: values.category,
+                    image: values.image,
+                    comments: values.comments,
+                }),
+            });
+
+            console.log(response);
+
+            if (response.ok) {
+                const data = await response.json();
+                alert("Post created " + JSON.stringify(data));
+            } else {
+                alert(response.statusText);
+            }
+            setSubmitting(false);
+        } catch (error) {
+            console.log(error);
+        }
+    };
+
 
     return (
         <>
@@ -76,8 +113,8 @@ const FeedForm: FC = () => {
                                                 ) =>
                                                     setSelectedImage(
                                                         event.target.files &&
-                                                            event.target
-                                                                .files[0]
+                                                        event.target
+                                                            .files[0]
                                                     )
                                                 }
                                             />
@@ -177,7 +214,7 @@ const FeedForm: FC = () => {
                             )}
                         </Field>
                         <ButtonLoginContainer>
-                            <ButtonLogin type="submit" onClick={handleSubmit}>
+                            <ButtonLogin type="submit">
                                 Post
                             </ButtonLogin>
                         </ButtonLoginContainer>
@@ -186,6 +223,7 @@ const FeedForm: FC = () => {
             </MainFormContainer>
         </>
     );
-};
+}
+
 
 export default memo(FeedForm);

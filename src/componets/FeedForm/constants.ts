@@ -9,5 +9,6 @@ export const validationSchema = Yup.object().shape({
 export const initialValues = {
     title: '',
     category: '',
-    coment: '',
+    comments: '',
+    image: '',
 };

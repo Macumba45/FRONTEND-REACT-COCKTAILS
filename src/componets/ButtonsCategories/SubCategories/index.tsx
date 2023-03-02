@@ -4,9 +4,10 @@ import Card from '@mui/joy/Card';
 import CardCover from '@mui/joy/CardCover';
 import CardContent from '@mui/joy/CardContent';
 import Typography from '@mui/joy/Typography';
-import { CircularProgress, LinearProgress } from '@mui/material';
+import { LinearProgress } from '@mui/material';
+import claymore from './assets/9e582977-9171-4dda-9d9b-68b24755ccf2.png'
 import { SubCategoriesLogic } from './logic';
-import { MainContainer, MainContainerLoader } from './styles';
+import { Claymore, MainContainer, MainContainerClaymore, MainContainerLoader } from './styles';
 import { useParams } from 'react-router-dom';
 import { Params } from './type';
 
@@ -24,7 +25,7 @@ const ButtonSubCategories: FC = () => {
             setSubCategories(categories);
             setIsLoading(false);
 
-        }, 3000);
+        }, 1000);
 
 
     };
@@ -41,9 +42,13 @@ const ButtonSubCategories: FC = () => {
                     <LinearProgress
                         color="secondary"
                         sx={{ backgroundColor: '#420024' }}
+
                     />
+
                 </Box>
+                <MainContainerClaymore><Claymore src={claymore} /></MainContainerClaymore>
             </MainContainerLoader>
+
         );
     }
 

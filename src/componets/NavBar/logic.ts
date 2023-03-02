@@ -18,7 +18,11 @@ export const useNavBarLogic = () => {
     }, [navigate]);
 
     const handleBackPage = useCallback(() => {
-        navigate('/feed');
+        if (location.pathname.startsWith('/categories/')) {
+            navigate('/categories');
+        } else {
+            navigate('/feed');
+        }
     }, []);
 
     const [anchorEl, setAnchorEl] = useState<HTMLElement | null>(null);
