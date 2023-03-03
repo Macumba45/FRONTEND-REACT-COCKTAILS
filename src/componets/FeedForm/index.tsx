@@ -1,9 +1,11 @@
+import FeedFormLogic from './logic';
 import { Field, FieldProps, Form, Formik } from 'formik';
 import Modal from '@mui/joy/Modal';
 import { FC, memo } from 'react';
 import { initialValues, validationSchema } from './constants';
 import { PhotoCamera } from '@mui/icons-material';
-import FeedFormLogic from './logic';
+import { Box, IconButton } from '@mui/material';
+
 import {
     ButtonLogin,
     ButtonLoginContainer,
@@ -19,18 +21,11 @@ import {
     TextArea,
     Style
 } from './styles';
-import { Box, IconButton } from '@mui/material';
-import { useNavigate } from 'react-router-dom';
 
 
 const FeedForm: FC = () => {
 
-
-    const navigate = useNavigate();
-    const { categories, selectedImage, setSelectedImage, handleSubmit, modal } = FeedFormLogic()
-    const handleClose = () => {
-        navigate('/feed')
-    }
+    const { categories, selectedImage, setSelectedImage, handleSubmit, modal, handleClose } = FeedFormLogic()
 
     return (
         <>
@@ -44,7 +39,7 @@ const FeedForm: FC = () => {
 
                 >
                     <Box sx={{ ...Style, textAlign: 'center' }}>
-                        <h2 id="parent-modal-title">Post uploaded succesfull</h2>
+                        <h2 id="parent-modal-title">Post uploaded succesfull  &#9989;</h2>
 
                     </Box>
                 </Modal>

@@ -13,6 +13,10 @@ const FeedFormLogic = () => {
     const [selectedImage, setSelectedImage] = useState<File | null>(null);
     const [modal, setModal] = useState<boolean>(false);
 
+    const handleClose = () => {
+        navigate('/feed')
+    }
+
     useEffect(() => {
         async function fetchData() {
             const response = await fetch(
@@ -85,7 +89,8 @@ const FeedFormLogic = () => {
         handleSubmit,
         setSelectedImage,
         setCategories,
-        modal
+        modal,
+        handleClose
 
 
     }

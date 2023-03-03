@@ -218,7 +218,7 @@ export const Style = {
     top: '50%',
     left: '50%',
     transform: 'translate(-50%, -50%)',
-    width: 400,
+    width: 250,
     bgcolor: '#420024',
     border: '2px solid #000',
     borderRadius: '20px',
