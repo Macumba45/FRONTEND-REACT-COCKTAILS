@@ -5,9 +5,14 @@ import CardCover from '@mui/joy/CardCover';
 import CardContent from '@mui/joy/CardContent';
 import Typography from '@mui/joy/Typography';
 import { LinearProgress } from '@mui/material';
-import claymore from './assets/9e582977-9171-4dda-9d9b-68b24755ccf2.png'
+import claymore from './assets/9e582977-9171-4dda-9d9b-68b24755ccf2.png';
 import { SubCategoriesLogic } from './logic';
-import { Claymore, MainContainer, MainContainerClaymore, MainContainerLoader } from './styles';
+import {
+    Claymore,
+    MainContainer,
+    MainContainerClaymore,
+    MainContainerLoader,
+} from './styles';
 import { useParams } from 'react-router-dom';
 import { Params } from './type';
 
@@ -17,17 +22,13 @@ const ButtonSubCategories: FC = () => {
     const { subCategories, setSubCategories, fetchSubCategories } =
         SubCategoriesLogic();
 
-
     const handleCategories = async () => {
         const categories = await fetchSubCategories(category);
 
         setTimeout(() => {
             setSubCategories(categories);
             setIsLoading(false);
-
         }, 1000);
-
-
     };
 
     // Llamamos a la función handleCategories cuando se monta el componente
@@ -42,13 +43,12 @@ const ButtonSubCategories: FC = () => {
                     <LinearProgress
                         color="secondary"
                         sx={{ backgroundColor: '#420024' }}
-
                     />
-
                 </Box>
-                <MainContainerClaymore><Claymore src={claymore} /></MainContainerClaymore>
+                <MainContainerClaymore>
+                    <Claymore src={claymore} />
+                </MainContainerClaymore>
             </MainContainerLoader>
-
         );
     }
 
@@ -56,7 +56,6 @@ const ButtonSubCategories: FC = () => {
         <MainContainer>
             {subCategories.map((category) => (
                 <>
-
                     <Box
                         component="div"
                         key={category.cocktail_id}
@@ -70,7 +69,9 @@ const ButtonSubCategories: FC = () => {
                             marginTop: 10,
                             margin: '0 1rem',
                         }}>
-                        <Card component="li" sx={{ flexGrow: 1, width: '300px' }}>
+                        <Card
+                            component="li"
+                            sx={{ flexGrow: 1, width: '300px' }}>
                             <CardCover>
                                 <img
                                     src={category.image}

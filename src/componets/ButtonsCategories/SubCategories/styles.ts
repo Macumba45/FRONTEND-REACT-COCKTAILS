@@ -1,6 +1,5 @@
 import styled from 'styled-components';
-import claymore from './assets/9e582977-9171-4dda-9d9b-68b24755ccf2.png'
-
+import claymore from './assets/9e582977-9171-4dda-9d9b-68b24755ccf2.png';
 
 export const MainContainer = styled.div`
     display: flex;
@@ -14,7 +13,7 @@ export const MainContainerLoader = styled.div`
     align-items: center;
     flex-direction: column;
     flex-wrap: wrap;
-    justify-content:center;
+    justify-content: center;
     width: 100vw;
     height: 100vh;
 `;
@@ -23,15 +22,11 @@ export const MainContainerClaymore = styled.div`
     display: flex;
     align-items: center;
     flex-wrap: wrap;
-    justify-content:center;
+    justify-content: center;
     margin-top: 2rem;
-   
 `;
 
 export const Claymore = styled.img`
-
-height: 10rem;
-width: 10rem;
-
-`
-
+    height: 10rem;
+    width: 10rem;
+`;

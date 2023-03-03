@@ -4,6 +4,7 @@ import Card from '@mui/material/Card';
 
 export const useFeedCardLogic = () => {
     const [expanded, setExpanded] = useState(false);
+    const [loading, setLoading] = useState(true);
 
     const handleExpandClick = useCallback(() => {
         setExpanded((prevExpanded) => !prevExpanded);
@@ -18,12 +19,13 @@ export const useFeedCardLogic = () => {
 
     const handleDeleteClick = useCallback(() => {
         console.log('handleDeleteClick');
-    }, [])
+    }, []);
 
     return {
         expanded,
         handleExpandClick,
         StyledCard,
-        handleDeleteClick
+        handleDeleteClick,
+        loading,
     };
 };

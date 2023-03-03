@@ -19,7 +19,7 @@ export const SubCategoriesLogic = () => {
             const data = await response.json();
             setSubCategories(data);
             return data;
-        } catch (error) { }
+        } catch (error) {}
     };
 
     const printCategoryDrink = useCallback(async () => {

@@ -1,4 +1,3 @@
-
 import { Field, FieldProps, Form, Formik, FormikHelpers } from 'formik';
 import { FC, memo, useCallback, useEffect, useState } from 'react';
 import { initialValues, validationSchema } from './constants';
@@ -37,47 +36,53 @@ const FeedForm: FC = () => {
         fetchData();
     }, []);
 
-
     const handleId = useCallback(async () => {
         const token = getAuthenticatedToken();
         async function fetchData() {
-            const response = await fetch(`http://localhost:8000/user/id/${token}`, {
-                method: 'GET',
-                headers: {
-                    'Authorization': `Bearer ${token}`, // Agregar el token al header 'Authorization'
-                    'Content-Type': 'application/json',
+            const response = await fetch(
+                `http://localhost:8000/user/id/${token}`,
+                {
+                    method: 'GET',
+                    headers: {
+                        Authorization: `Bearer ${token}`, // Agregar el token al header 'Authorization'
+                        'Content-Type': 'application/json',
+                    },
                 }
-            });
+            );
             const data = await response.json();
             return data.id;
         }
         return await fetchData();
     }, []);
 
-    const handleSubmit = async (values: Post, { setSubmitting }: FormikHelpers<Post>) => {
-
+    const handleSubmit = async (
+        values: Post,
+        { setSubmitting }: FormikHelpers<Post>
+    ) => {
         try {
             const id = await handleId();
             const token = getAuthenticatedToken(); // Obtener el token de localStorage
-            const response = await fetch('http://localhost:8000/feed/createPost', {
-                method: 'POST',
-                headers: {
-                    'Authorization': `Bearer ${token}`, // Agregar el token al header 'Authorization'
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify({
-                    title: values.title,
-                    category: values.category,
-                    image: values.image,
-                    comment: values.comment,
-                    user_FK: id
-                }),
-            });
-
+            const response = await fetch(
+                'http://localhost:8000/feed/createPost',
+                {
+                    method: 'POST',
+                    headers: {
+                        Authorization: `Bearer ${token}`, // Agregar el token al header 'Authorization'
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({
+                        title: values.title,
+                        category: values.category,
+                        image: values.image,
+                        comment: values.comment,
+                        user_FK: id,
+                    }),
+                }
+            );
 
             if (response.ok) {
                 const data = await response.json();
-                alert("Post created " + JSON.stringify(data));
+                alert('Post created ' + JSON.stringify(data));
             } else {
                 alert(response.statusText);
             }
@@ -121,8 +126,8 @@ const FeedForm: FC = () => {
                                                 ) =>
                                                     setSelectedImage(
                                                         event.target.files &&
-                                                        event.target
-                                                            .files[0]
+                                                            event.target
+                                                                .files[0]
                                                     )
                                                 }
                                             />
@@ -221,14 +226,12 @@ const FeedForm: FC = () => {
                             )}
                         </Field>
                         <ButtonLoginContainer>
-                            <ButtonLogin type="submit">
-                                Post
-                            </ButtonLogin>
+                            <ButtonLogin type="submit">Post</ButtonLogin>
                         </ButtonLoginContainer>
                     </Form>
                 </Formik>
             </MainFormContainer>
         </>
     );
-}
+};
 export default memo(FeedForm);

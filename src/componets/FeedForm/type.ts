@@ -3,10 +3,8 @@ export type Category = {
 };
 
 export type Post = {
-
-    title: string,
-    category: string,
-    image: string,
-    comment: string
-
-}
+    title: string;
+    category: string;
+    image: string;
+    comment: string;
+};
