@@ -62,6 +62,25 @@ export const ProfileLogic = () => {
         setExpanded((prevExpanded) => !prevExpanded);
     }, []);
 
+    const onDelete = async (cocktailId: string) => {
+
+        try {
+            const token = getAuthenticatedToken();
+            await fetch(`http://localhost:8000/cocktails/delete/${cocktailId}`, {
+                method: 'DELETE',
+                headers: {
+                    Authorization: `Bearer ${token}`,
+                    'Content-Type': 'application/json',
+                    // Agrega cualquier token de autenticación necesario aquí
+                },
+            });
+            // Actualiza la lista de publicaciones del usuario después de la eliminación
+            await userPostProfile();
+        } catch (error) {
+            console.error('Error deleting post:', error);
+        }
+    };
+
     return {
         userData,
         userPost,
@@ -69,7 +88,8 @@ export const ProfileLogic = () => {
         userInfo,
         userPostProfile,
         handleExpandClick,
-        expanded
+        expanded,
+        onDelete
 
     };
 };

@@ -28,7 +28,7 @@ import {
 import { ExpandMore } from '@mui/icons-material';
 
 const Profile: FC = () => {
-    const { userData, userInfo, userPostProfile, userPost, expanded, handleExpandClick } = ProfileLogic();
+    const { userData, userInfo, userPostProfile, userPost, expanded, handleExpandClick, onDelete } = ProfileLogic();
     const [showUserPosts, setShowUserPosts] = useState(false);
 
 
@@ -117,6 +117,7 @@ const Profile: FC = () => {
                                     variant="plain"
                                     color="neutral"
                                     size="sm"
+                                    onClick={() => onDelete(item.id)}
                                     sx={{
                                         position: 'absolute',
                                         top: '0.5rem',
