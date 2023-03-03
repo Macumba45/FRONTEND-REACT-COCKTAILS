@@ -76,7 +76,7 @@ export const Input = styled.input<{ $hasError?: boolean }>`
     border-radius: 5px;
     border: 0.1px solid
         ${({ $hasError, theme }) =>
-            $hasError ? theme.colors.danger : theme.colors.secondary};
+        $hasError ? theme.colors.danger : theme.colors.secondary};
     padding-left: 0.5rem;
     box-sizing: border-box;
     font-family: ${({ theme }) => theme.fonts.primary};
@@ -110,7 +110,7 @@ export const TextArea = styled.textarea<{ $hasError?: boolean }>`
     border-radius: 5px;
     border: 0.1px solid
         ${({ $hasError, theme }) =>
-            $hasError ? theme.colors.danger : theme.colors.secondary};
+        $hasError ? theme.colors.danger : theme.colors.secondary};
     padding-left: 0.5rem;
     box-sizing: border-box;
     font-family: ${({ theme }) => theme.fonts.primary};
@@ -144,7 +144,7 @@ export const Select = styled.select<{ $hasError?: boolean }>`
     border-radius: 5px;
     border: 0.1px solid
         ${({ $hasError, theme }) =>
-            $hasError ? theme.colors.danger : theme.colors.secondary};
+        $hasError ? theme.colors.danger : theme.colors.secondary};
     padding-left: 0.5rem;
     box-sizing: border-box;
     font-family: ${({ theme }) => theme.fonts.primary};
@@ -211,3 +211,19 @@ export const ErrorFirebaseText = styled.p`
     color: ${({ theme }) => theme.colors.danger};
     margin-bottom: 1rem;
 `;
+
+
+export const Style = {
+    position: 'absolute' as 'absolute',
+    top: '50%',
+    left: '50%',
+    transform: 'translate(-50%, -50%)',
+    width: 400,
+    bgcolor: '#420024',
+    border: '2px solid #000',
+    borderRadius: '20px',
+    boxShadow: 24,
+    color: 'white',
+    p: 4,
+    fontFamily: 'Roboto, sans-serif'
+};

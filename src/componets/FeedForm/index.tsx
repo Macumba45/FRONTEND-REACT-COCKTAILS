@@ -1,7 +1,9 @@
-import { Field, FieldProps, Form, Formik, FormikHelpers } from 'formik';
-import { FC, memo, useCallback, useEffect, useState } from 'react';
+import { Field, FieldProps, Form, Formik } from 'formik';
+import Modal from '@mui/joy/Modal';
+import { FC, memo } from 'react';
 import { initialValues, validationSchema } from './constants';
-import { Category, Post } from './type';
+import { PhotoCamera } from '@mui/icons-material';
+import FeedFormLogic from './logic';
 import {
     ButtonLogin,
     ButtonLoginContainer,
@@ -15,84 +17,39 @@ import {
     SubContainerImg,
     Select,
     TextArea,
+    Style
 } from './styles';
-import { IconButton } from '@mui/material';
-import { PhotoCamera } from '@mui/icons-material';
-import { getAuthenticatedToken } from '../../services/storage';
+import { Box, IconButton } from '@mui/material';
+import { useNavigate } from 'react-router-dom';
+
+
 const FeedForm: FC = () => {
-    const [categories, setCategories] = useState<string[]>([]);
-    const [selectedImage, setSelectedImage] = useState<File | null>(null);
 
-    useEffect(() => {
-        async function fetchData() {
-            const response = await fetch(
-                'https://www.thecocktaildb.com/api/json/v1/1/list.php?c=list'
-            );
-            const data = await response.json();
-            setCategories(
-                data.drinks.map((category: Category) => category.strCategory)
-            );
-        }
-        fetchData();
-    }, []);
 
-    const handleId = useCallback(async () => {
-        const token = getAuthenticatedToken();
-        async function fetchData() {
-            const response = await fetch(
-                `http://localhost:8000/user/id/${token}`,
-                {
-                    method: 'GET',
-                    headers: {
-                        Authorization: `Bearer ${token}`, // Agregar el token al header 'Authorization'
-                        'Content-Type': 'application/json',
-                    },
-                }
-            );
-            const data = await response.json();
-            return data.id;
-        }
-        return await fetchData();
-    }, []);
+    const navigate = useNavigate();
+    const { categories, selectedImage, setSelectedImage, handleSubmit, modal } = FeedFormLogic()
+    const handleClose = () => {
+        navigate('/feed')
+    }
 
-    const handleSubmit = async (
-        values: Post,
-        { setSubmitting }: FormikHelpers<Post>
-    ) => {
-        try {
-            const id = await handleId();
-            const token = getAuthenticatedToken(); // Obtener el token de localStorage
-            const response = await fetch(
-                'http://localhost:8000/feed/createPost',
-                {
-                    method: 'POST',
-                    headers: {
-                        Authorization: `Bearer ${token}`, // Agregar el token al header 'Authorization'
-                        'Content-Type': 'application/json',
-                    },
-                    body: JSON.stringify({
-                        title: values.title,
-                        category: values.category,
-                        image: values.image,
-                        comment: values.comment,
-                        user_FK: id,
-                    }),
-                }
-            );
-
-            if (response.ok) {
-                const data = await response.json();
-                alert('Post created ' + JSON.stringify(data));
-            } else {
-                alert(response.statusText);
-            }
-            setSubmitting(false);
-        } catch (error) {
-            console.log(error);
-        }
-    };
     return (
         <>
+
+            {modal && (
+                <Modal
+                    open={true}
+                    onClose={handleClose}
+                    aria-labelledby="parent-modal-title"
+                    aria-describedby="parent-modal-description"
+
+                >
+                    <Box sx={{ ...Style, textAlign: 'center' }}>
+                        <h2 id="parent-modal-title">Post uploaded succesfull</h2>
+
+                    </Box>
+                </Modal>
+            )}
+
             <TitleFormPost>Post new Cocktail</TitleFormPost>
             <MainFormContainer>
                 <Formik
@@ -126,8 +83,8 @@ const FeedForm: FC = () => {
                                                 ) =>
                                                     setSelectedImage(
                                                         event.target.files &&
-                                                            event.target
-                                                                .files[0]
+                                                        event.target
+                                                            .files[0]
                                                     )
                                                 }
                                             />

@@ -51,9 +51,8 @@ const SignUp: FC = () => {
                     const data = await response.json();
                     setAuthenticatedToken(data);
                     navigate('/feed');
-                } else {
-                    alert(response.statusText);
                 }
+
             } catch (error: any) {
                 console.log(error);
             }

@@ -1,6 +1,6 @@
 import { useState } from 'react';
 
-export const App = () => {};
+export const App = () => { };
 
 export const ButtonCategoriesLogic = () => {
     const [categories, setCategories] = useState<string[]>([]);
@@ -14,6 +14,8 @@ export const ButtonCategoriesLogic = () => {
             (category: { strCategory: string }) => category.strCategory
         );
     }
+
+
 
     const Images = [
         {
