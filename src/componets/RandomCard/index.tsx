@@ -59,7 +59,7 @@ const CardRandom: FC = () => {
             const itemZero = randomCard[0];
             setRandomCardData(itemZero);
             setLoading(false);
-            setLoadingBar(false);
+            setLoadingBar(false)
         } catch (error) {
             console.log(error);
         }

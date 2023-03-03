@@ -9,8 +9,9 @@ export const ProfileLogic = () => {
         name: string;
     } | null>(null);
 
-    const [userPost, setUserPost] = useState<UserPost[]>([]);
-    const [showPost, setShowPost] = useState(false);
+    const [userPost, setUserPost] = useState<UserPost[]>([])
+    const [expanded, setExpanded] = useState(false);
+
 
     const userInfo = useCallback(async () => {
         const token = getAuthenticatedToken(); // Obtener el token de localStorage
@@ -28,23 +29,20 @@ export const ProfileLogic = () => {
     const handleId = useCallback(async () => {
         const token = getAuthenticatedToken();
         async function fetchData() {
-            const response = await fetch(
-                `http://localhost:8000/user/id/${token}`,
-                {
-                    method: 'GET',
-                    headers: {
-                        Authorization: `Bearer ${token}`, // Agregar el token al header 'Authorization'
-                        'Content-Type': 'application/json',
-                    },
+            const response = await fetch(`http://localhost:8000/user/id/${token}`, {
+                method: 'GET',
+                headers: {
+                    'Authorization': `Bearer ${token}`, // Agregar el token al header 'Authorization'
+                    'Content-Type': 'application/json',
                 }
-            );
+            });
             const data = await response.json();
             return data.id;
         }
         return await fetchData();
     }, []);
 
-    handleId();
+    handleId()
 
     const userPostProfile = useCallback(async () => {
         const id = await handleId();
@@ -60,11 +58,18 @@ export const ProfileLogic = () => {
         setUserPost(data);
     }, [handleId]);
 
+    const handleExpandClick = useCallback(() => {
+        setExpanded((prevExpanded) => !prevExpanded);
+    }, []);
+
     return {
         userData,
         userPost,
         setUserData,
         userInfo,
         userPostProfile,
+        handleExpandClick,
+        expanded
+
     };
 };

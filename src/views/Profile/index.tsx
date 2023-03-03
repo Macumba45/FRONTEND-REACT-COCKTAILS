@@ -1,6 +1,6 @@
-import { Avatar, Button, ButtonGroup } from '@mui/material';
+import { Avatar, Button, ButtonGroup, CardActions, CardContent, Collapse } from '@mui/material';
 import Buttonn from '@mui/joy/Button';
-
+import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import { FC, memo, useEffect, useState } from 'react';
 import NavBar from '../../componets/NavBar';
 import { ProfileLogic } from './logic';
@@ -25,10 +25,12 @@ import {
     ProfileDetailsEmail,
     ProfileDetailsName,
 } from './styles';
+import { ExpandMore } from '@mui/icons-material';
 
 const Profile: FC = () => {
-    const { userData, userInfo, userPostProfile, userPost } = ProfileLogic();
+    const { userData, userInfo, userPostProfile, userPost, expanded, handleExpandClick } = ProfileLogic();
     const [showUserPosts, setShowUserPosts] = useState(false);
+
 
     useEffect(() => {
         const fetchData = async () => {
@@ -108,7 +110,7 @@ const Profile: FC = () => {
                                     {item.category}
                                 </Typography>
                                 <Typography level="body2">
-                                    {item.createdAt}
+                                    {new Date(item.createdAt).toLocaleDateString()}
                                 </Typography>
                                 <IconButton
                                     aria-label="bookmark Bahamas Islands"
@@ -133,9 +135,9 @@ const Profile: FC = () => {
                                         alt=""
                                     />
                                 </AspectRatio>
-                                <Box sx={{ display: 'flex' }}>
+                                <Box sx={{ display: 'flex', justifyContent: 'space-between' }}>
                                     <div>
-                                        <Typography level="body3">
+                                        <Typography level="body3" marginBottom="0.5rem">
                                             Title:
                                         </Typography>
                                         <Typography
@@ -144,7 +146,22 @@ const Profile: FC = () => {
                                             {item.title}
                                         </Typography>
                                     </div>
+                                    <CardActions disableSpacing>
+                                        <ExpandMore
+                                            onClick={handleExpandClick}
+                                            aria-expanded={expanded}
+                                            aria-label="show more">
+                                            <ExpandMoreIcon />
+                                        </ExpandMore>
+                                    </CardActions>
                                 </Box>
+                                <Collapse in={expanded} timeout="auto" unmountOnExit>
+                                    <CardContent sx={{ padding: '0px', marginTop: "20px" }}>
+                                        <Typography padding={0}>
+                                            {item.comment}
+                                        </Typography>
+                                    </CardContent>
+                                </Collapse>
                             </Card>
                         </MainContainerPost>
                     ))}
