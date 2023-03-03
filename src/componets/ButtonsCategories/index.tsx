@@ -19,8 +19,9 @@ const ButtonCategories: FC = () => {
     const navigate = useNavigate(); // Obtener la función navigate
 
     const handleClick = (category: string) => {
-        navigate(`/categories/${category}`); // Navegar a la ruta deseada
-    };
+        const slug = categorySlugMap[category];
+        navigate(`/categories/${slug}`); // Navegar a la ruta deseada
+    }
 
     useEffect(() => {
         async function getCategories() {
@@ -30,6 +31,11 @@ const ButtonCategories: FC = () => {
 
         getCategories();
     }, []);
+
+    const categorySlugMap = Images.reduce((map, { category, slug }) => {
+        map[category] = slug;
+        return map;
+    }, {} as Record<string, string>);
 
     return (
         <Box
