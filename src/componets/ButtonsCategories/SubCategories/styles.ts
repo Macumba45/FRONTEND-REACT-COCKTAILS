@@ -1,5 +1,4 @@
 import styled from 'styled-components';
-import claymore from './assets/9e582977-9171-4dda-9d9b-68b24755ccf2.png';
 
 export const MainContainer = styled.div`
     display: flex;

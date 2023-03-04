@@ -1,100 +1,106 @@
-import { useState } from 'react';
-import { getAuthenticatedToken } from '../../services/storage';
+import { useCallback, useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+import { callCategories, fetchCategories } from '../../services/api/category';
 
-export const App = () => { };
+const Images = [
+    {
+        category: 'OrdinaryDrink',
+        picture:
+            'https://www.tastingtable.com/img/gallery/11-cocktails-to-try-if-you-like-drinking-gin/intro-1659025591.jpg',
+    },
+    {
+        category: 'Cocktail',
+        picture:
+            'https://thumbs.dreamstime.com/b/set-various-cocktails-black-background-set-various-cocktails-shaker-black-background-188649840.jpg',
+    },
+    {
+        category: 'Shake',
+        picture:
+            'https://hips.hearstapps.com/del.h-cdn.co/assets/15/24/1434133241-milkshakes.jpg',
+    },
+    {
+        category: 'Other / Unknown',
+        picture:
+            'https://japanese-clothing.com/wp-content/uploads/2022/06/Sans_titre_-_2020-05-17T154130.995_1.jpg?v=1589722950',
+    },
+    {
+        category: 'Cocoa',
+        picture:
+            'https://recipe4appetite.com/img/recipe-img/homemade-cocoa-drink.jpg',
+    },
+    {
+        category: 'Shot',
+        picture:
+            'https://149694725.v2.pressablecdn.com/wp-content/uploads/2018/03/Popular-Shot-Recipes.jpg',
+    },
+    {
+        category: 'Coffee / Tea',
+        picture:
+            'https://www.getflavor.com/wp-content/uploads/2021/09/Latte-and-Tea-Mojito-1152.jpg',
+    },
+    {
+        category: 'Homemade Liqueur',
+        picture:
+            'https://images.immediate.co.uk/production/volatile/sites/30/2022/08/200615BBCGOODFOODCOVERVEGXMASCOVER202004592-copy-95936cf.jpg',
+    },
+    {
+        category: 'Punch / Party Drink',
+        picture:
+            'https://petersfoodadventures.com/wp-content/uploads/2018/12/christmas-punch-1.png',
+    },
+    {
+        category: 'Beer',
+        picture:
+            'https://cdn2.justwineapp.com/assets/article/2017/01/Bier-Cocktail-Pale-Ale-darkrye-com.jpg',
+    },
+    {
+        category: 'Soft Drink',
+        picture:
+            'https://dosaandcurry.ca/wp-content/uploads/2021/11/Soft-Drinks.jpg',
+    },
+];
 
-export const ButtonCategoriesLogic = () => {
+const useLogic = () => {
     const [categories, setCategories] = useState<string[]>([]);
+    const [loading, setLoading] = useState(false);
+    const navigate = useNavigate(); // Obtener la función navigate
 
-    async function fetchCategories(): Promise<string[]> {
+    const getCategories = useCallback(async () => {
+        setLoading(true)
+        const data = await callCategories();
+        setCategories(data);
+        setLoading(false)
+    }, [])
 
-        const token = getAuthenticatedToken(); // Obtener el token de localStorage
-        const response = await fetch(
-            'http://localhost:8000/sync-categories/', {
-            method: 'GET',
-            headers: {
-                Authorization: `Bearer ${token}`, // Agregar el token al header 'Authorization'
-                'Content-Type': 'application/json',
-            },
-        });
-        const data = await response.json();
-        return data.map(
-            (category: { category: string }) => category.category
-        );
-    }
-    const Images = [
-        {
-            category: 'OrdinaryDrink',
-            slug: 'ordinarydrink',
-            picture:
-                'https://www.tastingtable.com/img/gallery/11-cocktails-to-try-if-you-like-drinking-gin/intro-1659025591.jpg',
-        },
-        {
-            category: 'Cocktail',
-            slug: 'cocktail',
-            picture:
-                'https://thumbs.dreamstime.com/b/set-various-cocktails-black-background-set-various-cocktails-shaker-black-background-188649840.jpg',
-        },
-        {
-            category: 'Shake',
-            slug: 'shake',
-            picture:
-                'https://hips.hearstapps.com/del.h-cdn.co/assets/15/24/1434133241-milkshakes.jpg',
-        },
-        {
-            category: 'OtherUnknown',
-            slug: 'otherunknown',
-            picture:
-                'https://japanese-clothing.com/wp-content/uploads/2022/06/Sans_titre_-_2020-05-17T154130.995_1.jpg?v=1589722950',
-        },
-        {
-            category: 'Cocoa',
-            slug: 'cocoa',
-            picture:
-                'https://recipe4appetite.com/img/recipe-img/homemade-cocoa-drink.jpg',
-        },
-        {
-            category: 'Shot',
-            slug: 'shot',
-            picture:
-                'https://149694725.v2.pressablecdn.com/wp-content/uploads/2018/03/Popular-Shot-Recipes.jpg',
-        },
-        {
-            category: 'CoffeeTea',
-            slug: 'coffee_tea',
-            picture:
-                'https://www.getflavor.com/wp-content/uploads/2021/09/Latte-and-Tea-Mojito-1152.jpg',
-        },
-        {
-            category: 'HomemadeLiqueur',
-            slug: 'homemadeliqueur',
-            picture:
-                'https://images.immediate.co.uk/production/volatile/sites/30/2022/08/200615BBCGOODFOODCOVERVEGXMASCOVER202004592-copy-95936cf.jpg',
-        },
-        {
-            category: 'PunchPartyDrink',
-            slug: 'punch_party_drink',
-            picture:
-                'https://petersfoodadventures.com/wp-content/uploads/2018/12/christmas-punch-1.png',
-        },
-        {
-            category: 'Beer',
-            slug: 'beer',
-            picture:
-                'https://cdn2.justwineapp.com/assets/article/2017/01/Bier-Cocktail-Pale-Ale-darkrye-com.jpg',
-        },
-        {
-            category: 'SoftDrink',
-            slug: 'softdrink',
-            picture:
-                'https://dosaandcurry.ca/wp-content/uploads/2021/11/Soft-Drinks.jpg',
-        },
-    ];
+    const syncCategories = useCallback(async () => {
+        setLoading(true)
+        await fetchCategories();
+        await getCategories()
+    }, [getCategories])
+
+
+    useEffect(() => {
+        getCategories()
+    }, [getCategories]);
+
+
+    const goToDetails = useCallback((category: string) => {
+
+        console.log(category)
+        navigate(`/categories/${category}`); // Navegar a la ruta deseada
+
+    }, [navigate])
 
     return {
         categories,
         setCategories,
         fetchCategories,
         Images,
+        callCategories,
+        syncCategories,
+        loading,
+        goToDetails
     };
 };
+
+export default useLogic;

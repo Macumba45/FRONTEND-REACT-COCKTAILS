@@ -6,10 +6,10 @@ export const SubCategoriesLogic = () => {
     const [subCategories, setSubCategories] = useState<Props[]>([]);
 
     const fetchSubCategories = async (category?: string) => {
+        console.log(category);
         try {
-            console.log({ category })
             const token = getAuthenticatedToken(); // Obtener el token de localStorage
-            const url = `http://localhost:8000/sync-subCategory/${category}`;
+            const url = `http://localhost:8000/cocktails/${category}`;
             const response = await fetch(url, {
                 method: 'GET',
                 headers: {
@@ -18,7 +18,7 @@ export const SubCategoriesLogic = () => {
                 },
             });
             const data = await response.json();
-            console.log({ data });
+            console.log(data);
             setSubCategories(data);
             return data;
         } catch (error) {

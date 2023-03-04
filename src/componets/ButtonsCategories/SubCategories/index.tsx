@@ -23,7 +23,8 @@ const ButtonSubCategories: FC = () => {
         SubCategoriesLogic();
 
     const handleCategories = async () => {
-        const categories = await fetchSubCategories(category);
+        const modifiedCategory = category?.replace('/', '').replace(/\s+/g, '') // Reemplazar el caracter "/" por "_"
+        const categories = await fetchSubCategories(modifiedCategory);
 
         setTimeout(() => {
             setSubCategories(categories);
@@ -55,10 +56,9 @@ const ButtonSubCategories: FC = () => {
     return (
         <MainContainer>
             {subCategories.map((category) => (
-
                 <Box
                     component="div"
-                    key={category.cocktail_id}
+                    key={category.strDrink}
                     sx={{
                         display: 'flex',
                         gap: 2,
@@ -69,10 +69,7 @@ const ButtonSubCategories: FC = () => {
                         marginTop: 10,
                         margin: '0 1rem',
                     }}>
-                    <Card
-                        component="li"
-                        sx={{ flexGrow: 1, width: '300px' }}
-                    >
+                    <Card component="li" sx={{ flexGrow: 1, width: '300px' }}>
                         <CardCover>
                             <img
                                 src={category.image}
@@ -92,7 +89,6 @@ const ButtonSubCategories: FC = () => {
                         </CardContent>
                     </Card>
                 </Box>
-
             ))}
         </MainContainer>
     );

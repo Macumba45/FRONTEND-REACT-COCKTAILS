@@ -1,5 +1,12 @@
-import { Avatar, Button, ButtonGroup, CardActions, CardContent, Collapse } from '@mui/material';
-import Buttonn from '@mui/joy/Button';
+import {
+    Avatar,
+    Button,
+    ButtonGroup,
+    CardActions,
+    CardContent,
+    Collapse,
+} from '@mui/material';
+import MoreVertIcon from '@mui/icons-material/MoreVert';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import { FC, memo, useEffect, useState } from 'react';
 import NavBar from '../../componets/NavBar';
@@ -13,24 +20,30 @@ import DeleteIcon from '@mui/icons-material/Delete';
 
 import {
     AvatarContainer,
-    BackGroundProfile,
     ButtonsContainer,
     Container,
     ContainerProfile,
     DescriptionContainer,
     HrElement,
     MainContainerPost,
-    PostDetails,
-    PostTitle,
     ProfileDetailsEmail,
     ProfileDetailsName,
 } from './styles';
 import { ExpandMore } from '@mui/icons-material';
 
 const Profile: FC = () => {
-    const { userData, userInfo, userPostProfile, userPost, expanded, handleExpandClick, onDelete } = ProfileLogic();
-    const [showUserPosts, setShowUserPosts] = useState(false);
+    const {
+        userData,
+        userInfo,
+        userPostProfile,
+        userPost,
+        expanded,
+        handleExpandClick,
+        onDelete,
+        goToUpdate,
+    } = ProfileLogic();
 
+    const [showUserPosts, setShowUserPosts] = useState(false);
 
     useEffect(() => {
         const fetchData = async () => {
@@ -109,9 +122,25 @@ const Profile: FC = () => {
                                     sx={{ mb: 0.5 }}>
                                     {item.category}
                                 </Typography>
+
                                 <Typography level="body2">
-                                    {new Date(item.createdAt).toLocaleDateString()}
+                                    {new Date(
+                                        item.createdAt
+                                    ).toLocaleDateString()}
                                 </Typography>
+                                <IconButton
+                                    aria-label="bookmark Bahamas Islands"
+                                    variant="plain"
+                                    color="neutral"
+                                    size="sm"
+                                    onClick={() => goToUpdate(item.id)}
+                                    sx={{
+                                        position: 'absolute',
+                                        top: '0.5rem',
+                                        right: '0.5rem',
+                                    }}>
+                                    <MoreVertIcon />
+                                </IconButton>
                                 <IconButton
                                     aria-label="bookmark Bahamas Islands"
                                     variant="plain"
@@ -121,7 +150,7 @@ const Profile: FC = () => {
                                     sx={{
                                         position: 'absolute',
                                         top: '0.5rem',
-                                        right: '0.5rem',
+                                        right: '2.5rem',
                                     }}>
                                     <DeleteIcon />
                                 </IconButton>
@@ -136,9 +165,15 @@ const Profile: FC = () => {
                                         alt=""
                                     />
                                 </AspectRatio>
-                                <Box sx={{ display: 'flex', justifyContent: 'space-between' }}>
+                                <Box
+                                    sx={{
+                                        display: 'flex',
+                                        justifyContent: 'space-between',
+                                    }}>
                                     <div>
-                                        <Typography level="body3" marginBottom="0.5rem">
+                                        <Typography
+                                            level="body3"
+                                            marginBottom="0.5rem">
                                             Title:
                                         </Typography>
                                         <Typography
@@ -156,8 +191,15 @@ const Profile: FC = () => {
                                         </ExpandMore>
                                     </CardActions>
                                 </Box>
-                                <Collapse in={expanded} timeout="auto" unmountOnExit>
-                                    <CardContent sx={{ padding: '0px', marginTop: "20px" }}>
+                                <Collapse
+                                    in={expanded}
+                                    timeout="auto"
+                                    unmountOnExit>
+                                    <CardContent
+                                        sx={{
+                                            padding: '0px',
+                                            marginTop: '20px',
+                                        }}>
                                         <Typography padding={0}>
                                             {item.comment}
                                         </Typography>

@@ -5,6 +5,7 @@ import Login from '../views/auth/Login';
 import Random from '../views/Random';
 import SignUp from '../views/auth/SignUp';
 import Categories from '../views/Categories';
+import FeedFormEdit from '../views/FeedEditForm';
 import Feed from '../views/Feed';
 import Profile from '../views/Profile';
 import FeedFormPost from '../views/FeedFormPost';
@@ -127,6 +128,14 @@ const Router: FC = () => {
                     element={
                         <ProtectedRoutes>
                             <FeedFormPost />
+                        </ProtectedRoutes>
+                    }
+                />
+                <Route
+                    path="/posts/:id"
+                    element={
+                        <ProtectedRoutes>
+                            <FeedFormEdit />
                         </ProtectedRoutes>
                     }
                 />

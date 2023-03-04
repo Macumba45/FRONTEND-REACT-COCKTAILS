@@ -1,4 +1,5 @@
 import { useCallback, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { getAuthenticatedToken } from '../../services/storage';
 import { UserPost } from './type';
 
@@ -9,13 +10,13 @@ export const ProfileLogic = () => {
         name: string;
     } | null>(null);
 
-    const [userPost, setUserPost] = useState<UserPost[]>([])
+    const [userPost, setUserPost] = useState<UserPost[]>([]);
     const [expanded, setExpanded] = useState(false);
-
+    const navigate = useNavigate();
 
     const userInfo = useCallback(async () => {
         const token = getAuthenticatedToken(); // Obtener el token de localStorage
-        const response = await fetch('http://localhost:8000/user/profile', {
+        const response = await fetch('http://localhost:8000/users/profile', {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json',
@@ -29,31 +30,37 @@ export const ProfileLogic = () => {
     const handleId = useCallback(async () => {
         const token = getAuthenticatedToken();
         async function fetchData() {
-            const response = await fetch(`http://localhost:8000/user/id/${token}`, {
-                method: 'GET',
-                headers: {
-                    'Authorization': `Bearer ${token}`, // Agregar el token al header 'Authorization'
-                    'Content-Type': 'application/json',
+            const response = await fetch(
+                `http://localhost:8000/users/id/${token}`,
+                {
+                    method: 'GET',
+                    headers: {
+                        Authorization: `Bearer ${token}`, // Agregar el token al header 'Authorization'
+                        'Content-Type': 'application/json',
+                    },
                 }
-            });
+            );
             const data = await response.json();
             return data.id;
         }
         return await fetchData();
     }, []);
 
-    handleId()
+    handleId();
 
     const userPostProfile = useCallback(async () => {
         const id = await handleId();
         const token = getAuthenticatedToken();
-        const response = await fetch(`http://localhost:8000/feed/posts/${id}`, {
-            method: 'GET',
-            headers: {
-                Authorization: `Bearer ${token}`,
-                'Content-Type': 'application/json',
-            },
-        });
+        const response = await fetch(
+            `http://localhost:8000/feeds/posts/${id}`,
+            {
+                method: 'GET',
+                headers: {
+                    Authorization: `Bearer ${token}`,
+                    'Content-Type': 'application/json',
+                },
+            }
+        );
         const data = await response.json();
         setUserPost(data);
     }, [handleId]);
@@ -63,10 +70,9 @@ export const ProfileLogic = () => {
     }, []);
 
     const onDelete = async (cocktailId: string) => {
-
         try {
             const token = getAuthenticatedToken();
-            await fetch(`http://localhost:8000/cocktails/delete/${cocktailId}`, {
+            await fetch(`http://localhost:8000/cocktails/${cocktailId}`, {
                 method: 'DELETE',
                 headers: {
                     Authorization: `Bearer ${token}`,
@@ -81,6 +87,11 @@ export const ProfileLogic = () => {
         }
     };
 
+    const goToUpdate = async (cocktailId: string) => {
+        console.log(userPost);
+        navigate(`/posts/${cocktailId}`);
+    };
+
     return {
         userData,
         userPost,
@@ -89,7 +100,7 @@ export const ProfileLogic = () => {
         userPostProfile,
         handleExpandClick,
         expanded,
-        onDelete
-
+        onDelete,
+        goToUpdate,
     };
 };

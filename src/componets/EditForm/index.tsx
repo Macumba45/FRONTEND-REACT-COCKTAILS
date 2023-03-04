@@ -1,10 +1,13 @@
-import FeedFormLogic from './logic';
+import FeedFormEditLogic from './logic';
 import { Field, FieldProps, Form, Formik } from 'formik';
 import Modal from '@mui/joy/Modal';
-import { FC, memo } from 'react';
-import { initialValues, validationSchema } from './constants';
+import { FC, memo, useCallback, useEffect, useMemo, useState } from 'react';
+import { validationSchema } from './constants';
 import { PhotoCamera } from '@mui/icons-material';
 import { Box, IconButton } from '@mui/material';
+import { useParams } from 'react-router-dom';
+import { getFeedById, updateFeed } from '../../services/api/feed';
+import { Post } from './type';
 
 import {
     ButtonLogin,
@@ -22,15 +25,48 @@ import {
     Style,
 } from './styles';
 
-const FeedForm: FC = () => {
-    const {
-        categories,
-        selectedImage,
-        setSelectedImage,
-        handleSubmit,
-        modal,
-        handleClose,
-    } = FeedFormLogic();
+const FormEdit: FC = () => {
+    const { id } = useParams<string>();
+    const { categories, selectedImage, setSelectedImage, modal, handleClose } =
+        FeedFormEditLogic();
+    const [isLoading, setIsLoading] = useState(false);
+    const [feed, setFeed] = useState<Post | null>(null);
+
+    const getFeed = useCallback(async () => {
+        if (id) {
+            setIsLoading(true);
+            const data = await getFeedById(id);
+            setFeed(data);
+            setIsLoading(false);
+        }
+    }, [id]);
+
+    useEffect(() => {
+        // Aquí prellenamos los valores iniciales del formulario con los datos de la publicación a editar
+        getFeed();
+    }, [getFeed]);
+
+    const initialValues = useMemo(
+        () => ({
+            title: feed?.title || '',
+            comment: feed?.comment || '',
+            image: feed?.image || '',
+            category: feed?.category || '',
+        }),
+        [feed]
+    );
+
+    const handleSubmit = useCallback(async (values: any) => {
+        if (id) {
+            setIsLoading(true);
+            await updateFeed(id, values);
+            setIsLoading(false);
+        }
+    }, [id]);
+
+    if (isLoading) {
+        return <h1>CARGANDO</h1>;
+    }
 
     return (
         <>
@@ -42,13 +78,13 @@ const FeedForm: FC = () => {
                     aria-describedby="parent-modal-description">
                     <Box sx={{ ...Style, textAlign: 'center' }}>
                         <h2 id="parent-modal-title">
-                            Post uploaded succesfull &#9989;
+                            Post edited succesfull &#9989;
                         </h2>
                     </Box>
                 </Modal>
             )}
 
-            <TitleFormPost>Post new Cocktail</TitleFormPost>
+            <TitleFormPost>Editing your Cocktail</TitleFormPost>
             <MainFormContainer>
                 <Formik
                     validationSchema={validationSchema}
@@ -81,8 +117,8 @@ const FeedForm: FC = () => {
                                                 ) =>
                                                     setSelectedImage(
                                                         event.target.files &&
-                                                            event.target
-                                                                .files[0]
+                                                        event.target
+                                                            .files[0]
                                                     )
                                                 }
                                             />
@@ -189,4 +225,4 @@ const FeedForm: FC = () => {
         </>
     );
 };
-export default memo(FeedForm);
+export default memo(FormEdit);

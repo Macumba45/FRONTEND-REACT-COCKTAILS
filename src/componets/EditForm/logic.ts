@@ -4,7 +4,7 @@ import { useNavigate } from 'react-router-dom';
 import { getAuthenticatedToken } from '../../services/storage';
 import { Category, Post } from './type';
 
-const FeedFormLogic = () => {
+const FeedFormEditLogic = () => {
     const navigate = useNavigate();
     const [categories, setCategories] = useState<string[]>([]);
     const [selectedImage, setSelectedImage] = useState<File | null>(null);
@@ -46,10 +46,7 @@ const FeedFormLogic = () => {
         return await fetchData();
     }, []);
 
-    const handleSubmit = async (
-        values: Post,
-        { setSubmitting }: FormikHelpers<Post>
-    ) => {
+    const handleSubmit = async (values: Post, { setSubmitting }: FormikHelpers<Post>) => {
         try {
             const id = await handleId();
             const token = getAuthenticatedToken(); // Obtener el token de localStorage
@@ -89,4 +86,4 @@ const FeedFormLogic = () => {
     };
 };
 
-export default FeedFormLogic;
+export default FeedFormEditLogic;

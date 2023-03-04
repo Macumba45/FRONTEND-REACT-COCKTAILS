@@ -14,14 +14,12 @@ import FavoriteIcon from '@mui/icons-material/Favorite';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import MoreVertIcon from '@mui/icons-material/MoreVert';
 import DeleteIcon from '@mui/icons-material/Delete';
-
 import {
     MainContainer,
     MainContainerBar,
     MainContainerLoading,
 } from './styles';
 import IMGPRUEBA from './maxresdefault.jpg';
-import { Box, LinearProgress, Skeleton, Stack } from '@mui/material';
 
 interface ExpandMoreProps extends IconButtonProps {
     expand: boolean;

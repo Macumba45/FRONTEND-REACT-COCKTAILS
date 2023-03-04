@@ -1,8 +1,7 @@
-import { FC, memo, useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { FC, memo } from 'react';
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
-import { ButtonCategoriesLogic } from './logic';
+import useLogic from './logic';
 import type { CategoryImage } from './type';
 import {
     ImageButton,
@@ -11,31 +10,33 @@ import {
     ImageMarked,
     Image,
 } from './styles';
+import { Button } from '@mui/material';
 
 const ButtonCategories: FC = () => {
-    const { categories, setCategories, fetchCategories, Images } =
-        ButtonCategoriesLogic();
+    const {
+        categories,
+        Images,
+        loading,
+        syncCategories,
+        goToDetails
+    } = useLogic();
 
-    const navigate = useNavigate(); // Obtener la función navigate
-
-    const handleClick = (category: string) => {
-        const slug = categorySlugMap[category];
-        navigate(`/categories/${slug}`); // Navegar a la ruta deseada
+    if (loading) {
+        return (
+            <Button disabled sx={{ marginTop: '5rem' }}>
+                Cargando categorías...
+            </Button>
+        );
     }
 
-    useEffect(() => {
-        async function getCategories() {
-            const categoriesList = await fetchCategories();
-            setCategories(categoriesList as string[]);
-        }
 
-        getCategories();
-    }, []);
-
-    const categorySlugMap = Images.reduce((map, { category, slug }) => {
-        map[category] = slug;
-        return map;
-    }, {} as Record<string, string>);
+    if (categories.length === 0) {
+        return (
+            <Button onClick={syncCategories} sx={{ marginTop: '5rem' }}>
+                Cargar categorías
+            </Button>
+        );
+    }
 
     return (
         <Box
@@ -47,8 +48,6 @@ const ButtonCategories: FC = () => {
                 marginBottom: 7,
             }}>
             {categories.map((category) => {
-                // const modifiedCategory = category.replace('/', '_'); // Reemplazar el caracter "/" por "_"
-
                 const image: CategoryImage | undefined = Images.find(
                     (img) => img.category === category
                 );
@@ -61,7 +60,7 @@ const ButtonCategories: FC = () => {
                             backgroundImage: 'cover',
                             border: '1px solid white',
                         }}
-                        onClick={() => handleClick(category)}>
+                        onClick={() => goToDetails(category)}>
                         {image && (
                             <ImageSrc
                                 style={{

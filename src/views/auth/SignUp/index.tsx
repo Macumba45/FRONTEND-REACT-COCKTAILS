@@ -52,7 +52,6 @@ const SignUp: FC = () => {
                     setAuthenticatedToken(data);
                     navigate('/feed');
                 }
-
             } catch (error: any) {
                 console.log(error);
             }
