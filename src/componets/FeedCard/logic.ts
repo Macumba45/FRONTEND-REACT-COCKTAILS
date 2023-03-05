@@ -28,17 +28,18 @@ export const useLogic = () => {
 
     const getAllPosts = useCallback(async () => {
         setLoading(true);
-        const posts = await getAllFeeds()
+        const posts = await getAllFeeds();
         setTimeout(() => {
+            // Ordenar los posts por fecha de creación, de más reciente a más antiguo
+            const sortedPosts = posts.sort((a: any, b: any) => {
+                return new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime();
+            });
 
-            setPosts(posts)
+            setPosts(sortedPosts);
             setLoading(false);
-            setUpdateClicked(true); // Cambiar updateClicked a true antes de llamar a getAllPosts()
-
+            setUpdateClicked(true);
         }, 2000);
-
-
-    }, [])
+    }, []);
 
 
     useEffect(() => {

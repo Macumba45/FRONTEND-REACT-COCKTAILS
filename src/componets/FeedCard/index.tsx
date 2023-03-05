@@ -111,7 +111,6 @@ const FeedCard: FC = () => {
             <MainContainer>
                 <>
                     {posts && posts.map((post: Posts) => {
-                        console.log(post.id)
                         return (
                             <StyledCard key={post.id} sx={{ width: 300, marginBottom: 5, marginLeft: 3, marginRight: 3 }}>
                                 <CardHeader
