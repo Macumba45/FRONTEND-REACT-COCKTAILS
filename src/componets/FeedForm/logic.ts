@@ -2,6 +2,7 @@ import { FormikHelpers } from 'formik';
 import { useCallback, useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { getAuthenticatedToken } from '../../services/storage';
+import { callCategoriesType } from '../../services/api/category';
 import { Category, Post } from './type';
 
 const FeedFormLogic = () => {
@@ -51,6 +52,14 @@ const FeedFormLogic = () => {
         { setSubmitting }: FormikHelpers<Post>
     ) => {
         try {
+            const categories = await getCategories();
+            console.log(categories)
+            let category_FK = "";
+            categories.forEach(category => {
+                if(category.category === values.category){
+                    category_FK = category.id;
+                }
+            });
             const id = await handleId();
             const token = getAuthenticatedToken(); // Obtener el token de localStorage
             const response = await fetch('http://localhost:8000/feeds/', {
@@ -61,10 +70,11 @@ const FeedFormLogic = () => {
                 },
                 body: JSON.stringify({
                     title: values.title,
-                    category: values.category,
+                    postCategory: values.category,
                     image: values.image,
                     comment: values.comment,
                     user_FK: id,
+                    category_FK
                 }),
             });
             setSubmitting(false);
@@ -76,6 +86,10 @@ const FeedFormLogic = () => {
             console.log(error);
         }
     };
+    const getCategories = useCallback(async () => {
+        const categories = await callCategoriesType();
+        return categories;
+    }, [])
 
     return {
         navigate,
