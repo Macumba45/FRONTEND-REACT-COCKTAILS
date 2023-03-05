@@ -7,8 +7,6 @@ import { useFeedCardLogic } from '../../componets/FeedCard/logic';
 
 const Feed: FC = () => {
 
-    const { getAllPosts, posts, loading } = useFeedCardLogic();
-    const [backGroundFeed, setBackGroundFeed] = useState();
 
     return (
         <>

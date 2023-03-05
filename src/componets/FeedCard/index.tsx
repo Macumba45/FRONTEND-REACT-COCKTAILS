@@ -1,4 +1,5 @@
-import { FC, memo, useState, useEffect } from 'react';
+import { FC, memo, useEffect } from 'react';
+import { Posts } from './type';
 import { useFeedCardLogic } from './logic';
 import { styled } from '@mui/material/styles';
 import CardHeader from '@mui/material/CardHeader';
@@ -13,15 +14,14 @@ import { red } from '@mui/material/colors';
 import FavoriteIcon from '@mui/icons-material/Favorite';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import MoreVertIcon from '@mui/icons-material/MoreVert';
-import DeleteIcon from '@mui/icons-material/Delete';
+import { Box, LinearProgress, Skeleton, Stack } from '@mui/material';
 import {
     MainContainer,
     MainContainerBar,
     MainContainerLoading,
+    BackGroundFeed
 } from './styles';
-import IMGPRUEBA from './maxresdefault.jpg';
-import { Box, LinearProgress, Skeleton, Stack } from '@mui/material';
-import { Posts } from './type';
+
 
 interface ExpandMoreProps extends IconButtonProps {
     expand: boolean;
@@ -50,7 +50,7 @@ const FeedCard: FC = () => {
 
     if (loading) {
         return (
-            <>
+            <BackGroundFeed>
                 <MainContainerBar>
                     <Box sx={{ width: '10rem', marginTop: '2rem' }}>
                         <LinearProgress
@@ -93,7 +93,7 @@ const FeedCard: FC = () => {
                         />
                     </Stack>
                 </MainContainerLoading>
-            </>
+            </BackGroundFeed>
         );
     }
 
