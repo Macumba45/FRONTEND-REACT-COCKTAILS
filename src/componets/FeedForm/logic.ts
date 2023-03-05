@@ -53,7 +53,6 @@ const FeedFormLogic = () => {
     ) => {
         try {
             const categories = await getCategories();
-            console.log(categories)
             let category_FK = "";
             categories.forEach(category => {
                 if(category.category === values.category){

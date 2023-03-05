@@ -37,7 +37,7 @@ const ButtonCategories: FC = () => {
             </Button>
         );
     }
-
+    console.log('me estoy repitiendo')
     return (
         <Box
             sx={{

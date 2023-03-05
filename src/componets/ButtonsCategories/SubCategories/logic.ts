@@ -1,15 +1,27 @@
 import { useCallback, useState } from 'react';
 import { getAuthenticatedToken } from '../../../services/storage';
+import { callCategoriesType } from '../../../services/api/category';
 import { Props } from './type';
 
 export const SubCategoriesLogic = () => {
     const [subCategories, setSubCategories] = useState<Props[]>([]);
 
     const fetchSubCategories = async (category?: string) => {
-        console.log(category);
+        if(category?.includes("2F")){
+                category = category.replace('2F','/');
+        }
+        const categories = await getCategories();
+        let categoryId = "";
+            categories.forEach(dbCategory => {
+                if(dbCategory.category === category){
+                    
+                    categoryId = dbCategory.id;
+                }
+            });
+            
         try {
             const token = getAuthenticatedToken(); // Obtener el token de localStorage
-            const url = `http://localhost:8000/cocktails/${category}`;
+            const url = `http://localhost:8000/cocktails/${categoryId}`;
             const response = await fetch(url, {
                 method: 'GET',
                 headers: {
@@ -18,7 +30,6 @@ export const SubCategoriesLogic = () => {
                 },
             });
             const data = await response.json();
-            console.log(data);
             setSubCategories(data);
             return data;
         } catch (error) {
@@ -35,6 +46,11 @@ export const SubCategoriesLogic = () => {
 
         return category;
     }, [subCategories]);
+
+    const getCategories = useCallback(async () => {
+        const categories = await callCategoriesType();
+        return categories;
+    }, [])
 
     return {
         fetchSubCategories,

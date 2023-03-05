@@ -4,7 +4,7 @@ import { callCategories, fetchCategories } from '../../services/api/category';
 
 const Images = [
     {
-        category: 'OrdinaryDrink',
+        category: 'Ordinary Drink',
         picture:
             'https://www.tastingtable.com/img/gallery/11-cocktails-to-try-if-you-like-drinking-gin/intro-1659025591.jpg',
     },
@@ -85,10 +85,8 @@ const useLogic = () => {
 
 
     const goToDetails = useCallback((category: string) => {
-
-        console.log(category)
-        navigate(`/categories/${category}`); // Navegar a la ruta deseada
-
+        const trimCategory = category.replace('/','2F')
+        navigate(`/categories/${trimCategory}`); // Navegar a la ruta deseada
     }, [navigate])
 
     return {

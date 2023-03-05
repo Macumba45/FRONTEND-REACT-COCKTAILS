@@ -50,7 +50,7 @@ const Router: FC = () => {
 
         useEffect(() => {
             if (token) {
-                navigate('/feed', { replace: true });
+                // navigate('/feed', { replace: true });
             } else {
                 navigate('/login', { replace: true });
             }

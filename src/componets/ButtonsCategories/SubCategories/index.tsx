@@ -23,7 +23,7 @@ const ButtonSubCategories: FC = () => {
         SubCategoriesLogic();
 
     const handleCategories = async () => {
-        const modifiedCategory = category?.replace('/', '').replace(/\s+/g, '') // Reemplazar el caracter "/" por "_"
+        const modifiedCategory = category // Reemplazar el caracter "/" por "_"
         const categories = await fetchSubCategories(modifiedCategory);
 
         setTimeout(() => {
