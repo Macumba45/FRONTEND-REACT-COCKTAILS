@@ -47,23 +47,12 @@ const CardRandom: FC = () => {
         expanded,
         StyledCard,
         randomCardData,
-        setRandomCardData,
-        randomFetchCard,
+        loadingRandom,
+        handlePrintRandomCard,
+        loading
     } = useRandomCardLogic();
 
-    const [loading, setLoading] = useState(true);
-    const [loadingBar, setLoadingBar] = useState(true);
-    const handlePrintRandomCard = async () => {
-        try {
-            const randomCard = await randomFetchCard();
-            const itemZero = randomCard[0];
-            setRandomCardData(itemZero);
-            setLoading(false);
-            setLoadingBar(false);
-        } catch (error) {
-            console.log(error);
-        }
-    };
+
 
     if (loading) {
         return (
@@ -121,7 +110,7 @@ const CardRandom: FC = () => {
         );
     }
 
-    if (loadingBar) {
+    if (loadingRandom) {
         return (
             <MainContainerBar>
                 <Box sx={{ width: '10rem' }}>
