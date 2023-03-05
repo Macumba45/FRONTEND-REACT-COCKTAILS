@@ -1,17 +1,25 @@
-import { FC, memo } from 'react';
+import { FC, memo, useState } from 'react';
 import NavBar from '../../componets/NavBar';
 import BottomAppBar from '../../componets/NavBarBottom';
 import { BackGroundFeed } from './styles';
 import FeedCard from '../../componets/FeedCard';
+import { useFeedCardLogic } from '../../componets/FeedCard/logic';
 
 const Feed: FC = () => {
+
+    const { getAllPosts, posts, loading } = useFeedCardLogic();
+    const [backGroundFeed, setBackGroundFeed] = useState();
+
     return (
-        <BackGroundFeed>
+        <>
             <NavBar />
-            <FeedCard />
+            <BackGroundFeed>
+                <FeedCard />
+            </BackGroundFeed>
             <BottomAppBar />
-        </BackGroundFeed>
-    );
+        </>
+
+    )
 };
 
 export default memo(Feed);

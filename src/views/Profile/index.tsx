@@ -41,9 +41,9 @@ const Profile: FC = () => {
         handleExpandClick,
         onDelete,
         goToUpdate,
+        handleShowUserPosts,
+        showUserPosts
     } = ProfileLogic();
-
-    const [showUserPosts, setShowUserPosts] = useState(false);
 
     useEffect(() => {
         const fetchData = async () => {
@@ -53,12 +53,7 @@ const Profile: FC = () => {
         fetchData();
     }, [userInfo, userPostProfile]);
 
-    const handleShowUserPosts = () => {
-        setShowUserPosts(!showUserPosts);
-        if (!showUserPosts) {
-            userPostProfile();
-        }
-    };
+
 
     return (
         <>
@@ -120,10 +115,10 @@ const Profile: FC = () => {
                                     level="h2"
                                     fontSize="md"
                                     sx={{ mb: 0.5 }}>
-                                    {item.category}
+                                    {item.postCategory}
                                 </Typography>
 
-                                <Typography level="body2">
+                                <Typography level="body2" sx={{ fontSize: 12, marginTop: 0.5 }}>
                                     {new Date(
                                         item.createdAt
                                     ).toLocaleDateString()}
@@ -184,9 +179,11 @@ const Profile: FC = () => {
                                     </div>
                                     <CardActions disableSpacing>
                                         <ExpandMore
-                                            onClick={handleExpandClick}
+
+                                            onClick={() => handleExpandClick(item.id)}
                                             aria-expanded={expanded}
-                                            aria-label="show more">
+                                            aria-label="show more"
+                                            sx={{ cursor: 'pointer' }}>
                                             <ExpandMoreIcon />
                                         </ExpandMore>
                                     </CardActions>

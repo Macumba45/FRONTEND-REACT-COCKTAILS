@@ -6,21 +6,21 @@ import CardContent from '@mui/joy/CardContent';
 import Typography from '@mui/joy/Typography';
 import { LinearProgress } from '@mui/material';
 import claymore from './assets/9e582977-9171-4dda-9d9b-68b24755ccf2.png';
-import { SubCategoriesLogic } from './logic';
+import useLogic from './logic';
+import { useParams } from 'react-router-dom';
+import { Params } from './type';
 import {
     Claymore,
     MainContainer,
     MainContainerClaymore,
     MainContainerLoader,
 } from './styles';
-import { useParams } from 'react-router-dom';
-import { Params } from './type';
 
 const ButtonSubCategories: FC = () => {
     const { category } = useParams<Params>();
     const [isLoading, setIsLoading] = useState(true);
     const { subCategories, setSubCategories, fetchSubCategories } =
-        SubCategoriesLogic();
+        useLogic();
 
     const handleCategories = async () => {
         const modifiedCategory = category // Reemplazar el caracter "/" por "_"

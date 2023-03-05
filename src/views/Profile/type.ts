@@ -7,7 +7,7 @@ export type Props = {
 export type UserPost = {
     id: string;
     title: string;
-    category: string;
+    postCategory: string;
     image: string;
     comment: string;
     user_FK: string;

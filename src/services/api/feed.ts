@@ -38,3 +38,24 @@ export const updateFeed = async (id: string, values: any) => {
         console.log(error);
     }
 };
+
+
+export const getAllFeeds = async () => {
+
+    try {
+        const token = getAuthenticatedToken();
+        const response = await fetch(`${BASE_URL}`, {
+            method: 'GET',
+            headers: {
+                Authorization: `Bearer ${token}`,
+                'Content-Type': 'application/json',
+                // Agrega cualquier token de autenticación necesario aquí
+            },
+        });
+        const data = await response.json();
+        return data;
+    } catch (error) {
+        console.log(error);
+    }
+
+}

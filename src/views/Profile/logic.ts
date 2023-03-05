@@ -12,6 +12,8 @@ export const ProfileLogic = () => {
 
     const [userPost, setUserPost] = useState<UserPost[]>([]);
     const [expanded, setExpanded] = useState(false);
+    const [showUserPosts, setShowUserPosts] = useState(false);
+
     const navigate = useNavigate();
 
     const userInfo = useCallback(async () => {
@@ -65,7 +67,7 @@ export const ProfileLogic = () => {
         setUserPost(data);
     }, [handleId]);
 
-    const handleExpandClick = useCallback(() => {
+    const handleExpandClick = useCallback((id: string) => {
         setExpanded((prevExpanded) => !prevExpanded);
     }, []);
 
@@ -88,19 +90,26 @@ export const ProfileLogic = () => {
     };
 
     const goToUpdate = async (cocktailId: string) => {
-        console.log(userPost);
         navigate(`/posts/${cocktailId}`);
+    };
+
+    const handleShowUserPosts = () => {
+        setShowUserPosts(!showUserPosts);
+        if (!showUserPosts) {
+            userPostProfile();
+        }
     };
 
     return {
         userData,
         userPost,
-        setUserData,
         userInfo,
         userPostProfile,
         handleExpandClick,
         expanded,
         onDelete,
         goToUpdate,
+        handleShowUserPosts,
+        showUserPosts
     };
 };

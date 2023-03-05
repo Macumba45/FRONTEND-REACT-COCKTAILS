@@ -3,22 +3,22 @@ import { getAuthenticatedToken } from '../../../services/storage';
 import { callCategoriesType } from '../../../services/api/category';
 import { Props } from './type';
 
-export const SubCategoriesLogic = () => {
+const useLogic = () => {
     const [subCategories, setSubCategories] = useState<Props[]>([]);
 
     const fetchSubCategories = async (category?: string) => {
-        if(category?.includes("2F")){
-                category = category.replace('2F','/');
+        if (category?.includes("2F")) {
+            category = category.replace('2F', '/');
         }
         const categories = await getCategories();
         let categoryId = "";
-            categories.forEach(dbCategory => {
-                if(dbCategory.category === category){
-                    
-                    categoryId = dbCategory.id;
-                }
-            });
-            
+        categories.forEach(dbCategory => {
+            if (dbCategory.category === category) {
+
+                categoryId = dbCategory.id;
+            }
+        });
+
         try {
             const token = getAuthenticatedToken(); // Obtener el token de localStorage
             const url = `http://localhost:8000/cocktails/${categoryId}`;
@@ -59,3 +59,5 @@ export const SubCategoriesLogic = () => {
         printCategoryDrink,
     };
 };
+
+export default useLogic
