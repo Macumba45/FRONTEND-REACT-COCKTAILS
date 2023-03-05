@@ -15,7 +15,7 @@ import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import MoreVertIcon from '@mui/icons-material/MoreVert';
 import ButtonRandom from '../ButtonRandom';
 import { useRandomCardLogic } from './logic';
-import { FC, memo, useState } from 'react';
+import { FC, memo } from 'react';
 import {
     ButtonContainer,
     H1Container,

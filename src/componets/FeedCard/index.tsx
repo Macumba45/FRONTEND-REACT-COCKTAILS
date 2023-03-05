@@ -1,6 +1,6 @@
 import { FC, memo, useEffect } from 'react';
 import { Posts } from './type';
-import { useFeedCardLogic } from './logic';
+import { useLogic } from './logic';
 import { styled } from '@mui/material/styles';
 import CardHeader from '@mui/material/CardHeader';
 import CardMedia from '@mui/material/CardMedia';
@@ -14,12 +14,13 @@ import { red } from '@mui/material/colors';
 import FavoriteIcon from '@mui/icons-material/Favorite';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import MoreVertIcon from '@mui/icons-material/MoreVert';
-import { Box, LinearProgress, Skeleton, Stack } from '@mui/material';
+import { Box, Button, LinearProgress, Skeleton, Stack } from '@mui/material';
 import {
     MainContainer,
     MainContainerBar,
     MainContainerLoading,
-    BackGroundFeed
+    BackGroundFeed,
+    ButtonUpdateContainer
 } from './styles';
 
 
@@ -39,13 +40,15 @@ const ExpandMore = styled((props: ExpandMoreProps) => {
 }));
 
 const FeedCard: FC = () => {
-    const { handleExpandClick, expanded, StyledCard, handleDeleteClick, getAllPosts, posts, loading } =
-        useFeedCardLogic();
+    const { handleExpandClick, expanded, StyledCard, getAllPosts, posts, loading, handleButtonUpdatePost, updateClicked } =
+        useLogic();
 
 
     useEffect(() => {
         getAllPosts()
     }, [getAllPosts])
+
+
 
 
     if (loading) {
@@ -55,7 +58,7 @@ const FeedCard: FC = () => {
                     <Box sx={{ width: '10rem', marginTop: '2rem' }}>
                         <LinearProgress
                             color="secondary"
-                            sx={{ backgroundColor: '#420024' }}
+                            sx={{ backgroundColor: '#420024', textAlign: 'center' }}
                         />
                     </Box>
                 </MainContainerBar>
@@ -98,80 +101,87 @@ const FeedCard: FC = () => {
     }
 
     return (
+        <>
 
-        <MainContainer>
-            <>
-                {posts && posts.map((post: Posts) => {
-                    return (
-                        <StyledCard key={post.id} sx={{ width: 300, marginBottom: 5 }}>
-                            <CardHeader
-                                avatar={
-                                    <Avatar
-                                        sx={{ bgcolor: red[500] }}
-                                        aria-label="recipe"
-                                        src={post.image}>
+            {!loading && !updateClicked && ( // Mostrar el botón de actualizar si no se ha hecho clic en actualizar y no está cargando
+                <ButtonUpdateContainer>
+                    <Button sx={{ backgroundColor: '#420024', marginTop: 9 }} variant="contained" onClick={handleButtonUpdatePost}>Update Posts</Button>
+                </ButtonUpdateContainer>
+            )}
+            <MainContainer>
+                <>
+                    {posts && posts.map((post: Posts) => {
+                        console.log(post.id)
+                        return (
+                            <StyledCard key={post.id} sx={{ width: 300, marginBottom: 5, marginLeft: 3, marginRight: 3 }}>
+                                <CardHeader
+                                    avatar={
+                                        <Avatar
+                                            sx={{ bgcolor: red[500] }}
+                                            aria-label="recipe"
+                                            src={post.image}>
 
-                                    </Avatar>
-                                }
-                                action={
-                                    <IconButton aria-label="settings">
-                                        <MoreVertIcon />
+                                        </Avatar>
+                                    }
+                                    action={
+                                        <IconButton aria-label="settings">
+                                            <MoreVertIcon />
+                                        </IconButton>
+                                    }
+                                    title={post.title}
+                                    subheader={post.postCategory}
+                                />
+                                <CardMedia
+                                    component="img"
+                                    height="194"
+                                    image={post.image}
+                                    alt="Paella dish"
+                                />
+
+                                <CardContent sx={{ paddingTop: 1, paddingBottom: 1, paddingLeft: 2 }}>
+                                    <Typography variant="body2" color="text.primary" fontWeight={700}>
+                                        Created at: {new Date(post.createdAt).toLocaleDateString()}
+                                    </Typography>
+                                </CardContent>
+                                <CardContent sx={{ paddingTop: 0, paddingBottom: 0, paddingLeft: 2 }}>
+                                    <Typography variant="body2" color="text.primary">
+                                        {post.comment}
+                                    </Typography>
+                                </CardContent>
+                                <CardActions disableSpacing>
+                                    <IconButton aria-label="add to favorites">
+                                        <FavoriteIcon />
                                     </IconButton>
-                                }
-                                title={post.title}
-                                subheader={post.postCategory}
-                            />
-                            <CardMedia
-                                component="img"
-                                height="194"
-                                image={post.image}
-                                alt="Paella dish"
-                            />
-
-                            <CardContent sx={{ paddingTop: 1, paddingBottom: 1, paddingLeft: 2 }}>
-                                <Typography variant="body2" color="text.primary" fontWeight={700}>
-                                    Created at: {new Date(post.createdAt).toLocaleDateString()}
-                                </Typography>
-                            </CardContent>
-                            <CardContent sx={{ paddingTop: 0, paddingBottom: 0, paddingLeft: 2 }}>
-                                <Typography variant="body2" color="text.primary">
-                                    {post.comment}
-                                </Typography>
-                            </CardContent>
-                            <CardActions disableSpacing>
-                                <IconButton aria-label="add to favorites">
-                                    <FavoriteIcon />
-                                </IconButton>
-                                {/* <IconButton
+                                    {/* <IconButton
                                     aria-label="share"
                                     onClick={handleDeleteClick}>
                                     <DeleteIcon />
                                 </IconButton> */}
-                                <ExpandMore
-                                    expand={expanded}
-                                    onClick={handleExpandClick}
-                                    aria-expanded={expanded}
-                                    aria-label="show more">
-                                    <ExpandMoreIcon />
-                                </ExpandMore>
-                            </CardActions>
-                            <Collapse in={expanded} timeout="auto" unmountOnExit>
-                                <CardContent>
-                                    <Typography paragraph>Comments:</Typography>
-                                    <Typography paragraph>
-                                        Heat 1/2 cup of the broth in a pot until
-                                        simmering, add saffron and set aside for 10
-                                        minutes.
-                                    </Typography>
-                                </CardContent>
-                            </Collapse>
-                        </StyledCard>
-                    )
-                })}
-            </>
-        </MainContainer>
-
+                                    <ExpandMore
+                                        expand={expanded}
+                                        onClick={handleExpandClick}
+                                        aria-expanded={expanded}
+                                        aria-label="show more">
+                                        <ExpandMoreIcon />
+                                    </ExpandMore>
+                                </CardActions>
+                                <Collapse in={expanded} timeout="auto" unmountOnExit>
+                                    <CardContent>
+                                        <Typography paragraph>Comments:</Typography>
+                                        <Typography paragraph>
+                                            {post.comment}
+                                        </Typography>
+                                    </CardContent>
+                                </Collapse>
+                            </StyledCard>
+                        )
+                    })}
+                </>
+            </MainContainer>
+        </>
     );
+
 };
+
 
 export default memo(FeedCard);

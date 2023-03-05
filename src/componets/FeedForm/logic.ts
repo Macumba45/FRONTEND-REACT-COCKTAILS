@@ -55,7 +55,7 @@ const FeedFormLogic = () => {
             const categories = await getCategories();
             let category_FK = "";
             categories.forEach(category => {
-                if(category.category === values.category){
+                if (category.category === values.category) {
                     category_FK = category.id;
                 }
             });

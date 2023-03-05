@@ -4,10 +4,23 @@ export const MainContainer = styled.div`
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
+    /* flex-direction: column;
+    margin: auto; */
     margin-bottom: 4rem;
-    margin-top: 5rem;
+    margin-top: 4rem;
+    margin-right: 2rem;
+    margin-left: 2rem;
 `;
-
+export const ButtonUpdateContainer = styled.div`
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    position: sticky;
+    margin-bottom: 0rem;
+    margin-top: 4rem;
+    top: 0;
+    z-index: 9999;
+`;
 export const MainContainerLoading = styled.div`
     display: flex;
     justify-content: center;
@@ -33,3 +46,8 @@ export const BackGroundFeed = styled.div`
     flex-direction: column;
     /* margin-top: -5rem; */
 `;
+
+
+
+
+

@@ -1,9 +1,8 @@
-import { FC, memo, useState } from 'react';
+import { FC, memo } from 'react';
 import NavBar from '../../componets/NavBar';
 import BottomAppBar from '../../componets/NavBarBottom';
 import { BackGroundFeed } from './styles';
 import FeedCard from '../../componets/FeedCard';
-import { useFeedCardLogic } from '../../componets/FeedCard/logic';
 
 const Feed: FC = () => {
 

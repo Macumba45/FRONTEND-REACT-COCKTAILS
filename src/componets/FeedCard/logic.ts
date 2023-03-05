@@ -1,11 +1,12 @@
-import { useCallback, useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 import { styled } from '@mui/material/styles';
 import Card from '@mui/material/Card';
 import { getAllFeeds } from '../../services/api/feed';
 
-export const useFeedCardLogic = () => {
+export const useLogic = () => {
     const [expanded, setExpanded] = useState(false);
     const [loading, setLoading] = useState(true);
+    const [updateClicked, setUpdateClicked] = useState(false);
     const [posts, setPosts] = useState([]);
 
 
@@ -32,11 +33,27 @@ export const useFeedCardLogic = () => {
 
             setPosts(posts)
             setLoading(false);
+            setUpdateClicked(true); // Cambiar updateClicked a true antes de llamar a getAllPosts()
 
         }, 2000);
 
 
     }, [])
+
+
+    useEffect(() => {
+        const timer = setInterval(() => {
+            setUpdateClicked(false); // Reiniciar la variable de estado después de 5 segundos
+        }, 5000);
+        return () => clearInterval(timer);
+    }, []);
+
+    const handleButtonUpdatePost = () => {
+        setLoading(true);
+        setUpdateClicked(true); // Cambiar updateClicked a true después de esperar otros 3 segundos
+        setLoading(false);
+        getAllPosts();
+    };
 
 
     return {
@@ -46,6 +63,8 @@ export const useFeedCardLogic = () => {
         handleDeleteClick,
         getAllPosts,
         loading,
-        posts
+        posts,
+        handleButtonUpdatePost,
+        updateClicked,
     };
 };
