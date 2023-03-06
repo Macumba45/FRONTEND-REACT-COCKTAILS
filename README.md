@@ -29,7 +29,7 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 
 Ya clonado el proyecto es necesario instalar todas las dependencias con el comando:
 
- ### yarn
+### `yarn`
 
 ## Available Scripts
 
