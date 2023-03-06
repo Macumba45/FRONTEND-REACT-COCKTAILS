@@ -55,7 +55,7 @@ export const fetchuserPostProfile = async (): Promise<Response> => {
 export const fetchOnDelete = async (cocktailId: string) => {
     try {
         const token = getAuthenticatedToken();
-        const response = await fetch(`http://localhost:8000/feeds/${cocktailId}`, {
+        await fetch(`http://localhost:8000/feeds/${cocktailId}`, {
             method: 'DELETE',
             headers: {
                 Authorization: `Bearer ${token}`,
@@ -63,7 +63,6 @@ export const fetchOnDelete = async (cocktailId: string) => {
                 // Agrega cualquier token de autenticación necesario aquí
             },
         });
-        console.log(response);
     } catch (error) {
         console.error('Error deleting post:', error);
     }

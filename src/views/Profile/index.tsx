@@ -30,6 +30,7 @@ import {
     ProfileDetailsName,
 } from './styles';
 import { ExpandMore } from '@mui/icons-material';
+import { defaultImage } from '../../services/api/feedForm';
 
 const Profile: FC = () => {
     const {
@@ -154,8 +155,7 @@ const Profile: FC = () => {
                                     maxHeight="200px"
                                     sx={{ my: 2 }}>
                                     <img
-                                        src="https://images.unsplash.com/photo-1527549993586-dff825b37782?auto=format&fit=crop&w=286"
-                                        srcSet="https://images.unsplash.com/photo-1527549993586-dff825b37782?auto=format&fit=crop&w=286&dpr=2 2x"
+                                        src={defaultImage}
                                         loading="lazy"
                                         alt=""
                                     />

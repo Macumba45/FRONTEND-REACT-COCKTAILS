@@ -1,7 +1,7 @@
 import { Post } from '../../componets/FeedForm/type';
 import { getAuthenticatedToken } from '../storage';
 
-const defaultImage = 'https://thumbs.dreamstime.com/b/set-various-cocktails-black-background-set-various-cocktails-shaker-black-background-188649840.jpg'; // URL de la imagen predeterminada
+export const defaultImage = 'https://thumbs.dreamstime.com/b/set-various-cocktails-black-background-set-various-cocktails-shaker-black-background-188649840.jpg'; // URL de la imagen predeterminada
 
 const BASE_URL = 'http://localhost:8000/categories/';
 
