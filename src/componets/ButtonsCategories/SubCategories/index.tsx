@@ -10,6 +10,7 @@ import useLogic from './logic';
 import { useParams } from 'react-router-dom';
 import { Params } from './type';
 import {
+    BackGroundSubCategories,
     Claymore,
     MainContainer,
     MainContainerClaymore,
@@ -53,43 +54,45 @@ const ButtonSubCategories: FC = () => {
     }
 
     return (
-        <MainContainer>
-            {subCategories.map((category) => (
-                <Box
-                    component="div"
-                    key={category.strDrink}
-                    sx={{
-                        display: 'flex',
-                        gap: 2,
-                        flexWrap: 'wrap',
-                        p: 0,
-                        m: 0,
-                        width: '300px',
-                        marginTop: 10,
-                        margin: '0 1rem',
-                    }}>
-                    <Card component="li" sx={{ flexGrow: 1, width: '300px' }}>
-                        <CardCover>
-                            <img
-                                src={category.image}
-                                srcSet={category.image}
-                                loading="lazy"
-                                alt=""
-                            />
-                        </CardCover>
-                        <CardContent>
-                            <Typography
-                                level="h6"
-                                fontWeight={900}
-                                textColor="#fff"
-                                mt={{ xs: 12, sm: 18 }}>
-                                {category.cocktail_name}
-                            </Typography>
-                        </CardContent>
-                    </Card>
-                </Box>
-            ))}
-        </MainContainer>
+        <BackGroundSubCategories>
+            <MainContainer>
+                {subCategories.map((category) => (
+                    <Box
+                        component="div"
+                        key={category.strDrink}
+                        sx={{
+                            display: 'flex',
+                            gap: 2,
+                            flexWrap: 'wrap',
+                            p: 0,
+                            m: 0,
+                            width: '300px',
+                            marginTop: 10,
+                            margin: '0 1rem',
+                        }}>
+                        <Card component="li" sx={{ flexGrow: 1, width: '300px' }}>
+                            <CardCover>
+                                <img
+                                    src={category.image}
+                                    srcSet={category.image}
+                                    loading="lazy"
+                                    alt=""
+                                />
+                            </CardCover>
+                            <CardContent>
+                                <Typography
+                                    level="h6"
+                                    fontWeight={900}
+                                    textColor="#fff"
+                                    mt={{ xs: 12, sm: 18 }}>
+                                    {category.cocktail_name}
+                                </Typography>
+                            </CardContent>
+                        </Card>
+                    </Box>
+                ))}
+            </MainContainer>
+        </BackGroundSubCategories>
     );
 };
 
