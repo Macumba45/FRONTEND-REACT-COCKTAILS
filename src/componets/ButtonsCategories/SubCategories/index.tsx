@@ -1,14 +1,13 @@
-import { FC, memo, useEffect, useState } from 'react';
+import { FC, memo } from 'react';
 import Box from '@mui/joy/Box';
 import Card from '@mui/joy/Card';
 import CardCover from '@mui/joy/CardCover';
 import CardContent from '@mui/joy/CardContent';
 import Typography from '@mui/joy/Typography';
 import { LinearProgress } from '@mui/material';
-import claymore from './assets/9e582977-9171-4dda-9d9b-68b24755ccf2.png';
 import useLogic from './logic';
-import { useParams } from 'react-router-dom';
-import { Params } from './type';
+import claymore from './assets/9e582977-9171-4dda-9d9b-68b24755ccf2.png';
+
 import {
     BackGroundSubCategories,
     Claymore,
@@ -44,7 +43,7 @@ const ButtonSubCategories: FC = () => {
                 {subCategories.map((category) => (
                     <Box
                         component="div"
-                        key={category.strDrink}
+                        key={category.cocktail_id}
                         sx={{
                             display: 'flex',
                             gap: 2,

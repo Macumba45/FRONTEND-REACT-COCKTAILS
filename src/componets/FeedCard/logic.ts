@@ -43,6 +43,10 @@ export const useLogic = () => {
     }, []);
 
     useEffect(() => {
+        getAllPosts();
+    }, [getAllPosts]);
+
+    useEffect(() => {
         const timer = setInterval(() => {
             setUpdateClicked(false); // Reiniciar la variable de estado después de 5 segundos
         }, 5000);

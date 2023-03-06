@@ -11,4 +11,7 @@ export const initialValues = {
     category: '',
     comment: '',
     image: '',
+    user_FK: ''
+
+
 };

@@ -22,27 +22,16 @@ import {
     ErrorLogin,
 } from './styles';
 import { setAuthenticatedToken } from '../../../services/storage';
+import { handledSubmitLogin } from '../../../services/api/auth';
 
 const Login: FC<Props> = () => {
     const navigate = useNavigate();
     const [error, setError] = useState(null);
     const handleSubmit = useCallback(
-        async (values: Props) => {
+        async (values: Props): Promise<void> => {
             try {
-                const response = await fetch(
-                    'http://localhost:8000/auth/login',
-                    {
-                        method: 'POST',
-                        headers: {
-                            'Content-Type': 'application/json',
-                        },
-                        body: JSON.stringify({
-                            email: values.email,
-                            password: values.password,
-                        }),
-                    }
-                );
-
+                const response: Response = await handledSubmitLogin(values);
+    
                 if (response.ok) {
                     const data = await response.json();
                     setAuthenticatedToken(data);

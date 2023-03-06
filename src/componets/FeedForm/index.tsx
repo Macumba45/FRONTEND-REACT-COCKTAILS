@@ -81,8 +81,8 @@ const FeedForm: FC = () => {
                                                 ) =>
                                                     setSelectedImage(
                                                         event.target.files &&
-                                                            event.target
-                                                                .files[0]
+                                                        event.target
+                                                            .files[0]
                                                     )
                                                 }
                                             />

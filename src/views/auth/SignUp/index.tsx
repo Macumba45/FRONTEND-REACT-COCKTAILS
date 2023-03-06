@@ -4,7 +4,7 @@ import { initialValues } from '../SignUp/constants';
 import { Field, FieldProps, Formik } from 'formik';
 import { validationSchema } from './constants';
 import NavBar from '../../../componets/NavBar';
-import type { Props } from './type';
+import type { SignUpProps } from './type';
 import {
     MainFormContainer,
     Form,
@@ -23,29 +23,15 @@ import {
     NameContainer,
 } from './styles';
 import { setAuthenticatedToken } from '../../../services/storage';
+import { hadledSubmitSignup } from '../../../services/api/auth';
 
 const SignUp: FC = () => {
     const navigate = useNavigate();
 
     const handleSubmit = useCallback(
-        async (values: Props) => {
+        async (values: SignUpProps) => {
             try {
-                const response = await fetch(
-                    'http://localhost:8000/auth/signup',
-                    {
-                        method: 'POST',
-                        headers: {
-                            'Content-Type': 'application/json',
-                        },
-                        body: JSON.stringify({
-                            name: values.name,
-                            email: values.email,
-                            password: values.password,
-                        }),
-                    }
-                );
-
-                console.log(values);
+                const response: Response = await hadledSubmitSignup(values);
 
                 if (response.ok) {
                     const data = await response.json();

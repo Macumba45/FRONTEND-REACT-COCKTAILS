@@ -38,6 +38,7 @@ const useLogic = () => {
             idDrink: category.cocktail_id,
             strDrink: category.cocktail_name,
             strDrinkThumb: category.image,
+
         }));
 
         return category;

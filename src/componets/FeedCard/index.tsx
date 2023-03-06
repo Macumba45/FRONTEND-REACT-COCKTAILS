@@ -1,4 +1,4 @@
-import { FC, memo, useEffect } from 'react';
+import { FC, memo } from 'react';
 import { Posts } from './type';
 import { useLogic } from './logic';
 import { styled } from '@mui/material/styles';
@@ -43,16 +43,13 @@ const FeedCard: FC = () => {
         handleExpandClick,
         expanded,
         StyledCard,
-        getAllPosts,
         posts,
         loading,
         handleButtonUpdatePost,
         updateClicked,
     } = useLogic();
 
-    useEffect(() => {
-        getAllPosts();
-    }, [getAllPosts]);
+
 
     if (loading) {
         return (
@@ -107,12 +104,12 @@ const FeedCard: FC = () => {
     }
 
     return (
-        <>
+        <MainContainer>
             {!loading &&
                 !updateClicked && ( // Mostrar el botón de actualizar si no se ha hecho clic en actualizar y no está cargando
                     <ButtonUpdateContainer>
                         <Button
-                            sx={{ backgroundColor: '#420024', marginTop: 9 }}
+                            sx={{ backgroundColor: '#420024', marginTop: 1.2, border: '2px solid black' }}
                             variant="contained"
                             onClick={handleButtonUpdatePost}>
                             Update Posts
@@ -151,7 +148,6 @@ const FeedCard: FC = () => {
                                         component="img"
                                         height="194"
                                         image={post.image}
-                                        alt="Paella dish"
                                     />
 
                                     <CardContent
@@ -217,7 +213,7 @@ const FeedCard: FC = () => {
                         })}
                 </>
             </MainContainer>
-        </>
+        </MainContainer>
     );
 };
 

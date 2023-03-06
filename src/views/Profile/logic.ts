@@ -1,5 +1,6 @@
 import { useCallback, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { fetchandleId, fetchOnDelete, fetchUserInfo, fetchuserPostProfile } from '../../services/api/profile';
 import { getAuthenticatedToken } from '../../services/storage';
 import { UserPost } from './type';
 
@@ -17,52 +18,27 @@ export const ProfileLogic = () => {
     const navigate = useNavigate();
 
     const userInfo = useCallback(async () => {
-        const token = getAuthenticatedToken(); // Obtener el token de localStorage
-        const response = await fetch('http://localhost:8000/users/profile', {
-            method: 'GET',
-            headers: {
-                'Content-Type': 'application/json',
-                Authorization: `Bearer ${token}`, // Agregar el token al header 'Authorization'
-            },
-        });
+        getAuthenticatedToken(); // Obtener el token de localStorage
+        const response = await fetchUserInfo()
         const data = await response.json();
         setUserData(data);
     }, []);
 
     const handleId = useCallback(async () => {
-        const token = getAuthenticatedToken();
+        getAuthenticatedToken();
         async function fetchData() {
-            const response = await fetch(
-                `http://localhost:8000/users/id/${token}`,
-                {
-                    method: 'GET',
-                    headers: {
-                        Authorization: `Bearer ${token}`, // Agregar el token al header 'Authorization'
-                        'Content-Type': 'application/json',
-                    },
-                }
-            );
-            const data = await response.json();
-            return data.id;
+            const response = await fetchandleId()
+            const data = response
+            return data
         }
         return await fetchData();
     }, []);
 
 
-
     const userPostProfile = useCallback(async () => {
-        const id = await handleId();
-        const token = getAuthenticatedToken();
-        const response = await fetch(
-            `http://localhost:8000/feeds/posts/${id}`,
-            {
-                method: 'GET',
-                headers: {
-                    Authorization: `Bearer ${token}`,
-                    'Content-Type': 'application/json',
-                },
-            }
-        );
+        await handleId();
+        getAuthenticatedToken();
+        const response = await fetchuserPostProfile()
         const data = await response.json();
         setUserPost(data);
     }, [handleId]);
@@ -73,15 +49,7 @@ export const ProfileLogic = () => {
 
     const onDelete = async (cocktailId: string) => {
         try {
-            const token = getAuthenticatedToken();
-            await fetch(`http://localhost:8000/cocktails/${cocktailId}`, {
-                method: 'DELETE',
-                headers: {
-                    Authorization: `Bearer ${token}`,
-                    'Content-Type': 'application/json',
-                    // Agrega cualquier token de autenticación necesario aquí
-                },
-            });
+            fetchOnDelete(cocktailId)
             // Actualiza la lista de publicaciones del usuario después de la eliminación
             await userPostProfile();
         } catch (error) {

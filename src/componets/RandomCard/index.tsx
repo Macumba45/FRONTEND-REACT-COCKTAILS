@@ -156,7 +156,6 @@ const CardRandom: FC = () => {
                         component="img"
                         height="200"
                         image={randomCardData.image}
-                        alt="Paella dish"
                         sx={{
                             height: 220,
                             objectFit: 'cover',

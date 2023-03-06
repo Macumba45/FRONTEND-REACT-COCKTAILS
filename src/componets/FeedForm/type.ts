@@ -7,4 +7,7 @@ export type Post = {
     category: string;
     image: string;
     comment: string;
+    user_FK: string;
+
+
 };

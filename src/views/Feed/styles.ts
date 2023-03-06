@@ -2,7 +2,7 @@ import styled from 'styled-components';
 
 export const BackGroundFeed = styled.div`
     width: 100vw;
-    height: auto;
+    height: 100%;
     padding-top: 30px;
     background-color: ${({ theme }) => theme.colors.light};
     display: flex;
