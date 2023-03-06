@@ -66,28 +66,29 @@ const useLogic = () => {
     const navigate = useNavigate(); // Obtener la función navigate
 
     const getCategories = useCallback(async () => {
-        setLoading(true)
+        setLoading(true);
         const data = await callCategories();
         setCategories(data);
-        setLoading(false)
-    }, [])
+        setLoading(false);
+    }, []);
 
     const syncCategories = useCallback(async () => {
-        setLoading(true)
+        setLoading(true);
         await fetchCategories();
-        await getCategories()
-    }, [getCategories])
-
-
-    useEffect(() => {
-        getCategories()
+        await getCategories();
     }, [getCategories]);
 
+    useEffect(() => {
+        getCategories();
+    }, [getCategories]);
 
-    const goToDetails = useCallback((category: string) => {
-        const trimCategory = category.replace('/','2F')
-        navigate(`/categories/${trimCategory}`); // Navegar a la ruta deseada
-    }, [navigate])
+    const goToDetails = useCallback(
+        (category: string) => {
+            const trimCategory = category.replace('/', '2F');
+            navigate(`/categories/${trimCategory}`); // Navegar a la ruta deseada
+        },
+        [navigate]
+    );
 
     return {
         categories,
@@ -97,7 +98,7 @@ const useLogic = () => {
         callCategories,
         syncCategories,
         loading,
-        goToDetails
+        goToDetails,
     };
 };
 

@@ -3,7 +3,6 @@ import { styled } from '@mui/material/styles';
 import Card from '@mui/material/Card';
 import { randomFetchCard } from '../../services/api/random';
 
-
 export const useRandomCardLogic = () => {
     const [expanded, setExpanded] = useState(false);
     const [loading, setLoading] = useState(true);
@@ -26,7 +25,6 @@ export const useRandomCardLogic = () => {
         },
     });
 
-
     const handlePrintRandomCard = async () => {
         try {
             const randomCard = await randomFetchCard();
@@ -38,7 +36,6 @@ export const useRandomCardLogic = () => {
             console.log(error);
         }
     };
-
 
     const printRandomCard = useCallback(async () => {
         setLoadingRandom(false);
@@ -69,6 +66,6 @@ export const useRandomCardLogic = () => {
         randomFetchCard,
         loadingRandom,
         loading,
-        handlePrintRandomCard
+        handlePrintRandomCard,
     };
 };

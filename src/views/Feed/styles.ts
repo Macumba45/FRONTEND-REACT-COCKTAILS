@@ -19,4 +19,3 @@ export const BackGroundFeedLoaded = styled.div`
     flex-direction: column;
     /* margin-top: -5rem; */
 `;
-

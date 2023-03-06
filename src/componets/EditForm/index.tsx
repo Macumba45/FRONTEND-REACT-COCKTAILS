@@ -56,13 +56,16 @@ const FormEdit: FC = () => {
         [feed]
     );
 
-    const handleSubmit = useCallback(async (values: any) => {
-        if (id) {
-            setIsLoading(true);
-            await updateFeed(id, values);
-            setIsLoading(false);
-        }
-    }, [id]);
+    const handleSubmit = useCallback(
+        async (values: any) => {
+            if (id) {
+                setIsLoading(true);
+                await updateFeed(id, values);
+                setIsLoading(false);
+            }
+        },
+        [id]
+    );
 
     if (isLoading) {
         return <h1>CARGANDO</h1>;
@@ -117,8 +120,8 @@ const FormEdit: FC = () => {
                                                 ) =>
                                                     setSelectedImage(
                                                         event.target.files &&
-                                                        event.target
-                                                            .files[0]
+                                                            event.target
+                                                                .files[0]
                                                     )
                                                 }
                                             />

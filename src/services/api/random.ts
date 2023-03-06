@@ -1,7 +1,6 @@
-import { getAuthenticatedToken } from "../storage";
+import { getAuthenticatedToken } from '../storage';
 
-const BASE_URL = 'http://localhost:8000/cocktails'
-
+const BASE_URL = 'http://localhost:8000/cocktails';
 
 export const randomFetchCard = async () => {
     try {
@@ -11,11 +10,10 @@ export const randomFetchCard = async () => {
             headers: {
                 Authorization: `Bearer ${token}`, // Agregar el token al header 'Authorization'
             },
-        }
-        );
+        });
         const data = await response.json();
         return data;
     } catch (error) {
         console.log(error);
     }
-}
+};

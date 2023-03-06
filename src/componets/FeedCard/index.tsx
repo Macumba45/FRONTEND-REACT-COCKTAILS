@@ -20,9 +20,8 @@ import {
     MainContainerBar,
     MainContainerLoading,
     BackGroundFeed,
-    ButtonUpdateContainer
+    ButtonUpdateContainer,
 } from './styles';
-
 
 interface ExpandMoreProps extends IconButtonProps {
     expand: boolean;
@@ -40,16 +39,20 @@ const ExpandMore = styled((props: ExpandMoreProps) => {
 }));
 
 const FeedCard: FC = () => {
-    const { handleExpandClick, expanded, StyledCard, getAllPosts, posts, loading, handleButtonUpdatePost, updateClicked } =
-        useLogic();
-
+    const {
+        handleExpandClick,
+        expanded,
+        StyledCard,
+        getAllPosts,
+        posts,
+        loading,
+        handleButtonUpdatePost,
+        updateClicked,
+    } = useLogic();
 
     useEffect(() => {
-        getAllPosts()
-    }, [getAllPosts])
-
-
-
+        getAllPosts();
+    }, [getAllPosts]);
 
     if (loading) {
         return (
@@ -58,7 +61,10 @@ const FeedCard: FC = () => {
                     <Box sx={{ width: '10rem', marginTop: '2rem' }}>
                         <LinearProgress
                             color="secondary"
-                            sx={{ backgroundColor: '#420024', textAlign: 'center' }}
+                            sx={{
+                                backgroundColor: '#420024',
+                                textAlign: 'center',
+                            }}
                         />
                     </Box>
                 </MainContainerBar>
@@ -102,85 +108,117 @@ const FeedCard: FC = () => {
 
     return (
         <>
-
-            {!loading && !updateClicked && ( // Mostrar el botón de actualizar si no se ha hecho clic en actualizar y no está cargando
-                <ButtonUpdateContainer>
-                    <Button sx={{ backgroundColor: '#420024', marginTop: 9 }} variant="contained" onClick={handleButtonUpdatePost}>Update Posts</Button>
-                </ButtonUpdateContainer>
-            )}
+            {!loading &&
+                !updateClicked && ( // Mostrar el botón de actualizar si no se ha hecho clic en actualizar y no está cargando
+                    <ButtonUpdateContainer>
+                        <Button
+                            sx={{ backgroundColor: '#420024', marginTop: 9 }}
+                            variant="contained"
+                            onClick={handleButtonUpdatePost}>
+                            Update Posts
+                        </Button>
+                    </ButtonUpdateContainer>
+                )}
             <MainContainer>
                 <>
-                    {posts && posts.map((post: Posts) => {
-                        return (
-                            <StyledCard key={post.id} sx={{ width: 300, marginBottom: 5, marginLeft: 3, marginRight: 3 }}>
-                                <CardHeader
-                                    avatar={
-                                        <Avatar
-                                            sx={{ bgcolor: red[500] }}
-                                            aria-label="recipe"
-                                            src={post.image}>
+                    {posts &&
+                        posts.map((post: Posts) => {
+                            return (
+                                <StyledCard
+                                    key={post.id}
+                                    sx={{
+                                        width: 300,
+                                        marginBottom: 5,
+                                        marginLeft: 3,
+                                        marginRight: 3,
+                                    }}>
+                                    <CardHeader
+                                        avatar={
+                                            <Avatar
+                                                sx={{ bgcolor: red[500] }}
+                                                aria-label="recipe"
+                                                src={post.image}></Avatar>
+                                        }
+                                        action={
+                                            <IconButton aria-label="settings">
+                                                <MoreVertIcon />
+                                            </IconButton>
+                                        }
+                                        title={post.title}
+                                        subheader={post.postCategory}
+                                    />
+                                    <CardMedia
+                                        component="img"
+                                        height="194"
+                                        image={post.image}
+                                        alt="Paella dish"
+                                    />
 
-                                        </Avatar>
-                                    }
-                                    action={
-                                        <IconButton aria-label="settings">
-                                            <MoreVertIcon />
+                                    <CardContent
+                                        sx={{
+                                            paddingTop: 1,
+                                            paddingBottom: 1,
+                                            paddingLeft: 2,
+                                        }}>
+                                        <Typography
+                                            variant="body2"
+                                            color="text.primary"
+                                            fontWeight={700}>
+                                            Created at:{' '}
+                                            {new Date(
+                                                post.createdAt
+                                            ).toLocaleDateString()}
+                                        </Typography>
+                                    </CardContent>
+                                    <CardContent
+                                        sx={{
+                                            paddingTop: 0,
+                                            paddingBottom: 0,
+                                            paddingLeft: 2,
+                                        }}>
+                                        <Typography
+                                            variant="body2"
+                                            color="text.primary">
+                                            {post.comment}
+                                        </Typography>
+                                    </CardContent>
+                                    <CardActions disableSpacing>
+                                        <IconButton aria-label="add to favorites">
+                                            <FavoriteIcon />
                                         </IconButton>
-                                    }
-                                    title={post.title}
-                                    subheader={post.postCategory}
-                                />
-                                <CardMedia
-                                    component="img"
-                                    height="194"
-                                    image={post.image}
-                                    alt="Paella dish"
-                                />
-
-                                <CardContent sx={{ paddingTop: 1, paddingBottom: 1, paddingLeft: 2 }}>
-                                    <Typography variant="body2" color="text.primary" fontWeight={700}>
-                                        Created at: {new Date(post.createdAt).toLocaleDateString()}
-                                    </Typography>
-                                </CardContent>
-                                <CardContent sx={{ paddingTop: 0, paddingBottom: 0, paddingLeft: 2 }}>
-                                    <Typography variant="body2" color="text.primary">
-                                        {post.comment}
-                                    </Typography>
-                                </CardContent>
-                                <CardActions disableSpacing>
-                                    <IconButton aria-label="add to favorites">
-                                        <FavoriteIcon />
-                                    </IconButton>
-                                    {/* <IconButton
+                                        {/* <IconButton
                                     aria-label="share"
                                     onClick={handleDeleteClick}>
                                     <DeleteIcon />
                                 </IconButton> */}
-                                    <ExpandMore
-                                        expand={expanded}
-                                        onClick={handleExpandClick}
-                                        aria-expanded={expanded}
-                                        aria-label="show more">
-                                        <ExpandMoreIcon />
-                                    </ExpandMore>
-                                </CardActions>
-                                <Collapse in={expanded} timeout="auto" unmountOnExit>
-                                    <CardContent>
-                                        <Typography paragraph>Comments:</Typography>
-                                        <Typography paragraph>
-                                            {post.comment}
-                                        </Typography>
-                                    </CardContent>
-                                </Collapse>
-                            </StyledCard>
-                        )
-                    })}
+                                        <ExpandMore
+                                            expand={expanded}
+                                            onClick={handleExpandClick}
+                                            aria-expanded={expanded}
+                                            aria-label="show more">
+                                            <ExpandMoreIcon />
+                                        </ExpandMore>
+                                    </CardActions>
+                                    <Collapse
+                                        in={expanded}
+                                        timeout="auto"
+                                        unmountOnExit>
+                                        <CardContent>
+                                            <Typography paragraph>
+                                                Comments:
+                                            </Typography>
+                                            <Typography paragraph>
+                                                {post.comment}
+                                            </Typography>
+                                        </CardContent>
+                                    </Collapse>
+                                </StyledCard>
+                            );
+                        })}
                 </>
             </MainContainer>
         </>
     );
-
 };
-
 
 export default memo(FeedCard);

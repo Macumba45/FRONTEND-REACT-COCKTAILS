@@ -110,6 +110,6 @@ export const ProfileLogic = () => {
         onDelete,
         goToUpdate,
         handleShowUserPosts,
-        showUserPosts
+        showUserPosts,
     };
 };

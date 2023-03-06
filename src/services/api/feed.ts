@@ -39,9 +39,7 @@ export const updateFeed = async (id: string, values: any) => {
     }
 };
 
-
 export const getAllFeeds = async () => {
-
     try {
         const token = getAuthenticatedToken();
         const response = await fetch(`${BASE_URL}`, {
@@ -59,5 +57,4 @@ export const getAllFeeds = async () => {
     } catch (error) {
         console.log(error);
     }
-
-}
+};

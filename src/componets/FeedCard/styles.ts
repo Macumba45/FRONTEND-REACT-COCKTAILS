@@ -36,7 +36,6 @@ export const MainContainerBar = styled.div`
     margin-bottom: 0rem;
 `;
 
-
 export const BackGroundFeed = styled.div`
     width: 100vw;
     height: 100vh;
@@ -46,8 +45,3 @@ export const BackGroundFeed = styled.div`
     flex-direction: column;
     /* margin-top: -5rem; */
 `;
-
-
-
-
-

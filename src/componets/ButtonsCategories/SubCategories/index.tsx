@@ -19,11 +19,10 @@ import {
 const ButtonSubCategories: FC = () => {
     const { category } = useParams<Params>();
     const [isLoading, setIsLoading] = useState(true);
-    const { subCategories, setSubCategories, fetchSubCategories } =
-        useLogic();
+    const { subCategories, setSubCategories, fetchSubCategories } = useLogic();
 
     const handleCategories = async () => {
-        const modifiedCategory = category // Reemplazar el caracter "/" por "_"
+        const modifiedCategory = category; // Reemplazar el caracter "/" por "_"
         const categories = await fetchSubCategories(modifiedCategory);
 
         setTimeout(() => {

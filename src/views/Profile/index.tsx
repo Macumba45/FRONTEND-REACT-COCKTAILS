@@ -42,7 +42,7 @@ const Profile: FC = () => {
         onDelete,
         goToUpdate,
         handleShowUserPosts,
-        showUserPosts
+        showUserPosts,
     } = ProfileLogic();
 
     useEffect(() => {
@@ -52,8 +52,6 @@ const Profile: FC = () => {
         };
         fetchData();
     }, [userInfo, userPostProfile]);
-
-
 
     return (
         <>
@@ -118,7 +116,9 @@ const Profile: FC = () => {
                                     {item.postCategory}
                                 </Typography>
 
-                                <Typography level="body2" sx={{ fontSize: 12, marginTop: 0.5 }}>
+                                <Typography
+                                    level="body2"
+                                    sx={{ fontSize: 12, marginTop: 0.5 }}>
                                     {new Date(
                                         item.createdAt
                                     ).toLocaleDateString()}
@@ -179,8 +179,9 @@ const Profile: FC = () => {
                                     </div>
                                     <CardActions disableSpacing>
                                         <ExpandMore
-
-                                            onClick={() => handleExpandClick(item.id)}
+                                            onClick={() =>
+                                                handleExpandClick(item.id)
+                                            }
                                             aria-expanded={expanded}
                                             aria-label="show more"
                                             sx={{ cursor: 'pointer' }}>

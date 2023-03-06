@@ -1,6 +1,6 @@
-import { getAuthenticatedToken } from "../storage";
+import { getAuthenticatedToken } from '../storage';
 
-const BASE_URL = 'http://localhost:8000/categories/'
+const BASE_URL = 'http://localhost:8000/categories/';
 
 export async function callCategories(): Promise<string[]> {
     const token = getAuthenticatedToken(); // Obtener el token de localStorage
@@ -15,7 +15,9 @@ export async function callCategories(): Promise<string[]> {
     return data.map((category: { category: string }) => category.category);
 }
 
-export async function callCategoriesType(): Promise<{ id: string, category: string }[]> {
+export async function callCategoriesType(): Promise<
+    { id: string; category: string }[]
+> {
     const token = getAuthenticatedToken(); // Obtener el token de localStorage
     const response = await fetch(`${BASE_URL}/type`, {
         method: 'GET',
@@ -50,6 +52,4 @@ export async function fetchCategories(): Promise<void> {
             'Content-Type': 'application/json',
         },
     });
-
-
 }

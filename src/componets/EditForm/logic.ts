@@ -46,7 +46,10 @@ const FeedFormEditLogic = () => {
         return await fetchData();
     }, []);
 
-    const handleSubmit = async (values: Post, { setSubmitting }: FormikHelpers<Post>) => {
+    const handleSubmit = async (
+        values: Post,
+        { setSubmitting }: FormikHelpers<Post>
+    ) => {
         try {
             const id = await handleId();
             const token = getAuthenticatedToken(); // Obtener el token de localStorage

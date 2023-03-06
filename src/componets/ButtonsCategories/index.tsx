@@ -13,13 +13,8 @@ import {
 import { Button } from '@mui/material';
 
 const ButtonCategories: FC = () => {
-    const {
-        categories,
-        Images,
-        loading,
-        syncCategories,
-        goToDetails
-    } = useLogic();
+    const { categories, Images, loading, syncCategories, goToDetails } =
+        useLogic();
 
     if (loading) {
         return (
@@ -28,7 +23,6 @@ const ButtonCategories: FC = () => {
             </Button>
         );
     }
-
 
     if (categories.length === 0) {
         return (

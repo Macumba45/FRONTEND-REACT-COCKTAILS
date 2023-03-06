@@ -53,8 +53,8 @@ const FeedFormLogic = () => {
     ) => {
         try {
             const categories = await getCategories();
-            let category_FK = "";
-            categories.forEach(category => {
+            let category_FK = '';
+            categories.forEach((category) => {
                 if (category.category === values.category) {
                     category_FK = category.id;
                 }
@@ -73,7 +73,7 @@ const FeedFormLogic = () => {
                     image: values.image,
                     comment: values.comment,
                     user_FK: id,
-                    category_FK
+                    category_FK,
                 }),
             });
             setSubmitting(false);
@@ -88,7 +88,7 @@ const FeedFormLogic = () => {
     const getCategories = useCallback(async () => {
         const categories = await callCategoriesType();
         return categories;
-    }, [])
+    }, []);
 
     return {
         navigate,

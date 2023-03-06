@@ -7,14 +7,13 @@ const useLogic = () => {
     const [subCategories, setSubCategories] = useState<Props[]>([]);
 
     const fetchSubCategories = async (category?: string) => {
-        if (category?.includes("2F")) {
+        if (category?.includes('2F')) {
             category = category.replace('2F', '/');
         }
         const categories = await getCategories();
-        let categoryId = "";
-        categories.forEach(dbCategory => {
+        let categoryId = '';
+        categories.forEach((dbCategory) => {
             if (dbCategory.category === category) {
-
                 categoryId = dbCategory.id;
             }
         });
@@ -50,7 +49,7 @@ const useLogic = () => {
     const getCategories = useCallback(async () => {
         const categories = await callCategoriesType();
         return categories;
-    }, [])
+    }, []);
 
     return {
         fetchSubCategories,
@@ -60,4 +59,4 @@ const useLogic = () => {
     };
 };
 
-export default useLogic
+export default useLogic;

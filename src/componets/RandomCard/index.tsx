@@ -49,10 +49,8 @@ const CardRandom: FC = () => {
         randomCardData,
         loadingRandom,
         handlePrintRandomCard,
-        loading
+        loading,
     } = useRandomCardLogic();
-
-
 
     if (loading) {
         return (

@@ -5,8 +5,6 @@ import { BackGroundFeed } from './styles';
 import FeedCard from '../../componets/FeedCard';
 
 const Feed: FC = () => {
-
-
     return (
         <>
             <NavBar />
@@ -15,8 +13,7 @@ const Feed: FC = () => {
             </BackGroundFeed>
             <BottomAppBar />
         </>
-
-    )
+    );
 };
 
 export default memo(Feed);
