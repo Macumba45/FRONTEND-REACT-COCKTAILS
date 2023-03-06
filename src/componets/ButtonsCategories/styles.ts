@@ -64,3 +64,4 @@ export const ImageBackdrop = styled('span')(({ theme }) => ({
     opacity: 0.4,
     transition: theme.transitions.create('opacity'),
 }));
+

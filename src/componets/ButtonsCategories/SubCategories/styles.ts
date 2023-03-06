@@ -34,7 +34,7 @@ export const Claymore = styled.img`
 
 export const BackGroundSubCategories = styled.div`
     width: 100vw;
-    height: 100vh;
+    height: 100%;
     padding-top: 30px;
     background-color: ${({ theme }) => theme.colors.light};
     display: flex;

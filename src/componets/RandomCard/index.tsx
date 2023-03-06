@@ -17,6 +17,7 @@ import ButtonRandom from '../ButtonRandom';
 import { useRandomCardLogic } from './logic';
 import { FC, memo } from 'react';
 import {
+    BackGroundRandomRandomCard,
     ButtonContainer,
     H1Container,
     H1Random,
@@ -121,7 +122,8 @@ const CardRandom: FC = () => {
         );
     }
     return (
-        <>
+
+        <BackGroundRandomRandomCard>
             <ButtonContainer>
                 <ButtonRandom onClick={handlePrintRandomCard} />
             </ButtonContainer>
@@ -207,7 +209,7 @@ const CardRandom: FC = () => {
                     </Collapse>
                 </StyledCard>
             </MainContainer>
-        </>
+        </BackGroundRandomRandomCard>
     );
 };
 

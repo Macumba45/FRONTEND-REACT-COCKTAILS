@@ -11,6 +11,7 @@ import {
     Image,
 } from './styles';
 import { Button } from '@mui/material';
+import { MainContainerClaymore } from './SubCategories/styles';
 
 const ButtonCategories: FC = () => {
     const { categories, Images, loading, syncCategories, goToDetails } =
@@ -18,17 +19,21 @@ const ButtonCategories: FC = () => {
 
     if (loading) {
         return (
-            <Button disabled sx={{ marginTop: '5rem' }}>
-                Cargando categorías...
-            </Button>
+            <MainContainerClaymore>
+                <Button disabled sx={{ marginTop: '5rem' }}>
+                    Cargando categorías...
+                </Button>
+            </MainContainerClaymore>
         );
     }
 
     if (categories.length === 0) {
         return (
-            <Button onClick={syncCategories} sx={{ marginTop: '5rem' }}>
-                Cargar categorías
-            </Button>
+            <MainContainerClaymore>
+                <Button variant='contained' onClick={syncCategories} sx={{ marginTop: '5rem', display: 'flex', justifyContent: 'center', backgroundColor: '#420024' }}>
+                    Update categories
+                </Button>
+            </MainContainerClaymore>
         );
     }
     return (

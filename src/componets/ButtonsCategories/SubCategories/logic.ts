@@ -1,40 +1,37 @@
-import { useCallback, useState } from 'react';
-import { getAuthenticatedToken } from '../../../services/storage';
+import { useCallback, useEffect, useState } from 'react';
 import { callCategoriesType } from '../../../services/api/category';
 import { Props } from './type';
+import { Params, useParams } from 'react-router-dom';
+import { CallSubCategories } from '../../../services/api/subCategory';
 
 const useLogic = () => {
     const [subCategories, setSubCategories] = useState<Props[]>([]);
+    const { category } = useParams<Params>();
+    const [isLoading, setIsLoading] = useState(true);
 
-    const fetchSubCategories = async (category?: string) => {
+    const getCategories = useCallback(async () => {
+        const categories = await callCategoriesType();
+        return categories;
+    }, []);
+
+    const fetchSubCategories = useCallback(async (category?: string) => {
         if (category?.includes('2F')) {
             category = category.replace('2F', '/');
         }
         const categories = await getCategories();
         let categoryId = '';
-        categories.forEach((dbCategory) => {
+        categories.forEach((dbCategory: any) => {
             if (dbCategory.category === category) {
                 categoryId = dbCategory.id;
             }
         });
 
-        try {
-            const token = getAuthenticatedToken(); // Obtener el token de localStorage
-            const url = `http://localhost:8000/cocktails/${categoryId}`;
-            const response = await fetch(url, {
-                method: 'GET',
-                headers: {
-                    'Content-Type': 'application/json',
-                    Authorization: `Bearer ${token}`, // Agregar el token al header 'Authorization'
-                },
-            });
-            const data = await response.json();
-            setSubCategories(data);
-            return data;
-        } catch (error) {
-            console.log(error);
-        }
-    };
+        const subCategories = await CallSubCategories(categoryId);
+        setSubCategories(subCategories);
+        setIsLoading(false);
+        return subCategories; // add this line
+    }, [setSubCategories, setIsLoading, getCategories]);
+
 
     const printCategoryDrink = useCallback(async () => {
         const category = subCategories.map((category: any) => ({
@@ -46,16 +43,30 @@ const useLogic = () => {
         return category;
     }, [subCategories]);
 
-    const getCategories = useCallback(async () => {
-        const categories = await callCategoriesType();
-        return categories;
-    }, []);
+
+    const handleCategories = useCallback(async () => {
+        const modifiedCategory = category; // Reemplazar el caracter "/" por "_"
+        const categories = await fetchSubCategories(modifiedCategory);
+
+        setTimeout(() => {
+            setSubCategories(categories);
+            setIsLoading(false);
+        }, 1000);
+    }, [category, fetchSubCategories, setSubCategories, setIsLoading]);
+
+    // Llamamos a la función handleCategories cuando se monta el componente
+    useEffect(() => {
+        handleCategories();
+    }, [handleCategories]);
 
     return {
         fetchSubCategories,
         subCategories,
         setSubCategories,
         printCategoryDrink,
+        handleCategories,
+        isLoading,
+        getCategories
     };
 };
 

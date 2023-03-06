@@ -48,7 +48,7 @@ export const ProfileLogic = () => {
         return await fetchData();
     }, []);
 
-    handleId();
+
 
     const userPostProfile = useCallback(async () => {
         const id = await handleId();

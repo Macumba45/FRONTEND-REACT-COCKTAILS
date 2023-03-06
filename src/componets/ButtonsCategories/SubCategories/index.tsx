@@ -18,24 +18,9 @@ import {
 } from './styles';
 
 const ButtonSubCategories: FC = () => {
-    const { category } = useParams<Params>();
-    const [isLoading, setIsLoading] = useState(true);
-    const { subCategories, setSubCategories, fetchSubCategories } = useLogic();
+    const { subCategories, isLoading } = useLogic();
 
-    const handleCategories = async () => {
-        const modifiedCategory = category; // Reemplazar el caracter "/" por "_"
-        const categories = await fetchSubCategories(modifiedCategory);
 
-        setTimeout(() => {
-            setSubCategories(categories);
-            setIsLoading(false);
-        }, 1000);
-    };
-
-    // Llamamos a la función handleCategories cuando se monta el componente
-    useEffect(() => {
-        handleCategories();
-    }, [category]);
 
     if (isLoading) {
         return (
