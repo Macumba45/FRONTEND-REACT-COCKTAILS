@@ -66,7 +66,7 @@ const FormEdit: FC = () => {
             }
             navigate('/feed')
         },
-        [id]
+        [id, navigate]
 
     );
 

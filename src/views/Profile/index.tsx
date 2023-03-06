@@ -8,7 +8,7 @@ import {
 } from '@mui/material';
 import MoreVertIcon from '@mui/icons-material/MoreVert';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
-import { FC, memo, useEffect, useState } from 'react';
+import { FC, memo, useEffect } from 'react';
 import NavBar from '../../componets/NavBar';
 import { ProfileLogic } from './logic';
 import AspectRatio from '@mui/joy/AspectRatio';
