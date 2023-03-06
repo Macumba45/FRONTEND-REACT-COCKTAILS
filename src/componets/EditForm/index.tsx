@@ -5,7 +5,7 @@ import { FC, memo, useCallback, useEffect, useMemo, useState } from 'react';
 import { validationSchema } from './constants';
 import { PhotoCamera } from '@mui/icons-material';
 import { Box, IconButton } from '@mui/material';
-import { useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import { getFeedById, updateFeed } from '../../services/api/feed';
 import { Post } from './type';
 
@@ -31,6 +31,7 @@ const FormEdit: FC = () => {
         FeedFormEditLogic();
     const [isLoading, setIsLoading] = useState(false);
     const [feed, setFeed] = useState<Post | null>(null);
+    const navigate = useNavigate();
 
     const getFeed = useCallback(async () => {
         if (id) {
@@ -63,8 +64,10 @@ const FormEdit: FC = () => {
                 await updateFeed(id, values);
                 setIsLoading(false);
             }
+            navigate('/feed')
         },
         [id]
+
     );
 
     if (isLoading) {
@@ -120,8 +123,8 @@ const FormEdit: FC = () => {
                                                 ) =>
                                                     setSelectedImage(
                                                         event.target.files &&
-                                                            event.target
-                                                                .files[0]
+                                                        event.target
+                                                            .files[0]
                                                     )
                                                 }
                                             />
