@@ -11,7 +11,6 @@ const FeedFormLogic = () => {
     const [categories, setCategories] = useState<string[]>([]);
     const [selectedImage, setSelectedImage] = useState<File | null>(null);
     const [modal, setModal] = useState<boolean>(false);
-    const defaultImage = 'https://thumbs.dreamstime.com/b/set-various-cocktails-black-background-set-various-cocktails-shaker-black-background-188649840.jpg'; // URL de la imagen predeterminada
 
 
     const handleClose = () => {
