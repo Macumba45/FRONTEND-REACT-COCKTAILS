@@ -25,10 +25,11 @@ Diseño:
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
-Inicialización
+## Inicialización
+
 Ya clonado el proyecto es necesario instalar todas las dependencias con el comando:
 
-yarn
+ ### yarn
 
 ## Available Scripts
 
